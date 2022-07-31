@@ -12,7 +12,7 @@ End: 31/07/2022
 
 `<Tips> `shortcut to create html template in vsCode --- `!`
 
-![image-20220627191526858](images/image-20220627191526858.png)
+![image-20220627191526858](images\image-20220627191526858.png)
 
 
 
@@ -153,7 +153,7 @@ Don't:
 
 ## Semantic Elements
 
-![https://www.w3schools.com/html/html5_semantic_elements.asp](images/image-20220723235348167.png)
+![https://www.w3schools.com/html/html5_semantic_elements.asp](images\image-20220723235348167.png)
 
 
 
@@ -730,7 +730,7 @@ h1 ~ p
 >
 > use display: inline | block | flex (block outer) | inline-flex (inline outer) | inline-block
 
-![image-20220725143255639](images/image-20220725143255639.png)
+![image-20220725143255639](images\image-20220725143255639.png)
 
 > content: width, height (not including padding and border)
 >
@@ -991,7 +991,7 @@ X width | ok inline-size
 X height | ok block-size
 ```
 
-![image-20220725164746361](images/image-20220725164746361.png)
+![image-20220725164746361](images\image-20220725164746361.png)
 
 ```css
 Example:
@@ -1094,7 +1094,7 @@ input[type="search"]:not(:focus, :active)::-webkit-search-cancel-button { displa
 
 
 
-![image-20220726133957882](images/image-20220726133957882.png)
+![image-20220726133957882](images\image-20220726133957882.png)
 
 Image from Mozilla, [mdn web docs](https://developer.mozilla.org/zh-CN/docs/Learn/CSS/CSS_layout/Flexbox)
 
@@ -1146,7 +1146,7 @@ grid-template-areas: /* use '.' if the cell is empty*/
 "footer footer"
 ```
 
-![image-20220726131005535](images/image-20220726131005535.png)
+![image-20220726131005535](images\image-20220726131005535.png)
 
 >  Items in grid
 
@@ -1231,9 +1231,9 @@ break-inside: avoid --- prevent a block to be divided into 2 different columns
 page-break-inside: avoid --- together as for older browser
 ```
 
-![image-20220726132832857](images/image-20220726132832857.png)
+![image-20220726132832857](images\image-20220726132832857.png)
 
-![image-20220726132848225](images/image-20220726132848225.png)
+![image-20220726132848225](images\image-20220726132848225.png)
 
 
 
@@ -1865,7 +1865,7 @@ drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
 
 ```
 
-![image-20220729150523898](images/image-20220729150523898.png)
+![image-20220729150523898](images\image-20220729150523898.png)
 
 Image from [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage), demostrating the canvas.drawImage function
 
@@ -2373,7 +2373,7 @@ Refer Above: Useful Utils Method
 >
 > Able to get Window informations.
 
-![image-20220728215238125](images/image-20220728215238125.png)
+![image-20220728215238125](images\image-20220728215238125.png)
 
 Picture refer to [Mozilla](https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Client-side_web_APIs/Manipulating_documents), demostrating the document, window, and navigator (navigator => to get user infor such as prefer language, geography location ...)
 
@@ -2940,7 +2940,7 @@ Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
 
 ## Project Structure
 
-![image-20220730211612975](images/image-20220730211612975.png)
+![image-20220730211612975](images\image-20220730211612975.png)
 
 1. .eslintrc.js 	---- eslint config file, manage your coding rules
 2. babel.config.js ---- babel config file, degrade the new code to old code in order to run on older browser
@@ -3464,7 +3464,7 @@ v-bind:attribute="expression"
 </script>
 ```
 
-![image-20220627200908071](images/image-20220627200908071.png)
+![image-20220627200908071](images\image-20220627200908071.png)
 
 ### v-model 
 
@@ -3498,7 +3498,7 @@ v-bind:attribute="expression"
 
 _below example: change in middle affected all_
 
-![image-20220627202014302](images/image-20220627202014302.png)
+![image-20220627202014302](images\image-20220627202014302.png)
 
 
 
@@ -3540,7 +3540,7 @@ example:
 </script>
 ```
 
-![image-20220627203259999](images/image-20220627203259999.png)
+![image-20220627203259999](images\image-20220627203259999.png)
 
 
 
@@ -3567,7 +3567,7 @@ example:
 </script>
 ```
 
-![image-20220627205746118](images/image-20220627205746118.png)![image-20220627205802710](images/image-20220627205802710.png)
+![image-20220627205746118](images\image-20220627205746118.png)![image-20220627205802710](images\image-20220627205802710.png)
 
 ### v-show
 
@@ -3593,7 +3593,7 @@ example:
 </ol>
 ```
 
-![image-20220627210442582](images/image-20220627210442582.png)
+![image-20220627210442582](images\image-20220627210442582.png)
 
 
 
@@ -3627,7 +3627,7 @@ example:
 
 
 
-![image-20220627211002953](images/image-20220627211002953.png)
+![image-20220627211002953](images\image-20220627211002953.png)
 
 
 
@@ -3667,7 +3667,7 @@ example:
 </script>
  ```
 
-![image-20220627224635545](images/image-20220627224635545.png)
+![image-20220627224635545](images\image-20220627224635545.png)
 
 
 
