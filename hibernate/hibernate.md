@@ -179,7 +179,7 @@ SessionFactory sessionFactory = configuration.buildSessionFactory();
 > - have a first level cache, the operation are cached here before calling 'flush'
 > - can understand as connection in JDBC
 
-![image-20220812191036422](C:\coding\Hibernate\images\image-20220812191036422.png)
+![image-20220812191036422](images/image-20220812191036422.png)
 
 ```java
 Session Methods:
@@ -248,7 +248,7 @@ Method:
 
 > Tips: HQL and QBC does not work with level 1 cache
 
-![image-20220812233518482](C:\coding\Hibernate\images\image-20220812233518482.png)![image-20220813000925490](C:\coding\Hibernate\images\image-20220813000925490.png)
+![image-20220812233518482](images/image-20220812233518482.png)![image-20220813000925490](images/image-20220813000925490.png)
 
 No sql will  be executed if there is same query in one session ==> lower pressure on io. The cache will last until:
 
@@ -292,7 +292,7 @@ No sql will  be executed if there is same query in one session ==> lower pressur
 
 > need to use plugin in order to use in Hibernate. For example, **EHcache**, OS cache, SwarmCache, JBossCache
 >
-> ![image-20220815190912335](C:\coding\Hibernate\images\image-20220815190912335.png)
+> ![image-20220815190912335](images/image-20220815190912335.png)
 >
 > - select one **Cache Concurrency Strategy**
 >
@@ -301,7 +301,7 @@ No sql will  be executed if there is same query in one session ==> lower pressur
 >   - Transaction (Repeatable Read)
 >   - Read-Only (Serializable)
 >
->   ![image-20220815191343634](C:\coding\Hibernate\images\image-20220815191343634.png)
+>   ![image-20220815191343634](images/image-20220815191343634.png)
 
 > Used when:
 >
@@ -387,18 +387,18 @@ hibernate.xml
 >    ```java
 >    Query query = session.createQuery("FROM Employee");
 >    query.setCacheable(true);
->          
+>             
 >    List<Employee> emps = query.list();
 >    System.out.println(emps.size());
->          
+>             
 >    emps = query.list();
->          
+>             
 >    //above case will be 2 select sql if withou the setting. however will be 1 only after setting.
->          
+>             
 >    -------------------
 >    example of criteria
 >    -------------------
->              
+>                 
 >    Criteria criteria = session.createCriteria(Employee.class);
 >    criteria.setCacheable(true);
 >    ```
@@ -502,7 +502,7 @@ public void testQueryIterate() {
 
 ## Hibernate Object Status
 
-![image-20220814120515039](C:\coding\Hibernate\images\image-20220814120515039.png)
+![image-20220814120515039](images/image-20220814120515039.png)
 
 1. Transient (临时对象)
    - OID is null
@@ -663,11 +663,11 @@ public void testQueryIterate() {
 
 ### Type
 
-![image-20220814141250229](C:\coding\Hibernate\images\image-20220814141250229.png)
+![image-20220814141250229](images/image-20220814141250229.png)
 
-![image-20220814143006307](C:\coding\Hibernate\images\image-20220814143006307.png)
+![image-20220814143006307](images/image-20220814143006307.png)
 
-![image-20220814143534109](C:\coding\Hibernate\images\image-20220814143534109.png)
+![image-20220814143534109](images/image-20220814143534109.png)
 
 ```xml
 setting exact type
@@ -1350,7 +1350,7 @@ Tips: error
 
 #### Summary
 
-![image-20220815000850165](C:\coding\Hibernate\images\image-20220815000850165.png)
+![image-20220815000850165](images/image-20220815000850165.png)
 
 
 
