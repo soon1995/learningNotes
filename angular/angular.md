@@ -17,7 +17,7 @@ Official Website: [en](https://angular.io/) | [cn](https://angular.cn/)
 
 
 
-**Tips: VScode **: 标签快捷键 key了后*再按tab, `key*`--》 `<key></key>`
+**Tips: VScode**: 标签快捷键 key了后*再按tab, `key*`--》 `<key></key>`
 
 # Setting up
 
@@ -84,7 +84,7 @@ Official Website: [en](https://angular.io/) | [cn](https://angular.cn/)
 ### Angular核心概念之一：模块
 
 Module：模块是一个抽象的容器，用语对组件进行分组
-  **Tips: ** AppModule is the initial module when we build angular
+**Tips:**  AppModule is the initial module when we build angular
 
 
 
@@ -158,9 +158,9 @@ Module：模块是一个抽象的容器，用语对组件进行分组
 
 
 
-**Tips: ** Angular shortcut to create component: `npx ng generate component componentName` ==> short `npx ng g component componentName` (在项目根目录执行)
+**Tips:**  Angular shortcut to create component: `npx ng generate component componentName` ==> short `npx ng g component componentName` (在项目根目录执行)
 
-**Tips: ** npx use to execute the bin command in current project node_modules/.bin
+**Tips:**  npx use to execute the bin command in current project node_modules/.bin
 
 ![image-20220918135226808](images/image-20220918135226808.png)
 
@@ -359,7 +359,7 @@ export class Myc04Component {
 >
 > 
 
-**Tips: **v-hide can refer [ngStyle] or [ngClass]
+**Tips:** v-hide can refer [ngStyle] or [ngClass]
 
 > **Angular指令分为3类**
 >
@@ -442,7 +442,7 @@ export class ModelbindComponent{
 >
 > eg `{{ e.salary | filterName/pipeName : arg1}}`
 >
-> **Tips: ** Angular2.x中，过滤器更名为“管道（Pipe）
+> **Tips:**  Angular2.x中，过滤器更名为“管道（Pipe）
 
 **Steps** or `npx ng g pipe pipename`
 
@@ -450,7 +450,7 @@ export class ModelbindComponent{
 
    > src/app/name.pipe.ts
    >
-   > **Tips: **can implements PipeTransform also to double confirm no typo in 'transform' method. without it, it is ok also
+   > **Tips:** can implements PipeTransform also to double confirm no typo in 'transform' method. without it, it is ok also
 
    ```typescript
    import { Pipe } from '@angular/core';
@@ -733,7 +733,7 @@ DatePipe:
 >    ```typescript
 >    import { HttpClient } from '@angular/common/http'; 
 >    import { Component, OnInit } from '@angular/core';
->                
+>                   
 >    @Component({
 >      selector: 'app-injection-depend',
 >      templateUrl: './injection-depend.component.html',
@@ -741,20 +741,20 @@ DatePipe:
 >    })
 >    export class InjectionDependComponent {
 >      httpClient: HttpClient
->                  
+>                     
 >      constructor(httpClient: HttpClient) {
 >        this.httpClient = httpClient
 >      }
->                
+>                   
 >      loadProduct() {
 >        let url = "https://shopee.com.my/api/v4/search/search_items?by=relevancy&keyword=netflix%20account&limit=60&newest=0&order=desc&page_type=search&scenario=PAGE_GLOBAL_SEARCH&version=2"
 >        this.httpClient.get(url).subscribe((res: any) => {
 >          console.log(res.data)
 >        })
 >      }
->                
+>                   
 >    }
->                
+>                   
 >    ```
 >
 >    
@@ -925,7 +925,7 @@ Vue.js和angular中的父子间消息传递原理是一样的，都可以用口�
    ...
    ```
 
-   **Tips: ** path 不能以/开头, 中间允许有/
+   **Tips:**  path 不能以/开头, 中间允许有/
 
 3. 注册router词典
 
