@@ -96,7 +96,7 @@ Module：模块是一个抽象的容器，用语对组件进行分组
 >
 > Component is inside module
 
-**Steps to customize component: **
+**Steps to customize component:**
 
 1. create component class
 
@@ -733,7 +733,7 @@ DatePipe:
 >    ```typescript
 >    import { HttpClient } from '@angular/common/http'; 
 >    import { Component, OnInit } from '@angular/core';
->                   
+>                      
 >    @Component({
 >      selector: 'app-injection-depend',
 >      templateUrl: './injection-depend.component.html',
@@ -741,20 +741,20 @@ DatePipe:
 >    })
 >    export class InjectionDependComponent {
 >      httpClient: HttpClient
->                     
+>                        
 >      constructor(httpClient: HttpClient) {
 >        this.httpClient = httpClient
 >      }
->                   
+>                      
 >      loadProduct() {
 >        let url = "https://shopee.com.my/api/v4/search/search_items?by=relevancy&keyword=netflix%20account&limit=60&newest=0&order=desc&page_type=search&scenario=PAGE_GLOBAL_SEARCH&version=2"
 >        this.httpClient.get(url).subscribe((res: any) => {
 >          console.log(res.data)
 >        })
 >      }
->                   
+>                      
 >    }
->                   
+>                      
 >    ```
 >
 >    
@@ -887,9 +887,9 @@ Vue.js和angular中的父子间消息传递原理是一样的，都可以用口�
 
 # 路由和导航
 
-> **多页面应用：** 一个项目中有多个完整HTML文件，用超链接跳转--销毁一个DOM树，同步请求另一棵，得到之后再重建DOM树。不足：DOM要反复重建，间隔会有空白
+> **多页面应用**  一个项目中有多个完整HTML文件，用超链接跳转--销毁一个DOM树，同步请求另一棵，得到之后再重建DOM树。不足：DOM要反复重建，间隔会有空白
 >
-> **单页面应用：**称为SPA(Single Page Application), 整个项目中有且只有一个“完整的”HTML文件，其他的页面都是DIV片段，需要哪个“页面”就将其异步请求下来，“插入”到“完整的”HTML文件中。优势：整个项目中客户端只需要下载一个HTML页面，创建一个完整的DOM树，页面跳转都是一个DIV替换另一个DIV而已—能够实现过场动画; 不足：不利于SEO优化。如果不考虑营销首选
+> **单页面应用** 称为SPA(Single Page Application), 整个项目中有且只有一个“完整的”HTML文件，其他的页面都是DIV片段，需要哪个“页面”就将其异步请求下来，“插入”到“完整的”HTML文件中。优势：整个项目中客户端只需要下载一个HTML页面，创建一个完整的DOM树，页面跳转都是一个DIV替换另一个DIV而已—能够实现过场动画; 不足：不利于SEO优化。如果不考虑营销首选
 
 ![image-20220924171711018](images/image-20220924171711018.png)
 
