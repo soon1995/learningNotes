@@ -51,8 +51,9 @@ Official Website: [en](https://angular.io/) | [cn](https://angular.cn/)
 |-- package.json
 |-- e2e (directory) # 测试
 |-- src 
-|	|-- index.html
-|	|-- main.ts
+	|-- index.html
+	|-- main.ts
+	|-- ...
 ```
 
 
@@ -732,7 +733,7 @@ DatePipe:
 >    ```typescript
 >    import { HttpClient } from '@angular/common/http'; 
 >    import { Component, OnInit } from '@angular/core';
->             
+>                
 >    @Component({
 >      selector: 'app-injection-depend',
 >      templateUrl: './injection-depend.component.html',
@@ -740,20 +741,20 @@ DatePipe:
 >    })
 >    export class InjectionDependComponent {
 >      httpClient: HttpClient
->               
+>                  
 >      constructor(httpClient: HttpClient) {
 >        this.httpClient = httpClient
 >      }
->             
+>                
 >      loadProduct() {
 >        let url = "https://shopee.com.my/api/v4/search/search_items?by=relevancy&keyword=netflix%20account&limit=60&newest=0&order=desc&page_type=search&scenario=PAGE_GLOBAL_SEARCH&version=2"
 >        this.httpClient.get(url).subscribe((res: any) => {
 >          console.log(res.data)
 >        })
 >      }
->             
+>                
 >    }
->             
+>                
 >    ```
 >
 >    
