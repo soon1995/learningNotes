@@ -234,7 +234,7 @@ eg git commit -m "fix: ..., fix #1, #2"
 
 `git push <remote> <branch>`//push to remote
 
-`git push -u <remote> <branch>` // push by identify origin branch AND set upstream to it
+`git push -u <remote> <branch>` // push by identify origin branch AND set upstream to it, then next push `git push` will be okay d. `git branch -vv` to watch the upstream (in blue colour)
 
 `git push --set-upstream <remote> <branch> ` //set upstream to origin master
 
