@@ -205,7 +205,20 @@ $ git log --pretty=oneline
 >
 > hard: change HEAD. this file destroyed
 
+**Tips:** use below reference for your commit message, for faster review in future
+```
+- feat：添加新功能
+- fix：修补缺陷
+- docs：修改文档
+- style： 修改格式
+- refactor：重构
+- perf：优化
+- test：增加测试
+- chore：构建过程或辅助工具的变动
+- revert：回滚到上一个版本
 
+eg git commit -m "fix: ..., fix #1, #2"
+```
 
 ### Remote
 
@@ -230,6 +243,8 @@ $ git log --pretty=oneline
 `git push origin :refs/tags/<tag>` //delete tag from remote
 
 `git pull <remote> <branch>` 
+
+**Tips:** we can use `git push origin` only to push to the origin by default current branch, we may use `git push` if there is only one branch. use `git branch -r` to list remote branch names  
 
 ```shell
 user@DESKTOP MINGW64 ~/Desktop/testGit/testGit25062022 (master)
