@@ -220,6 +220,8 @@ $ git log --pretty=oneline
 eg git commit -m "fix: ..., fix #1, #2"
 ```
 
+**Tips:** we can put icon in our commit too: https://zhuanlan.zhihu.com/p/30561653
+
 ### Remote
 
 `git clone [url]`
