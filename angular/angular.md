@@ -703,6 +703,14 @@ DatePipe:
 
 ##### Angular 提供的服务对象 -- HttpClient Service
 
+```javascript
+this.http.get(url[,options]);
+this.http.post(url, data[,options]);
+this.http.delete(url[,options]);
+this.http.put(url, data[,options]);
+```
+
+
 > 向指定的url发起异步请求， 使用步骤:
 >
 > 1. 在app.module.ts导入模块 HttpClientModule (@angular/common/http)
@@ -763,6 +771,162 @@ DatePipe:
 
 ![image-20220924095356951](images/image-20220924095356951.png)
 
+#### HttpParams
+
+1. HttpParams Class
+```javascript
+export declare class HttpParams {
+  constructor(options: HttpParamsOptions = {} as HttpParamsOptions)
+  has(param: string): boolean // whether has this param
+  get(param: string): string | null // get param
+  getAll(param: string): string[] | null
+  keys(): string[]
+  append(param: string, value: string | number | boolean): HttpParams // !!return value is HttpParams, so there is a need to use xxx = ...append(...)
+  appendAll(params: { [param: string]: string | number | boolean | readonly (string | number | boolean)[]; }): HttpParams
+  set(param: string, value: string | number | boolean): HttpParams
+  delete(param: string, value?: string | number | boolean): HttpParams
+  toString(): string
+}
+```
+
+2. HttpParamsOptions Interface
+```javascript
+interface HttpParamsOptions {
+  fromString?: string // ?a=b&... ok
+  fromObject?: {...} // object also okay
+  encoder?: HttpParameterCodec
+}
+```
+
+
+> **Usage**
+
+```javascript
+import { HttpParams } from '@angular/common/http';
+
+let param = new HttpParams({ fromObject: {name: 'ABC', age:20}})
+params = params.append('sex','male')
+let params = new HttpParams({ fromString: "name=ABC&age=20"})
+
+this.http.get("https...", { params: params}).subscribe(console.log) // or { params }
+
+```
+
+#### HttpHeaders
+
+```javascript
+class HttpHeaders {
+  constructor(headers?: string | { [name: string]: string | string[]; })
+  has(name: string): boolean
+  get(name: string): string | null
+  keys(): string[]
+  getAll(name: string): string[] | null
+  append(name: string, value: string | string[]): HttpHeaders
+  set(name: string, value: string | string[]): HttpHeaders
+  delete(name: string, value?: string | string[]): HttpHeaders
+}
+
+let headers = new HttpHeaders({test:'Hello'})
+
+```
+
+> **Usage**
+
+```javascript
+let headers = new HttpHeaders({test:"Hello"})
+
+this.http.get("https...", { headers: headers }).subscribe(console.log) // or { headers }
+
+
+```
+
+#### Http Response 
+```javascript
+
+this.http.get("https...", { observe: "response"}).subscribe(console.log) // response 表示完整的响应体
+
+```
+> **Result**
+> HttpResponse {
+>   headers: HttpHeaders,
+>   status: 200,
+>   ...
+> }
+
+
+# 拦截器
+
+> only work with HttpClient Service provided by Angular, not working with axios
+> `ng g interceptor <name>`
+
+**Interceptor to request**
+```typescript
+@Injectable()
+export class AuthInterceptor implements HttpInterceptor {
+  constructor() {}
+
+  intercept {
+    request: HttpRequest<unknown>,
+    next: HttpHandler
+  }: Observable<HttpEvent<unknown>> {
+    // request cannot be changed directly
+    // clone request and set header
+    const req = request.clone({
+      setHeaders: {
+        method:"post",
+        setHeaders： {
+          hello: "hello"
+        },
+        Authorization: "Bearer xxxxxxxxxx"
+      }
+    })
+
+    return next.handle(req)
+  }
+
+}
+
+```
+
+**Interceptor to response**
+```typescript
+@Injectable() 
+export class AuthInterceptor implements HttpInterceptor {
+  constructor() {}
+
+  intercept {
+    request: HttpRequest<unknown>,
+    next: HttpHandler
+  }: Observable<any> {
+    return next.handle(request).pipe(
+      retry(2), // 重试if error, if there is error then retry first to how many times
+      catchError((error: HttpErrorResponse) => throwError(error)) // if error persists
+    )
+  }
+
+}
+
+```
+
+**Interceptor inject**
+1. src/app.module.ts
+```typescript
+import { AuthInterceptor } from "./auth.interceptor"
+import { HTTP_INTERCEPTORS } from "@angular/common/http”
+
+@NgModule({
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true // 固定，不然报错，因为HTTP_INTERCEPTOR"S"
+    }
+  ]
+})
+
+```
+
+this interceptor will be applied to all HttpClient.
 
 
 # 生命周期钩子
@@ -1294,3 +1458,39 @@ export class Myc01TodolistComponent implements OnInit {
 `let now = new Date().getTime()` ==> from 1970 to now in ms
 
 `let now = new Date().getDate()` ==> get dd
+
+
+## Cross Origin in Front End
+1. at project root, create `proxy.conf.json`
+
+```json
+{
+  "/api/*": {
+    "target": "http://localhost:port",
+    "secure": false, // if it is https, then true
+    // "changeOrigin": true // if it is not localhost, set true, else delete it
+  }
+}
+```
+
+2. use proxy.conf.json file
+  - method 1 - package.json
+    ```
+    "script": {
+      "start": "ng serve --proxy-config proxy.conf.json",
+    }
+    ```
+  - method 2, angular.json
+    ```
+      "serve": {
+        "options": {
+          "proxyConfig": "proxy.conf.json"
+        }
+      }
+    ```
+
+3. call it
+```javascript
+// please do not get "http://...", start with path
+this.http.get("/api/hello").subscribe(console.log)
+```
