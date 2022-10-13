@@ -1098,6 +1098,41 @@ canActivate() {
 ```
 
 
+# Ng-select
+[Usage reference](https://github.com/ng-select/ng-select)
+
+```typescript
+@Component({...})
+export class ExampleComponent {
+
+    selectedCar: number;
+
+    cars = [
+        { id: 1, name: 'Volvo' },
+        { id: 2, name: 'Saab' },
+        { id: 3, name: 'Opel' },
+        { id: 4, name: 'Audi' },
+    ];
+}
+
+```
+
+```html
+<!--Using items input-->
+<!--bindValue is the value in form-->
+<!--bindLabel is the label show to user-->
+<ng-select [items]="cars" 
+           bindLabel="name" 
+           bindValue="id"  
+           [(ngModel)]="selectedCar">
+</ng-select>
+
+<!--Using ng-option and for loop-->
+<ng-select [(ngModel)]="selectedCar">
+   <ng-option *ngFor="let car of cars" [value]="car.id">{{car.name}}</ng-option>
+</ng-select>
+```
+
 
 # Exercise
 
