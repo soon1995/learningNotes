@@ -1494,3 +1494,9 @@ export class Myc01TodolistComponent implements OnInit {
 // please do not get "http://...", start with path
 this.http.get("/api/hello").subscribe(console.log)
 ```
+
+
+# Problem faced
+1. binding not reflect to child components
+
+Please check whether you imported their modules
