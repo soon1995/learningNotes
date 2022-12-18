@@ -1330,3 +1330,34 @@ $ git lg
 * 6971537 - (tag: v0.0) wrote a read1 file (15 hours ago) <Jack>
 ```
 
+
+
+
+
+# Git Signature
+
+> Here using SSH instead of GPG
+>
+> Follow steps below:
+
+1. `git config --global gpg.format ssh`
+
+   > **Note:** SSH signature verification is available in Git 2.34 or later. To update your version of Git, see the [Git](https://git-scm.com/downloads) website
+
+2. `git config --global user.signingkey /PATH/TO/.SSH/KEY.PUB`
+
+3. `git config --global commit.gpgsign true`
+
+4. `git config --global user.email ...`
+
+5. `git config --global gpg.ssh.allowedSignersFile ~/.ssh/allowed_signers`
+
+6. `touch ~/.ssh/allowed_signers`
+
+7. `echo "caleb@calebhearth.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM9V5SC0UdggJItk8St....yYrJTj4eSArjuz4kgqXRy8hnf" ~/.ssh/allowed_signers`
+
+8. add signing key in github account - settings - SSH and GPG keys - add SSH key - signing key
+
+9. `git show --show-signature` to check whether your signature ok.
+
+10. done!
