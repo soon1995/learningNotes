@@ -2555,15 +2555,15 @@ localStorage / sessionStorage
    >     { transform: 'rotate(0) scale(1)' }, //from
    >     { transform: 'rotate(360deg) scale(0)' } //to
    >   ];
-   >           
+   >             
    >   const aliceTiming = {
    >     duration: 2000,
    >     iterations: 1, // for 1 time
    >     fill: 'forwards' // after 2000ms, the fill is the result, not the begin image size
    >   }
-   >           
+   >             
    >   const alice1 = document.querySelector("#alice1");
-   >           
+   >             
    >   alice1.animate(aliceTumbling, aliceTiming); // alice will rotate and miss in 2000ms
    >   ```
    >
@@ -2903,6 +2903,8 @@ Tips:
 
 
 # Vue
+
+[You can watch me too.. by the way below stated is not the referred here](https://www.bilibili.com/anime/?spm_id_from=333.788.0.0)
 
 > A JavaScript Framework to make the development much more efficient. But bear in mind that it cost extra space, and other bad side. You should not use framework if the JavaScript is not that much.
 
