@@ -1354,7 +1354,7 @@ $ git lg
 
 6. `touch ~/.ssh/allowed_signers`
 
-7. `echo "caleb@calebhearth.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM9V5SC0UdggJItk8St....yYrJTj4eSArjuz4kgqXRy8hnf" ~/.ssh/allowed_signers`
+7. `echo "caleb@calebhearth.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM9V5SC0UdggJItk8St....yYrJTj4eSArjuz4kgqXRy8hnf" > ~/.ssh/allowed_signers`
 
 8. add signing key in github account - settings - SSH and GPG keys - add SSH key - signing key
 
