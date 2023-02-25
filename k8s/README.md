@@ -94,7 +94,7 @@
 
 `kubectl rollout undo deployments/<name>` undo
 
-`kubectl log <podname> -c <container name>` 查看log，如果只有一个容器的话就不用-c
+`kubectl logs <podname> -c <container name>` 查看log，如果只有一个容器的话就不用-c
 
 `kubectl exec <podname> -c <container name> -it -- /bin/sh` 进入容器，如果只有一个容器就不用-c 
 
