@@ -60,16 +60,18 @@ Remember : systemctl start docker
 
 ```
 docker version
-docker info
+docker info // returns a list of any containers, any images (the building blocks Docker uses to build containers), the execution and storage drivers Docker is using, and its basic configuration.
 docker stats                        //status
 docker networks ls
 docker system df
+docker help [command] // eg docker help run
 ```
 ![image](https://user-images.githubusercontent.com/97860551/174944151-eaa6b429-c7b2-4b00-9fe5-47bc343f1fd7.png)
 ```
 docker [command] --help
 ```
 
+**Tips:** Docker has a client-server architecture. It has two binaries, the Docker server provided via the dockerd binary and the docker binary, that acts as a client. As a client, the docker binary passes requests to the Docker daemon (e.g., asking it to return information about itself), and then processes those requests when they are returned. (Prior to Docker 1.12 all of this functionality was provided by a single binary: docker.)
 
 ## Image Command
 
@@ -92,10 +94,10 @@ docker image prune 					//delete <none>name <none>tag 虚悬镜像
 
 ```
 docker rm 
-docker run [OPTION] image command   //run image in a container
+docker run [OPTION] image command   //run image in a container, eg. docker run -it ubuntu /bin/bash
             --name=?                //container name
             -d                      //run in background
-            -it                     //iterative + tty
+            -it                     //i(keeps STDIN open from the container, even if were not attached to it) + t(assign a pseudo-tty), thus provide an interative shell in the new container
             -p x:y                  //use localhost port x to visit container port y (expose port y)
             -P                      //publish all exposed ports to random ports
             --rm                    //when exit: delete container
@@ -123,6 +125,11 @@ docker commit [OPTIONS] containerId imageName:version   //commit and create your
               -a="?"                                    //author             
 ```
 
+### Ways to identify containers
+1. a short UUID (like f7cbdac22a02)
+2. a longer UUID (like f7cbdac22a02e03c9438c729345e54db9d
+20cfa2ac1fc3494b6eb60872e74778)
+3. a name (like gray_cat)
 
 
 ## Volumes commands
@@ -253,12 +260,13 @@ services:
 
 ![image](https://user-images.githubusercontent.com/97860551/174950388-df0a6553-48b6-4cd1-b048-c8445bd3437e.png)![image](https://user-images.githubusercontent.com/97860551/174952680-573cb67e-f566-4fde-96b5-85af77860cb2.png)
 
-
+## Base Image
+`ubuntu` // hundreds mb
+`alpine` // Alpine Linux, 5mb
 
 # About Volume (Directories synchronize)
 
 ![image](https://user-images.githubusercontent.com/97860551/174945930-8337041b-b5b0-45fb-839a-9aab33d5f064.png)
-
 
 
 **Everything change in container directory reflect in local directory, vice versa. **
