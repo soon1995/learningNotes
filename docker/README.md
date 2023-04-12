@@ -87,6 +87,7 @@ docker rmi [OPTIONS] imageid        //remove image, eg. docker rmi -f $(docker -
 docker history imageId              //see how the image generated.   
 docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]    //Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
 docker image prune 					//delete <none>name <none>tag 虚悬镜像
+docker create [OPTIONS] image [COMMAND] [ARG...] // create a new container but not run
 ```
 
 
@@ -95,7 +96,7 @@ docker image prune 					//delete <none>name <none>tag 虚悬镜像
 ```
 docker rm 
 docker run [OPTION] image command   //run image in a container, eg. docker run -it ubuntu /bin/bash
-            --name=?                //container name
+            --name=?                //container name, else give random name. Name are unique, if we try to create 2 containers with same name, the command will fail
             -d                      //run in background
             -it                     //i(keeps STDIN open from the container, even if were not attached to it) + t(assign a pseudo-tty), thus provide an interative shell in the new container
             -p x:y                  //use localhost port x to visit container port y (expose port y)
@@ -104,8 +105,9 @@ docker run [OPTION] image command   //run image in a container, eg. docker run -
             -e                      //[e]nvironment variable eg. -e ES_JAVA_OPTS="-Xms64m -Xmx512m" (elastic search) 
             -v a:b                  //mount localDir:containerDir
             --volumes-from ContainerIdOrName //share volume from ...
-    while using:  exit
+    while using:  exit              // stop the container
                   ctrl + p + q      //run in background
+                                    //eg sudo docker run --name daemon_dave -d ubuntu /bin/sh -c "while true; do echo hello world; sleep 1; done"
 
 docker ps [OPTIONS]                 //show currently 'up' container
           -a                        //all including 'exit' container
@@ -115,7 +117,7 @@ docker ps [OPTIONS]                 //show currently 'up' container
 ```
 ![image](https://user-images.githubusercontent.com/97860551/174952561-e545b096-38e4-4639-8e03-1fd9a33a03e9.png)
 ```
-docker start containerId
+docker start containerId // restart stopped container
 docker restart containerId
 docker stop containerId
 docker kill containerId
@@ -154,7 +156,7 @@ docker top containerId              //show detail of process
 ```
 docker inspect containerId          //show container's detail
 docker exec -it containerId  command//enter container (start from zero)
-docker attach containerId           //enter container
+docker attach containerId/name           //reattach to started container session
 docker cp containerId:path destPath //copy file from container to host
 ```
 
