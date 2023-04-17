@@ -150,7 +150,7 @@ docker logs [OPTIONS] containerId   //show logs
             -ft                     //Follow logs output, Timestamp
             --tail number           //show only last [number]
 
-docker top containerId              //show detail of process
+docker top containerId              //show detail of process, shows the user who run it, and entry command
 ```
 ![image](https://user-images.githubusercontent.com/97860551/174939595-50749036-57fe-44b3-b9d1-d07057a2baef.png)
 ```
