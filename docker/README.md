@@ -61,7 +61,7 @@ Remember : systemctl start docker
 ```
 docker version
 docker info // returns a list of any containers, any images (the building blocks Docker uses to build containers), the execution and storage drivers Docker is using, and its basic configuration.
-docker stats                        //status
+docker stats                        //status, includes id, name, cpu %, mem usage/ limit, mem% ...
 docker networks ls
 docker system df
 docker help [command] // eg docker help run
@@ -105,6 +105,7 @@ docker run [OPTION] image command   //run image in a container, eg. docker run -
             -e                      //[e]nvironment variable eg. -e ES_JAVA_OPTS="-Xms64m -Xmx512m" (elastic search) 
             -v a:b                  //mount localDir:containerDir
             --volumes-from ContainerIdOrName //share volume from ...
+            --log-driver            //control logging driver used, docker run --log-driver='syslog' --name daemon_dwayne -d...
     while using:  exit              // stop the container
                   ctrl + p + q      //run in background
                                     //eg sudo docker run --name daemon_dave -d ubuntu /bin/sh -c "while true; do echo hello world; sleep 1; done"
@@ -155,7 +156,8 @@ docker top containerId              //show detail of process, shows the user who
 ![image](https://user-images.githubusercontent.com/97860551/174939595-50749036-57fe-44b3-b9d1-d07057a2baef.png)
 ```
 docker inspect containerId          //show container's detail
-docker exec -it containerId  command//enter container (start from zero)
+docker exec -it containerId  command// running a process inside an already running container, eg docker exec -it abc /bin/bash
+docker exec -d containerIdOrNamae command // background eg docker exec -d abc touch /etc/new_config_file
 docker attach containerId/name           //reattach to started container session
 docker cp containerId:path destPath //copy file from container to host
 ```
