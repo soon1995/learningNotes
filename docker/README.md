@@ -87,6 +87,7 @@ docker rmi [OPTIONS] imageid        //remove image, eg. docker rmi -f $(docker -
 docker history imageId              //see how the image generated.   
 docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]    //Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
 docker image prune 					//delete <none>name <none>tag 虚悬镜像
+docker images [name] // name is optional to filter
 docker create [OPTIONS] image [COMMAND] [ARG...] // create a new container but not run
 ```
 
@@ -94,7 +95,7 @@ docker create [OPTIONS] image [COMMAND] [ARG...] // create a new container but n
 ##  Container Command
 
 ```
-docker rm 
+docker rm                           // docker rm -f `docker ps -a -q` to FORCE remove all
 docker run [OPTION] image command   //run image in a container, eg. docker run -it ubuntu /bin/bash
             --name=?                //container name, else give random name. Name are unique, if we try to create 2 containers with same name, the command will fail
             -d                      //run in background
@@ -106,6 +107,9 @@ docker run [OPTION] image command   //run image in a container, eg. docker run -
             -v a:b                  //mount localDir:containerDir
             --volumes-from ContainerIdOrName //share volume from ...
             --log-driver            //control logging driver used, docker run --log-driver='syslog' --name daemon_dwayne -d...
+            --restart=always        // checks for the container's exit code and makes a decision whether or not to restart it
+              always: no matter what exit code 
+              on-failure: non zero exit code, it also accepts optional restart cound eg --restart=on-failure:5 ; it is the max attempt to restart
     while using:  exit              // stop the container
                   ctrl + p + q      //run in background
                                     //eg sudo docker run --name daemon_dave -d ubuntu /bin/sh -c "while true; do echo hello world; sleep 1; done"
@@ -120,8 +124,8 @@ docker ps [OPTIONS]                 //show currently 'up' container
 ```
 docker start containerId // restart stopped container
 docker restart containerId
-docker stop containerId
-docker kill containerId
+docker stop containerId/name // stop a daemonized container (it sends a SIGTERM signal to container's running process
+docker kill containerId/name // sends a SIGKILL signal to container's process
 
 docker commit [OPTIONS] containerId imageName:version   //commit and create your image in your images
               -m="?"                                    //description
@@ -156,6 +160,10 @@ docker top containerId              //show detail of process, shows the user who
 ![image](https://user-images.githubusercontent.com/97860551/174939595-50749036-57fe-44b3-b9d1-d07057a2baef.png)
 ```
 docker inspect containerId          //show container's detail
+       docker inspect --format='{{ .State.Running }}' container // show state. running.
+       docker inspect -f='{{ .NetworkSettings.IPAddress }}' container
+       docker inspect -f='{{ .NetworkSettings.IPAddress }} {{ .Name }}' container1 container2 // multiple containers and receive input
+       Tips: kindly refer to Go template
 docker exec -it containerId  command// running a process inside an already running container, eg docker exec -it abc /bin/bash
 docker exec -d containerIdOrNamae command // background eg docker exec -d abc touch /etc/new_config_file
 docker attach containerId/name           //reattach to started container session
@@ -254,6 +262,9 @@ services:
 5. testing Grafana: visit ip:3000 (default user/pwd = admin/admin)
    - setting refer [here](https://www.bilibili.com/video/BV1gr4y1U7CY?p=93&spm_id_from=pageDriver&vd_source=a788bdd4d7cdd9dfe02852346d523cb9)
 
+# About Docker Hub
+User repo: username/repo (use them at your own risk: they are not validated or verified in any way by Docker Inc.)
+Managed by Docker Inc and by seleected vendors who provide curated base images: ubuntu  (top-level repository)
 
 
 # About Image
@@ -261,6 +272,9 @@ services:
 - What : light-weight software package, which include the software itself and environments and development software used.
 - How to get : Hub, copied from friends, selfmake 
 - using UnionFs --> save file layer by layer --> avoid duplicate layer
+- is made up of filesystems layered over each other. At the base is a boot filesystem, bootfs. When a container has booted, it is moved into memory, and the boot filesystem is unmounted to free up the RAM used by the initrd disk image
+- next layer is a root filesystem, rootfs. This rootfs can be one or more operating systems (eg. Debian or Ubuntu filesystem). It is a read-only mode in Docker, and Docker takes advantage of a union mount to add more read-only filesystems onthe the root filesystem. Union mount is a mount that allows several filesystems to be mounted at one time but appear to be one filesystem.
+- Local images live on our local Docker host in the /var/lib/docker dir. Each image will be inside a directory named for your storage driver. Containers are in /var/lib/docker/containers.
 
 ![image](https://user-images.githubusercontent.com/97860551/174950388-df0a6553-48b6-4cd1-b048-c8445bd3437e.png)![image](https://user-images.githubusercontent.com/97860551/174952680-573cb67e-f566-4fde-96b5-85af77860cb2.png)
 
