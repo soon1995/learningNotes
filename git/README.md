@@ -113,7 +113,7 @@ _tips: noticed GitBash when right clickon desktop._
 
    ![image-20220625102145590](images/image-20220625102145590.png)
 
-## Command
+## Directory
 
 > ..Git\etc\gitconfig => system configs location
 >
@@ -131,25 +131,42 @@ _tips: noticed GitBash when right clickon desktop._
 --global -l					#list global configs (config by you)
 --global user.name yourUname #set your username --> to login
 --global user.email yourEmail #set your email  --> to login
+--global core.editor lvim 	#set editor, default nano
+--global init.defaultBranch main 	#set default branch on GitHub
 ```
 
 `git init`
 
 
 
-### Detail
+### Command
+
+`git fetch` // synchronize local branches with the remote branches
 
 `git status`
 
 `git diff` //git diff [<options>] [<commit>] [--] [<path>…] eg git diff HEAD -- read1.txt
 
+`git diff --staged` // show only staged file
+
+`git diff <commit>` // compare with the commit
+
+`git diff BranchB..BranchA` // shows difference of what is in BranchA but not in BranchB
+
+[Read me to understand what does @@ -number,number +number,number @@ mean](https://stackoverflow.com/questions/6508651/what-do-the-numbers-on-a-git-diff-header-mean)
+
+`git log --oneline`
+
 `git log` --pretty=oneline // see the version details --pretty=oneline = show only one line
 
 `git log --graph --pretty=oneline --abbrev-commit`
 
+`git log --follow [file]` // to shows the commits that changed the file, even across renames
+
+`git log BranchA..BranchB` show the commits on BranchA that are not in BranchB
+
 `git reflog` //look back the previous command (incase you want to look back commit id)
 
-`git rebase` 
 
 ```shell
 user@DESKTOP MINGW64 ~/Desktop/testGit/testGit25062022 (master)
@@ -193,11 +210,17 @@ $ git log --pretty=oneline
 
 `git commit  -m "x commit"`  - // message to bring 
 
+`git commit  -a -m "x commit"`  - // message to bring , -a is stash ALL changes and commit them
+
+`git commit  --amend`  // change last commit message 
+
 `git restore <file>` //undo an yet added file. older version : git checkout **--** <file> ** must use -- as this command overload with other function.
 
 `git restore --staged <file>` //undo an added file. older version: git reset HEAD <file>
 
 `git reset` --hard [commit id(first few digits enough for Git to find) / HEAD^ / HEAD~[num]] //switch to specified commit
+
+`git reset --soft HEAD~1`
 
 > soft: change HEAD. this file change to state : before "commit" and after "add" 
 >
@@ -272,9 +295,17 @@ To https://github.com/userl95/testGit25062022.git
 
 `git branch <NewBranchName>`//create new branch
 
-`git branch -d <branchName>` //delete branch
+`git branch -d <branchName>` //delete branch in local
+
+`git push origin --delete <branchName>` //delete branch in remote
+
+`git branch -m wrong-branch-name correct-branch-name` //change branch name
+
+`git branch -m correct-branch-name` //change current branch name
 
 `git switch <branchName>` //switch branch
+
+`git switch -` //switch to last branch
 
 `git switch -c <branchName>` //create new branch + switch branch 
 
@@ -308,11 +339,15 @@ no-FF
 
 `git stash pop [index]` //to pop out from stash (default : 0)
 
-`git stash apply [index]` //to get from stash without deleting (default : 0)
+`git stash apply [index]` //to get from stash without deleting (default : 0), or git stash apply "stash@{n}"
 
 `git stash drop [index]` //to delete the  (default : 0)
 
 `git stash clear` //clear the stashes
+
+`git stash -a` // stash all including gitignore files
+
+`git stash -u` // stash untracked file (files that are not in remote, but local)
 
 
 
@@ -746,7 +781,7 @@ $ git commit
 
 ### Remote
 
-- git remote add origin [url]
+- git remote add origin [url] `git remote add origin git@github.com:your_username/your_repo.git`
 - git push -u origin master
 - git push
 - git remote -v // check origin details
@@ -1266,14 +1301,32 @@ If you are halfway  on `dev` branch and want to go back to `master` to do some `
 `git stash clear` //clear the stashes
 
 
+## Rebase
+
+`git rebase <branch2> <branch1>` // rebase branch2 on branch1
+
 
 ## .gitIgnore
 
-> to ignore the files to be packaged and send to git
+> to ignore the files to be packaged and send to git. You may refer [here](https://www.toptal.com/developers/gitignore/) for different projects.
+
+> you may do below if you are command-line fan, try `gi laravel`(with gi installed)! 
+> 
+> ```
+> 
+> git config --global alias.ignore \
+> 
+> '!gi() { curl -sL
+> 
+> https://www.toptal.com/developers/gitignore/api/$@ ;}; gi'
+> 
+> ```
 
 `#` // comment
 
-`*.txt` // all file end with .txt , ? < 1 character, [abc] < either one, {string1,string2} < either one string
+`data/*` // ignore all in data directory
+
+`data/*.txt` // all file end with .txt , ? < 1 character, [abc] < either one, {string1,string2} < either one string
 
 `!lib.txt` //but exclude lib.txt, do not ignore me
 
@@ -1292,6 +1345,8 @@ If you are halfway  on `dev` branch and want to go back to `master` to do some `
 `git config --global alias.<newCommandShortCut> <command>` eg. alias.st status
 
 `git config --global alias.<newCommandShortcut> '...'` eg. alias.unstage 'reset HEAD'
+
+`git config --global alias.co checkout` // can use: git co -b branch1
 
 ```shell
 user@DESKTOP MINGW64 ~/Desktop/testGit/testGit25062022 (master)
@@ -1331,6 +1386,22 @@ $ git lg
 ```
 
 
+# SSH
+
+> When push using HTTPS: GitHub username and password required
+>
+> SSH: -
+> 
+> HTTPS vs SSH : replace https:// to git@, and replace '/' after github.com with ':'
+
+1. `ssh-keygen`
+
+2. `cd ~/.ssh`
+
+3. `cat ~/.ssh/id_rsa.pub`
+
+4. add this in your GitHub Setting
+
 
 
 
@@ -1361,3 +1432,17 @@ $ git lg
 9. `git show --show-signature` to check whether your signature ok.
 
 10. done!
+
+
+# How to write a good README.md file
+[Reference: Bobby Iliev](https://devdojo.com/bo-iliev/how-to-write-a-good-readme-file)
+
+1. Quick introduction to what the project is about
+
+2. What your code uses? Eg. Golang, Java, JavaScript
+
+3. Write a few more details on the project
+
+4. Write something about yourself (where you work, what your goals are...)
+
+5. Use Images

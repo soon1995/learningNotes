@@ -849,14 +849,14 @@ end;
 > 声明游标
 ```sql
 DECLARE
-	CURSOR cursor_name IS sql_sentence -- eg SELECT * FROM T WHERE ..
+	CURSOR cursor_name IS sql_sentence； -- eg SELECT * FROM T WHERE ..
 ```
 
 > 使用游标
 **for版，好**
 ```sql
 BEGIN
-	FOR variable_name IN cursor_name; 
+	FOR variable_name IN cursor_name 
 	LOOP
 		DBMS_OUTPUT.PUT_LINE(variable_name.x);
 	END LOOP;
@@ -882,7 +882,7 @@ END;
 > 声明游标
 ```sql
 DECLARE
-	CURSOR cursor_name(v_abc number) IS sql_sentence -- eg SELECT * FROM T WHERE a=v_abc
+	CURSOR cursor_name(v_abc number) IS sql_sentence； -- eg SELECT * FROM T WHERE a=v_abc
 ```
 
 > 使用游标
@@ -890,7 +890,7 @@ DECLARE
 **for版，好**
 ```sql
 BEGIN
-	FOR variable_name IN cursor_name(12345); 
+	FOR variable_name IN cursor_name(12345) 
 	LOOP
 		DBMS_OUTPUT.PUT_LINE(variable_name.x);
 	END LOOP;

@@ -100,7 +100,8 @@ docker run [OPTION] image command   //run image in a container, eg. docker run -
             --name=?                //container name, else give random name. Name are unique, if we try to create 2 containers with same name, the command will fail
             -d                      //run in background
             -it                     //i(keeps STDIN open from the container, even if were not attached to it) + t(assign a pseudo-tty), thus provide an interative shell in the new container
-            -p x:y                  //use localhost port x to visit container port y (expose port y)
+            -p x                    //the port is randomly assigned (use docker ps -l to see port, or docker port containerID portno)
+            -p x:y                  //use localhost port x to visit container port y (expose port y), e.g. 8080:80, interface: 127.0.0.1:80:80, or 127.0.0.1::80 assign random port
             -P                      //publish all exposed ports to random ports
             --rm                    //when exit: delete container
             -e                      //[e]nvironment variable eg. -e ES_JAVA_OPTS="-Xms64m -Xmx512m" (elastic search) 
@@ -119,6 +120,8 @@ docker ps [OPTIONS]                 //show currently 'up' container
           -n=?                      //last n numbers
           -q                        //quiet - show only container id
           -l                        //last run container
+
+docker port containerID portNum	    // show mapped port
 ```
 ![image](https://user-images.githubusercontent.com/97860551/174952561-e545b096-38e4-4639-8e03-1fd9a33a03e9.png)
 ```
@@ -127,7 +130,7 @@ docker restart containerId
 docker stop containerId/name // stop a daemonized container (it sends a SIGTERM signal to container's running process
 docker kill containerId/name // sends a SIGKILL signal to container's process
 
-docker commit [OPTIONS] containerId imageName:version   //commit and create your image in your images
+docker commit [OPTIONS] containerId imageName:version   //commit and create your image in your images (version ignored will become latest)
               -m="?"                                    //description
               -a="?"                                    //author             
 ```
@@ -262,10 +265,13 @@ services:
 5. testing Grafana: visit ip:3000 (default user/pwd = admin/admin)
    - setting refer [here](https://www.bilibili.com/video/BV1gr4y1U7CY?p=93&spm_id_from=pageDriver&vd_source=a788bdd4d7cdd9dfe02852346d523cb9)
 
-# About Docker Hub
+# About [Docker Hub](https://hub.docker.com)
 User repo: username/repo (use them at your own risk: they are not validated or verified in any way by Docker Inc.)
 Managed by Docker Inc and by seleected vendors who provide curated base images: ubuntu  (top-level repository)
 
+`docker login`
+`docker logout`
+**Tips:** The credentials will be stored in the $HOME/.dockercfg file. Since Docker 1.7.0 this is now $HOME/.docker/config.json.
 
 # About Image
 
@@ -281,6 +287,44 @@ Managed by Docker Inc and by seleected vendors who provide curated base images: 
 ## Base Image
 `ubuntu` // hundreds mb
 `alpine` // Alpine Linux, 5mb
+
+## 2 ways to build image
+### 1. docker commit
+
+```bash
+docker run -it ubuntu /bin/bash
+apt-get -yqq update
+apt-get -y install apache2
+exit
+
+docker commit 4aab3ce3cb76 jamtur01/apache2
+docker images jamtur01/apache2
+
+docker commit -m "A new custom image" -a "James Turnbull" 4aab3ce3cb76 jamtur/apache2:webserver
+```
+
+### 2. dockerfile
+We recomment Dockerfile approach over docker commit because it provides a more repeatable, transparent, and idempotent mechanism for creating images.
+
+```dockerfile
+# Version: 0.0.1
+FROM ubuntu:16.04
+LABEL maintainer="James Turnbull james@example.com"
+RUN apt-get update; apt-get install -y nginx
+RUN echo 'Hi, I am in your container' \
+	>/var/www/html/index.html
+EXPOSE 80
+```
+```bash
+docker build -t "jamtur01/static_web" .
+docker build -t "jamtur01/static_web:v1" . // tag images 
+```
+
+> Each Instuction adds a new layer to the image and then commits the image. 
+>
+
+This means that if your Dockerfile stops for some reason (for example, if an instruction fails to complete), you will be left with an image you can use. This is highly useful for debugging: you can run a container from this image interactively and then debug why your instruction failed using the last image created.
+
 
 # About Volume (Directories synchronize)
 
@@ -323,16 +367,32 @@ ii) prevent the needs to exec container to change data.
 
 # About DockerFile
 
+- What is DockerFile ? It is a shellscript, to generate an image. 
+- create mounts everytime when building this dockerfile generated image.
+- It uses a basic DSL (Domain Specific Language)
+
 > **Steps:**
 >
 > 1. write DockerFile
-> 2. docker build构建镜像 == >docker build -t centosjava8:1.5 . **[!! do not ignore '.']**
+> 2. docker build构建镜像 == >docker build -t centosjava8:1.5 . **[!! do not ignore '.']** // . tells docker to look in the local directory to find the Dockerfile.
 > 3. docker run
+**Tips:** You can also specify a Git repository as a source for the Dockerfile as we see here:
+```bash
+docker build -t "repo/name:v1" \
+	github.com/turnbullpress/docker-static_web
+
+--no-cache : to stop caching layer
+Tips: ensuring the latest packages are available to install by reset the cache when it hits ENV instruction. Thus only change the date when I want to refresh the build
+FROM ubuntu:16.04
+MAINTAINER James Turnbull "james@example.com"
+ENV REFRESHED_AT 2016-07-01
+RUN apt-get -qq update
+
+```
+**Tips:** since Docker 1.5.0 and later you can also specify a path to a file to use as a build source using the -f flag. For example, docker build -t "jamtur01/static_web" -f /path/to/file.
 
 
-
-- What is DockerFile ? It is a shellscript, to generate an image. 
-- create mounts everytime when building this dockerfile generated image.
+> If a file named .dockerignore exists in the root of the build context then it is interpreted as a newline-separated list of exclusion patterns. Much like a .gitignore file it excludes the listed files from being treated as part of the build context, and therefore prevents them from being uploaded to the Docker daemon. Globbing can be done using Go’s filepath.
 
 
 
@@ -341,24 +401,27 @@ ii) prevent the needs to exec container to change data.
 #<-- is comment
 
 FROM centos:7
-MAINTAINER jacksoon<abcdefg@gmail.com>
+MAINTAINER jacksoon<abcdefg@gmail.com> // The MAINTAINER instruction is deprecated in Docker 1.13.0.
 
 RUN -- 2 methods, 在DOCKER BUILD时运行
 -----------------------------------
-RUN <shell command>
+RUN <shell command> // by default. Using command wrapper /bin/sh -c, if you are running If you are running the instruction on a platform without a shell or you wish to execute without a shell (for example, to avoid shell string munging), you can specify the instruction in exec format
 RUN yum -y install vim
-RUN ["可执行文件","参数1"，"参数2”]
+RUN ["可执行文件","参数1"，"参数2”] // exec format
 RUN ["./test.php","dev","offline"] # equal RUN ./test.php dev offline
 
 EXPOSE the current container port
 ---------------------------------
-EXPOSE 80
+EXPOSE 80 // You can expose ports at run time with the docker run command with the --expose option.
 
 WORKDIR 指定创建容器后默认登陆落脚点
 --------------------------------
 WORKDIR /usr/bin
 
 USER 指定该镜像以什么样的用户去执行，如果都不指定，默认是root
+
+Tips: you can override the working directory at runtime with the -w flag
+docker run -ti -w /var/log ubuntu pwd
 
 ENV 用来在构建镜像过程中设置环境变量
 -------------------------------
@@ -376,17 +439,49 @@ CMD 指定容器启动后的要干的事情，在DOCKER RUN时运行
 # Dockerfile 中可以有多个 CMD 指令，但只有最后一个生效，CMD 会被 docker run 之后的参数替换，eg tomcat 本来dockerFile有CMD ["catalina.sh","run"]， 当你 docker run ... tomcat, 访问localhost:8080是没问题的，但当docker run ... tomcat /bin/bash 时就没有启动tomcat,因为覆盖了CMD ["catalina.sh","run"]
 CMD <shell command>
 CMD ["可执行文件","参数1"，"参数2”]
+when Your Dockerfile has CMD in lastline, you can directly docker run -it repo/name, to run image. But if you do specify a command during docker run, this command will override the one in Dockerfile
 
 ENTRYPOINT 也是用来指定一个容器启动时要运行的命令
 ------------------------------------------
 # 类似于 CMD 指令，但是ENTRYPOINT不会被docker run后面的命令覆盖， 而且这些命令行参数会被当作参数送给 ENTRYPOINT 指令指定的程序
 ENTRYPOINT ["<executeable>","<param1>","<param2>"...]
 #ENTRYPOINT可以和CMD一起用，一般是变参才会使用 CMD ，这里的 CMD 等于是在给 ENTRYPOINT 传参。
-#当指定了ENTRYPOINT后，CMD的含义就发生了变化，不再是直接运行其命令而是将CMD的内容作为参数传递给ENTRYPOINT指令，他两个组合会变成 
+#当指定了ENTRYPOINT后，CMD的含义就发生了变化，不再是直接运行其命令而是将CMD的内容作为参数传递给ENTRYPOINT指令，他两个组合
+Tips: you can override the ENTRYPOINT instruction using docker run command with --entrypoint flag
+Useful Binding:
+ENTRYPOINT ["/usr/sbin/nginx"]
+CMD ["-h"]
 
 
 ONBUILD                       # while building extended dockerfile, use this command
 ```
+
+## What happens if an instruction fails?
+
+```bash
+$ cd static_web
+$ sudo docker build -t="jamtur01/static_web" .
+Sending build context to Docker daemon 2.56 kB
+Sending build context to Docker daemon
+Step 1 : FROM ubuntu:16.04
+---> 8dbd9e392a96
+Step 2 : MAINTAINER James Turnbull "james@example.com"
+---> Running in d97e0c1cf6ea
+---> 85130977028d
+Step 3 : RUN apt-get update
+---> Running in 85130977028d
+---> 997485f46ec4
+Step 4 : RUN apt-get install -y ngin
+---> Running in ffca16d58fd8
+Reading package lists...
+Building dependency tree...
+Reading state information...
+E: Unable to locate package ngin
+2014/06/04 18:41:11 The command [/bin/sh -c apt-get install -y
+ngin] returned a non-zero code: 100
+```
+
+Let's say I want to debug this failure. I can use docker run command to create a container from the last step that succeeded in my Docker build, in this example, using image ID of 997485f46ec4
 
 ![image-20220911135246954](images/image-20220911135246954.png)
 
@@ -538,7 +633,7 @@ docker run imageWithENTRYPOINT -l ---> became ls -al
 
 
 
-# Push to DockerHub
+# Push to [DockerHub](https://hub.docker.com)
 
 - register in hub.docker.com
 - login in docker using in terminal
