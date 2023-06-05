@@ -1,0 +1,3632 @@
+<!DOCTYPE html><html lang="en" data-layout="responsive" data-local=""><head>
+    
+    <script>
+      window.addEventListener('error', window.__err=function f(e){f.p=f.p||[];f.p.push(e)});
+    </script>
+    <script>
+      (function() {
+        const theme = document.cookie.match(/prefers-color-scheme=(light|dark|auto)/)?.[1]
+        if (theme) {
+          document.querySelector('html').setAttribute('data-theme', theme);
+        }
+      }())
+    </script>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    
+    
+    <meta class="js-gtmID" data-gtmid="GTM-W8MVQXG"/>
+    <link rel="shortcut icon" href="/static/shared/icon/favicon.ico"/>
+    
+  
+    <link rel="canonical" href="https://pkg.go.dev/std"/>
+  
+
+    <link href="/static/frontend/frontend.min.css?version=prod-frontend-00074-maz" rel="stylesheet"/>
+    
+  <title>Standard library - Go Packages</title>
+
+    
+  <link href="/static/frontend/unit/unit.min.css?version=prod-frontend-00074-maz" rel="stylesheet"/>
+  
+  <link href="/static/frontend/unit/main/main.min.css?version=prod-frontend-00074-maz" rel="stylesheet"/>
+
+
+  </head>
+  <body>
+    
+    <script>
+      function loadScript(src, mod = true) {
+        let s = document.createElement('script');
+        s.src = src;
+        if (mod) {
+          s.type = 'module';
+          s.async = true;
+          s.defer = true
+        }
+        document.head.appendChild(s);
+      }
+      loadScript("/third_party/dialog-polyfill/dialog-polyfill.js", false)
+      loadScript("/static/frontend/frontend.js");
+    </script>
+    
+  <header class="go-Header go-Header--full js-siteHeader">
+    <div class="go-Header-inner go-Header-inner--dark">
+      <nav class="go-Header-nav">
+        <a href="https://go.dev/" class="js-headerLogo" data-gtmc="nav link" data-test-id="go-header-logo-link">
+          <img class="go-Header-logo" src="/static/shared/logo/go-white.svg" alt="Go"/>
+        </a>
+        <div class="go-Header-rightContent">
+          
+<div class="go-SearchForm js-searchForm">
+  <form class="go-InputGroup go-ShortcutKey go-SearchForm-form" action="/search" data-shortcut="/" data-shortcut-alt="search" data-gtmc="search form" aria-label="Search for a package" role="search">
+    <input name="q" class="go-Input js-searchFocus" aria-label="Search for a package" type="search" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="Search packages or symbols" value=""/>
+    <input name="m" value="" hidden=""/>
+    <button class="go-Button go-Button--inverted" aria-label="Submit search">
+      <img class="go-Icon" height="24" width="24" src="/static/shared/icon/search_gm_grey_24dp.svg" alt=""/>
+    </button>
+  </form>
+  <button class="go-SearchForm-expandSearch js-expandSearch" data-gtmc="nav button" aria-label="Open search" data-test-id="expand-search">
+    <img class="go-Icon go-Icon--inverted" height="24" width="24" src="/static/shared/icon/search_gm_grey_24dp.svg" alt=""/>
+
+  </button>
+</div>
+
+          <ul class="go-Header-menu">
+            <li class="go-Header-menuItem">
+              <a class="js-desktop-menu-hover" href="/pkg/" data-gtmc="nav link">
+                Why Go
+                <img class="go-Icon" height="24" width="24" src="/static/shared/icon/arrow_drop_down_gm_grey_24dp.svg" alt="submenu dropdown icon"/>
+              </a>
+              <ul class="go-Header-submenu go-Header-submenu--why js-desktop-submenu-hover" aria-label="submenu">
+                  <li class="go-Header-submenuItem">
+                    <div>
+                      <a href="https://go.dev/solutions#case-studies">
+                        Case Studies
+                      </a>
+                    </div>
+                    <p>Common problems companies solve with Go</p>
+                  </li>
+                  <li class="go-Header-submenuItem">
+                    <div>
+                      <a href="https://go.dev/solutions#use-cases">
+                        Use Cases
+                      </a>
+                    </div>
+                    <p>Stories about how and why companies use Go</p>
+                  </li>
+                  <li class="go-Header-submenuItem">
+                    <div>
+                      <a href="https://go.dev/security/policy/">
+                        Security Policy
+                      </a>
+                    </div>
+                    <p>How Go can help keep you secure by default</p>
+                  </li>
+              </ul>
+            </li>
+            <li class="go-Header-menuItem">
+              <a href="https://go.dev/learn/" data-gtmc="nav link">Learn</a>
+            </li>
+            <li class="go-Header-menuItem">
+              <a class="js-desktop-menu-hover" href="/pkg/" data-gtmc="nav link">
+                Docs
+                <img class="go-Icon" height="24" width="24" src="/static/shared/icon/arrow_drop_down_gm_grey_24dp.svg" alt="submenu dropdown icon"/>
+              </a>
+              <ul class="go-Header-submenu go-Header-submenu--docs js-desktop-submenu-hover" aria-label="submenu">
+                <li class="go-Header-submenuItem">
+                  <div>
+                    <a href="https://go.dev/doc/effective_go">
+                      <span>Effective Go</span>
+                    </a>
+                  </div>
+                  <p>Tips for writing clear, performant, and idiomatic Go code</p>
+                </li>
+                <li class="go-Header-submenuItem">
+                  <div>
+                    <a href="https://go.dev/doc/">
+                      <span>Go User Manual</span>
+                    </a>
+                  </div>
+                  <p>A complete introduction to building software with Go</p>
+                </li>
+                <li class="go-Header-submenuItem">
+                  <div>
+                    <a href="https://pkg.go.dev/std">
+                      <span>Standard library</span>
+                    </a>
+                  </div>
+                  <p>Reference documentation for Go&#39;s standard library</p>
+                </li>
+                <li class="go-Header-submenuItem">
+                  <div>
+                    <a href="https://go.dev/doc/devel/release">
+                      <span>Release Notes</span>
+                    </a>
+                  </div>
+                  <p>Learn what&#39;s new in each Go release</p>
+                </li>
+              </ul>
+            </li>
+            <li class="go-Header-menuItem go-Header-menuItem--active">
+              <a href="/" data-gtmc="nav link">Packages</a>
+            </li>
+            <li class="go-Header-menuItem">
+              <a class="js-desktop-menu-hover" href="/pkg/" data-gtmc="nav link">
+                Community
+                <img class="go-Icon" height="24" width="24" src="/static/shared/icon/arrow_drop_down_gm_grey_24dp.svg" alt="submenu dropdown icon"/>
+              </a>
+              <ul class="go-Header-submenu go-Header-submenu--community js-desktop-submenu-hover" aria-label="submenu">
+                <li class="go-Header-submenuItem">
+                  <div>
+                    <a href="https://go.dev/talks/">
+                      <span>Recorded Talks</span>
+                    </a>
+                  </div>
+                  <p>Videos from prior events</p>
+                </li>
+                <li class="go-Header-submenuItem">
+                  <div>
+                    <a href="https://www.meetup.com/pro/go">
+                      <span>Meetups</span>
+                      <i class="material-icons">
+                        <img class="go-Icon" height="24" width="24" src="/static/shared/icon/launch_gm_grey_24dp.svg" alt=""/>
+                      </i>
+                    </a>
+                  </div>
+                  <p>Meet other local Go developers</p>
+                </li>
+                <li class="go-Header-submenuItem">
+                  <div>
+                    <a href="https://github.com/golang/go/wiki/Conferences">
+                      <span>Conferences</span>
+                      <i class="material-icons">
+                        <img class="go-Icon" height="24" width="24" src="/static/shared/icon/launch_gm_grey_24dp.svg" alt=""/>
+                      </i>
+                    </a>
+                  </div>
+                  <p>Learn and network with Go developers from around the world</p>
+                </li>
+                <li class="go-Header-submenuItem">
+                  <div>
+                    <a href="https://go.dev/blog">
+                      <span>Go blog</span>
+                    </a>
+                  </div>
+                  <p>The Go project&#39;s official blog.</p>
+                </li>
+                <li class="go-Header-submenuItem">
+                  <div>
+                    <a href="https://go.dev/help">
+                      <span>Go project</span>
+                    </a>
+                  </div>
+                  <p>Get help and stay informed from Go</p>
+                </li>
+                <li class="go-Header-submenuItem">
+                  <div>
+                    Get connected
+                  </div>
+                  <p></p>
+                  <div class="go-Header-socialIcons">
+                      <a class="go-Header-socialIcon" href="https://groups.google.com/g/golang-nuts"><img src="/static/shared/logo/social/google-groups.svg"/></a>
+                      <a class="go-Header-socialIcon" href="https://github.com/golang"><img src="/static/shared/logo/social/github.svg"/></a>
+                      <a class="go-Header-socialIcon" href="https://twitter.com/golang"><img src="/static/shared/logo/social/twitter.svg"/></a>
+                      <a class="go-Header-socialIcon" href="https://www.reddit.com/r/golang/"><img src="/static/shared/logo/social/reddit.svg"/></a>
+                      <a class="go-Header-socialIcon" href="https://invite.slack.golangbridge.org/"><img src="/static/shared/logo/social/slack.svg"/></a>
+                      <a class="go-Header-socialIcon" href="https://stackoverflow.com/collectives/go"><img src="/static/shared/logo/social/stack-overflow.svg"/></a>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <button class="go-Header-navOpen js-headerMenuButton go-Header-navOpen--white" data-gtmc="nav button" aria-label="Open navigation">
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <aside class="go-NavigationDrawer js-header">
+    <nav class="go-NavigationDrawer-nav">
+      <div class="go-NavigationDrawer-header">
+        <a href="https://go.dev/">
+          <img class="go-NavigationDrawer-logo" src="/static/shared/logo/go-blue.svg" alt="Go."/>
+        </a>
+      </div>
+      <ul class="go-NavigationDrawer-list">
+          <li class="go-NavigationDrawer-listItem js-mobile-subnav-trigger go-NavigationDrawer-hasSubnav">
+            <a href="/pkg/">
+              <span>Why Go</span>
+              <i class="material-icons">
+                <img class="go-Icon" height="24" width="24" src="/static/shared/icon/navigate_next_gm_grey_24dp.svg" alt=""/>
+              </i>
+            </a>
+
+            <div class="go-NavigationDrawer go-NavigationDrawer-submenuItem">
+              <div class="go-NavigationDrawer-nav">
+                <div class="go-NavigationDrawer-header">
+                  <a href="/pkg/">
+                    <i class="material-icons">
+                      <img class="go-Icon" height="24" width="24" src="/static/shared/icon/navigate_before_gm_grey_24dp.svg" alt=""/>
+                      </i>
+                      Why Go
+                  </a>
+                </div>
+                <ul class="go-NavigationDrawer-list">
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://go.dev/solutions#case-studies">
+                      Case Studies
+                    </a>
+                  </li>
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://go.dev/solutions#use-cases">
+                      Use Cases
+                    </a>
+                  </li>
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://go.dev/security/policy/">
+                      Security Policy
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="go-NavigationDrawer-listItem">
+            <a href="https://go.dev/learn/">Learn</a>
+          </li>
+          <li class="go-NavigationDrawer-listItem js-mobile-subnav-trigger go-NavigationDrawer-hasSubnav">
+            <a href="/pkg/">
+              <span>Docs</span>
+              <i class="material-icons">
+                <img class="go-Icon" height="24" width="24" src="/static/shared/icon/navigate_next_gm_grey_24dp.svg" alt=""/>
+              </i>
+            </a>
+
+            <div class="go-NavigationDrawer go-NavigationDrawer-submenuItem">
+              <div class="go-NavigationDrawer-nav">
+                <div class="go-NavigationDrawer-header">
+                  <a href="/pkg/"><i class="material-icons">
+                    <img class="go-Icon" height="24" width="24" src="/static/shared/icon/navigate_before_gm_grey_24dp.svg" alt=""/>
+                    </i>
+                    Docs
+                  </a>
+                </div>
+                <ul class="go-NavigationDrawer-list">
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://go.dev/doc/effective_go">
+                      Effective Go
+                    </a>
+                  </li>
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://go.dev/doc/">
+                      Go User Manual
+                    </a>
+                  </li>
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://pkg.go.dev/std">
+                      Standard library
+                    </a>
+                  </li>
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://go.dev/doc/devel/release">
+                      Release Notes
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="go-NavigationDrawer-listItem go-NavigationDrawer-listItem--active">
+            <a href="/">Packages</a>
+          </li>
+          <li class="go-NavigationDrawer-listItem js-mobile-subnav-trigger go-NavigationDrawer-hasSubnav">
+            <a href="/pkg/">
+              <span>Community</span>
+              <i class="material-icons">
+                <img class="go-Icon" height="24" width="24" src="/static/shared/icon/navigate_next_gm_grey_24dp.svg" alt=""/>
+              </i>
+            </a>
+            <div class="go-NavigationDrawer go-NavigationDrawer-submenuItem">
+              <div class="go-NavigationDrawer-nav">
+                <div class="go-NavigationDrawer-header">
+                  <a href="/pkg/">
+                    <i class="material-icons">
+                      <img class="go-Icon" height="24" width="24" src="/static/shared/icon/navigate_before_gm_grey_24dp.svg" alt=""/>
+                    </i>
+                    Community
+                  </a>
+                </div>
+                <ul class="go-NavigationDrawer-list">
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://go.dev/talks/">
+                      Recorded Talks
+                    </a>
+                  </li>
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://www.meetup.com/pro/go">
+                      Meetups
+                      <i class="material-icons">
+                      <img class="go-Icon" height="24" width="24" src="/static/shared/icon/launch_gm_grey_24dp.svg" alt=""/>
+                      </i>
+                    </a>
+                  </li>
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://github.com/golang/go/wiki/Conferences">
+                      Conferences
+                      <i class="material-icons">
+                        <img class="go-Icon" height="24" width="24" src="/static/shared/icon/launch_gm_grey_24dp.svg" alt=""/>
+                      </i>
+                    </a>
+                  </li>
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://go.dev/blog">
+                      Go blog
+                    </a>
+                  </li>
+                  <li class="go-NavigationDrawer-listItem">
+                    <a href="https://go.dev/help">
+                      Go project
+                    </a>
+                  </li>
+                  <li class="go-NavigationDrawer-listItem">
+                    <div>Get connected</div>
+                    <div class="go-Header-socialIcons">
+                        <a class="go-Header-socialIcon" href="https://groups.google.com/g/golang-nuts"><img src="/static/shared/logo/social/google-groups.svg"/></a>
+                        <a class="go-Header-socialIcon" href="https://github.com/golang"><img src="/static/shared/logo/social/github.svg"/></a>
+                        <a class="go-Header-socialIcon" href="https://twitter.com/golang"><img src="/static/shared/logo/social/twitter.svg"/></a>
+                        <a class="go-Header-socialIcon" href="https://www.reddit.com/r/golang/"><img src="/static/shared/logo/social/reddit.svg"/></a>
+                        <a class="go-Header-socialIcon" href="https://invite.slack.golangbridge.org/"><img src="/static/shared/logo/social/slack.svg"/></a>
+                        <a class="go-Header-socialIcon" href="https://stackoverflow.com/collectives/go"><img src="/static/shared/logo/social/stack-overflow.svg"/></a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+      </ul>
+    </nav>
+  </aside>
+  <div class="go-NavigationDrawer-scrim js-scrim" role="presentation"></div>
+
+    
+  <main class="go-Main">
+    <div class="go-Main-banner" role="alert"></div>
+    <header class="go-Main-header js-mainHeader">
+  
+  
+  <nav class="go-Main-headerBreadcrumb go-Breadcrumb" aria-label="Breadcrumb" data-test-id="UnitHeader-breadcrumb">
+    <ol>
+      
+        
+          <li data-test-id="UnitHeader-breadcrumbItem">
+            <a href="/" data-gtmc="breadcrumb link">Discover Packages</a>
+          </li>
+        
+        <li>
+          <a href="/std@go1.20.3" data-gtmc="breadcrumb link" aria-current="location" data-test-id="UnitHeader-breadcrumbCurrent">
+            Standard library
+          </a>
+          
+        
+      </li>
+    </ol>
+  </nav>
+
+  <div class="go-Main-headerContent">
+    
+  <div class="go-Main-headerTitle js-stickyHeader">
+    <a class="go-Main-headerLogo" href="https://go.dev/" aria-hidden="true" tabindex="-1" data-gtmc="header link" aria-label="Link to Go Homepage">
+      <img height="78" width="207" src="/static/shared/logo/go-blue.svg" alt="Go"/>
+    </a>
+    <h1 class="UnitHeader-titleHeading" data-test-id="UnitHeader-title">Standard library</h1>
+    
+    
+      
+    
+  </div>
+
+    
+  <div class="go-Main-headerDetails">
+    
+      
+  <span class="go-Main-headerDetailItem" data-test-id="UnitHeader-version">
+    <a href="/pkg/?tab=versions" aria-label="Go to Versions" data-gtmc="header link"><span class="go-textSubtle">Version: </span>go1.20.3</a>
+    
+    <span class="DetailsHeader-badge--latest" data-test-id="UnitHeader-minorVersionBanner">
+      <span class="go-Chip DetailsHeader-span--latest">Latest</span>
+      <span class="go-Chip DetailsHeader-span--notAtLatest">
+        Latest
+        
+  <details class="go-Tooltip js-tooltip" data-gtmc="tooltip">
+    <summary>
+      <img class="go-Icon go-Icon--inverted" height="24" width="24" src="/static/shared/icon/alert_gm_grey_24dp.svg" alt="Warning"/>
+    </summary>
+    <p>This package is not in the latest version of its module.</p>
+  </details>
+
+      </span>
+      <a href="/std" aria-label="Go to Latest Version" data-gtmc="header link">
+        <span class="go-Chip go-Chip--alert DetailsHeader-span--goToLatest">Go to latest</span>
+      </a>
+    </span>
+  </span>
+
+      
+  <span class="go-Main-headerDetailItem" data-test-id="UnitHeader-commitTime">
+    Published: Apr  4, 2023
+  </span>
+
+      
+  <span class="go-Main-headerDetailItem" data-test-id="UnitHeader-licenses">
+    License: <a href="/std?tab=licenses" data-test-id="UnitHeader-license" aria-label="Go to Licenses" data-gtmc="header link">BSD-3-Clause</a>
+      
+    
+  </span>
+
+      
+    
+  </div>
+  
+  <div class="UnitHeader-overflowContainer">
+    <svg class="UnitHeader-overflowImage" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+    </svg>
+    <select class="UnitHeader-overflowSelect js-selectNav" tabindex="-1">
+      <option value="/">Main</option>
+      <option value="/std?tab=versions">
+        Versions
+      </option>
+      <option value="/std?tab=licenses">
+        Licenses
+      </option>
+      
+    </select>
+  </div>
+
+
+  </div>
+
+</header>
+    <aside class="go-Main-aside  js-mainAside">
+  
+  <div class="UnitMeta">
+    <h2 class="go-textLabel">Details</h2>
+    
+  <ul class="UnitMeta-details">
+    <li>
+      <details class="go-Tooltip js-tooltip" data-gtmc="tooltip">
+        <summary class="go-textSubtle">
+          
+  <img class="go-Icon go-Icon--accented" src="/static/shared/icon/check_circle_gm_grey_24dp.svg" alt="checked" height="24" width="24"/>
+
+          Valid <a href="https://cs.opensource.google/go/go/+/go1.20.3:src/go.mod" target="_blank" rel="noopener">go.mod</a> file
+          <img class="go-Icon" src="/static/shared/icon/help_gm_grey_24dp.svg" alt="" height="24" width="24"/>
+        </summary>
+        <p>
+          The Go module system was introduced in Go 1.11 and is the official dependency management
+          solution for Go.
+        </p>
+      </details>
+    </li>
+    <li>
+      <details class="go-Tooltip js-tooltip" data-gtmc="tooltip">
+        <summary class="go-textSubtle">
+          
+  <img class="go-Icon go-Icon--accented" src="/static/shared/icon/check_circle_gm_grey_24dp.svg" alt="checked" height="24" width="24"/>
+
+          Redistributable license
+          <img class="go-Icon" src="/static/shared/icon/help_gm_grey_24dp.svg" alt="" height="24" width="24"/>
+        </summary>
+        <p>
+          Redistributable licenses place minimal restrictions on how software can be used,
+          modified, and redistributed.
+        </p>
+      </details>
+    </li>
+    <li>
+      <details class="go-Tooltip js-tooltip" data-gtmc="tooltip">
+        <summary class="go-textSubtle">
+          
+  <img class="go-Icon go-Icon--accented" src="/static/shared/icon/check_circle_gm_grey_24dp.svg" alt="checked" height="24" width="24"/>
+
+          Tagged version
+          <img class="go-Icon" src="/static/shared/icon/help_gm_grey_24dp.svg" alt="" height="24" width="24"/>
+        </summary>
+        <p>Modules with tagged versions give importers more predictable builds.</p>
+      </details>
+    </li>
+    <li>
+      <details class="go-Tooltip js-tooltip" data-gtmc="tooltip">
+        <summary class="go-textSubtle">
+          
+  <img class="go-Icon go-Icon--accented" src="/static/shared/icon/check_circle_gm_grey_24dp.svg" alt="checked" height="24" width="24"/>
+
+          Stable version
+          <img class="go-Icon" src="/static/shared/icon/help_gm_grey_24dp.svg" alt="" height="24" width="24"/>
+        </summary>
+        <p>When a project reaches major version v1 it is considered stable.</p>
+      </details>
+    </li>
+    <li class="UnitMeta-detailsLearn">
+      <a href="/about#best-practices-h2" data-gtmc="meta link">Learn more</a>
+    </li>
+  </ul>
+
+    <h2 class="go-textLabel">Repository</h2>
+    <div class="UnitMeta-repo">
+      
+        <a href="https://cs.opensource.google/go/go" title="https://cs.opensource.google/go/go" target="_blank" rel="noopener">
+          cs.opensource.google/go/go
+        </a>
+      
+    </div>
+    <h2 class="go-textLabel">Links</h2>
+    <ul class="UnitMeta-links">
+      <li>
+      
+        <a href="https://go.dev/security/policy" title="Report security issues in the Go standard library and sub-repositories">
+          <img class="go-Icon" height="24" width="24" src="/static/shared/icon/security_grey_24dp.svg" alt=""/>
+          Report a Vulnerability
+        </a>
+      
+      </li>
+      
+      
+  
+
+      
+  
+
+      
+  
+
+    </ul>
+  </div>
+
+</aside>
+    <nav class="go-Main-nav go-Main-nav--sticky js-mainNav" aria-label="Outline">
+  <div class="go-Main-navDesktop">
+    
+  <div class="UnitOutline-jumpTo">
+    <button class="UnitOutline-jumpToInput go-ShortcutKey js-jumpToInput" aria-controls="jump-to-modal" aria-label="Open Jump to Identifier" data-shortcut="f" data-shortcut-alt="find" data-test-id="jump-to-button" data-gtmc="outline button">
+      Jump to ...
+    </button>
+  </div>
+  <ul class="go-Tree js-tree" role="tree" aria-label="Outline">
+    
+    
+    
+    
+      <li>
+        <a href="/pkg/#section-directories" data-gtmc="outline link">
+          Directories
+        </a>
+      </li>
+    
+  </ul>
+
+  </div>
+  <div class="go-Main-navMobile js-mainNavMobile">
+    <label class="go-Label">
+      <select class="go-Select">
+        
+          <option selected="" disabled="">Directories</option>
+        
+      </select>
+    </label>
+  </div>
+</nav>
+    <article class="go-Main-article js-mainContent">
+  <div class="UnitDetails" data-test-id="UnitDetails" style="display: block;">
+    <div class="UnitDetails-content js-unitDetailsContent" data-test-id="UnitDetails-content">
+      
+      
+      
+      
+        
+  <div class="UnitDirectories js-unitDirectories">
+    <h2 class="UnitDirectories-title" id="section-directories">
+      <img class="go-Icon" height="24" width="24" src="/static/shared/icon/folder_gm_grey_24dp.svg" alt=""/>
+      Directories
+      <a class="UnitDirectories-idLink" href="/pkg/#section-directories">¶</a>
+    </h2>
+    <div class="UnitDirectories-toggles">
+      <div class="UnitDirectories-toggleButtons">
+        <button class="js-showInternalDirectories" data-test-id="internal-directories-toggle" data-gtmc="directories button" aria-label="Show Internal Directories">
+          Show internal
+        </button>
+        <button class="js-expandAllDirectories" data-test-id="directories-toggle" data-gtmc="directories button" aria-label="Expand All Directories">
+          Expand all
+        </button>
+      </div>
+    </div>
+    <table class="UnitDirectories-table UnitDirectories-table--tree js-expandableTable" data-test-id="UnitDirectories-table">
+      <tbody><tr class="UnitDirectories-tableHeader UnitDirectories-tableHeader--tree">
+        <th>Path</th>
+        <th class="UnitDirectories-desktopSynopsis">Synopsis</th>
+      </tr>
+      
+          
+  
+  <tr data-aria-controls="archive-tar archive-zip " class="">
+    <td data-id="archive" data-aria-owns="archive-tar archive-zip ">
+      <div class="UnitDirectories-pathCell">
+        <div><button type="button" class="go-Button go-Button--inline UnitDirectories-toggleButton" aria-expanded="false" aria-label="2 more from" data-aria-controls="archive-tar archive-zip " data-aria-labelledby="archive-button archive" data-id="archive-button">
+              <img class="go-Icon" height="24" width="24" src="/static/shared/icon/arrow_right_gm_grey_24dp.svg" alt=""/>
+            </button><span>archive</span>
+      </div></div></td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="archive-tar" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/archive/tar@go1.20.3">tar</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package tar implements access to tar archives.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package tar implements access to tar archives.</td></tr><tr data-id="archive-zip" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/archive/zip@go1.20.3">zip</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package zip provides support for reading and writing ZIP archives.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package zip provides support for reading and writing ZIP archives.</td></tr>
+
+      
+          
+  
+  <tr class="">
+    <td data-id="bufio" data-aria-owns="">
+      <div class="UnitDirectories-pathCell">
+        <div><a href="/bufio@go1.20.3">bufio</a>
+            
+          </div>
+          <div class="UnitDirectories-mobileSynopsis">Package bufio implements buffered I/O. It wraps an io.Reader or io.Writer object, creating another object (Reader or Writer) that also implements the interface but provides buffering and some help for textual I/O.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package bufio implements buffered I/O. It wraps an io.Reader or io.Writer object, creating another object (Reader or Writer) that also implements the interface but provides buffering and some help for textual I/O.</td></tr>
+
+      
+          
+  
+  <tr class="">
+    <td data-id="builtin" data-aria-owns="">
+      <div class="UnitDirectories-pathCell">
+        <div><a href="/builtin@go1.20.3">builtin</a>
+            
+          </div>
+          <div class="UnitDirectories-mobileSynopsis">Package builtin provides documentation for Go&#39;s predeclared identifiers.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package builtin provides documentation for Go&#39;s predeclared identifiers.</td></tr>
+
+      
+          
+  
+  <tr class="">
+    <td data-id="bytes" data-aria-owns="">
+      <div class="UnitDirectories-pathCell">
+        <div><a href="/bytes@go1.20.3">bytes</a>
+            
+          </div>
+          <div class="UnitDirectories-mobileSynopsis">Package bytes implements functions for the manipulation of byte slices.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package bytes implements functions for the manipulation of byte slices.</td></tr>
+
+      
+          
+  
+  <tr data-aria-controls="compress-bzip2 compress-flate compress-gzip compress-lzw compress-zlib " class="">
+    <td data-id="compress" data-aria-owns="compress-bzip2 compress-flate compress-gzip compress-lzw compress-zlib ">
+      <div class="UnitDirectories-pathCell">
+        <div><button type="button" class="go-Button go-Button--inline UnitDirectories-toggleButton" aria-expanded="false" aria-label="5 more from" data-aria-controls="compress-bzip2 compress-flate compress-gzip compress-lzw compress-zlib " data-aria-labelledby="compress-button compress" data-id="compress-button">
+              <img class="go-Icon" height="24" width="24" src="/static/shared/icon/arrow_right_gm_grey_24dp.svg" alt=""/>
+            </button><span>compress</span>
+      </div></div></td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="compress-bzip2" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/compress/bzip2@go1.20.3">bzip2</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package bzip2 implements bzip2 decompression.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package bzip2 implements bzip2 decompression.</td></tr><tr data-id="compress-flate" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/compress/flate@go1.20.3">flate</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package flate implements the DEFLATE compressed data format, described in RFC 1951.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package flate implements the DEFLATE compressed data format, described in RFC 1951.</td></tr><tr data-id="compress-gzip" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/compress/gzip@go1.20.3">gzip</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package gzip implements reading and writing of gzip format compressed files, as specified in RFC 1952.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package gzip implements reading and writing of gzip format compressed files, as specified in RFC 1952.</td></tr><tr data-id="compress-lzw" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/compress/lzw@go1.20.3">lzw</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package lzw implements the Lempel-Ziv-Welch compressed data format, described in T. A. Welch, “A Technique for High-Performance Data Compression”, Computer, 17(6) (June 1984), pp 8-19.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package lzw implements the Lempel-Ziv-Welch compressed data format, described in T. A. Welch, “A Technique for High-Performance Data Compression”, Computer, 17(6) (June 1984), pp 8-19.</td></tr><tr data-id="compress-zlib" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/compress/zlib@go1.20.3">zlib</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package zlib implements reading and writing of zlib format compressed data, as specified in RFC 1950.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package zlib implements reading and writing of zlib format compressed data, as specified in RFC 1950.</td></tr>
+
+      
+          
+  
+  <tr data-aria-controls="container-heap container-list container-ring " class="">
+    <td data-id="container" data-aria-owns="container-heap container-list container-ring ">
+      <div class="UnitDirectories-pathCell">
+        <div><button type="button" class="go-Button go-Button--inline UnitDirectories-toggleButton" aria-expanded="false" aria-label="3 more from" data-aria-controls="container-heap container-list container-ring " data-aria-labelledby="container-button container" data-id="container-button">
+              <img class="go-Icon" height="24" width="24" src="/static/shared/icon/arrow_right_gm_grey_24dp.svg" alt=""/>
+            </button><span>container</span>
+      </div></div></td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="container-heap" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/container/heap@go1.20.3">heap</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package heap provides heap operations for any type that implements heap.Interface.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package heap provides heap operations for any type that implements heap.Interface.</td></tr><tr data-id="container-list" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/container/list@go1.20.3">list</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package list implements a doubly linked list.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package list implements a doubly linked list.</td></tr><tr data-id="container-ring" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/container/ring@go1.20.3">ring</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package ring implements operations on circular lists.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package ring implements operations on circular lists.</td></tr>
+
+      
+          
+  
+  <tr class="">
+    <td data-id="context" data-aria-owns="">
+      <div class="UnitDirectories-pathCell">
+        <div><a href="/context@go1.20.3">context</a>
+            
+          </div>
+          <div class="UnitDirectories-mobileSynopsis">Package context defines the Context type, which carries deadlines, cancellation signals, and other request-scoped values across API boundaries and between processes.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package context defines the Context type, which carries deadlines, cancellation signals, and other request-scoped values across API boundaries and between processes.</td></tr>
+
+      
+          
+  
+  <tr data-aria-controls="crypto-aes crypto-cipher crypto-des crypto-dsa crypto-ecdh crypto-ecdsa crypto-ed25519 crypto-elliptic crypto-hmac crypto-internal/alias crypto-internal/bigmod crypto-internal/boring crypto-internal/boring/bbig crypto-internal/boring/bcache crypto-internal/boring/sig crypto-internal/edwards25519 crypto-internal/edwards25519/field crypto-internal/nistec crypto-internal/nistec/fiat crypto-internal/randutil crypto-md5 crypto-rand crypto-rc4 crypto-rsa crypto-sha1 crypto-sha256 crypto-sha512 crypto-subtle crypto-tls crypto-x509 crypto-x509/internal/macos crypto-x509/pkix " class="">
+    <td data-id="crypto" data-aria-owns="crypto-aes crypto-cipher crypto-des crypto-dsa crypto-ecdh crypto-ecdsa crypto-ed25519 crypto-elliptic crypto-hmac crypto-internal/alias crypto-internal/bigmod crypto-internal/boring crypto-internal/boring/bbig crypto-internal/boring/bcache crypto-internal/boring/sig crypto-internal/edwards25519 crypto-internal/edwards25519/field crypto-internal/nistec crypto-internal/nistec/fiat crypto-internal/randutil crypto-md5 crypto-rand crypto-rc4 crypto-rsa crypto-sha1 crypto-sha256 crypto-sha512 crypto-subtle crypto-tls crypto-x509 crypto-x509/internal/macos crypto-x509/pkix ">
+      <div class="UnitDirectories-pathCell">
+        <div><button type="button" class="go-Button go-Button--inline UnitDirectories-toggleButton" aria-expanded="false" aria-label="32 more from" data-aria-controls="crypto-aes crypto-cipher crypto-des crypto-dsa crypto-ecdh crypto-ecdsa crypto-ed25519 crypto-elliptic crypto-hmac crypto-internal/alias crypto-internal/bigmod crypto-internal/boring crypto-internal/boring/bbig crypto-internal/boring/bcache crypto-internal/boring/sig crypto-internal/edwards25519 crypto-internal/edwards25519/field crypto-internal/nistec crypto-internal/nistec/fiat crypto-internal/randutil crypto-md5 crypto-rand crypto-rc4 crypto-rsa crypto-sha1 crypto-sha256 crypto-sha512 crypto-subtle crypto-tls crypto-x509 crypto-x509/internal/macos crypto-x509/pkix " data-aria-labelledby="crypto-button crypto" data-id="crypto-button">
+              <img class="go-Icon" height="24" width="24" src="/static/shared/icon/arrow_right_gm_grey_24dp.svg" alt=""/>
+            </button><a href="/crypto@go1.20.3">crypto</a>
+            
+          </div>
+          <div class="UnitDirectories-mobileSynopsis">Package crypto collects common cryptographic constants.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package crypto collects common cryptographic constants.</td></tr><tr data-id="crypto-aes" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/crypto/aes@go1.20.3">aes</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package aes implements AES encryption (formerly Rijndael), as defined in U.S. Federal Information Processing Standards Publication 197.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package aes implements AES encryption (formerly Rijndael), as defined in U.S. Federal Information Processing Standards Publication 197.</td></tr><tr data-id="crypto-cipher" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/crypto/cipher@go1.20.3">cipher</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package cipher implements standard block cipher modes that can be wrapped around low-level block cipher implementations.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package cipher implements standard block cipher modes that can be wrapped around low-level block cipher implementations.</td></tr><tr data-id="crypto-des" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/crypto/des@go1.20.3">des</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package des implements the Data Encryption Standard (DES) and the Triple Data Encryption Algorithm (TDEA) as defined in U.S. Federal Information Processing Standards Publication 46-3.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package des implements the Data Encryption Standard (DES) and the Triple Data Encryption Algorithm (TDEA) as defined in U.S. Federal Information Processing Standards Publication 46-3.</td></tr><tr data-id="crypto-dsa" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/crypto/dsa@go1.20.3">dsa</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package dsa implements the Digital Signature Algorithm, as defined in FIPS 186-3.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package dsa implements the Digital Signature Algorithm, as defined in FIPS 186-3.</td></tr><tr data-id="crypto-ecdh" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/crypto/ecdh@go1.20.3">ecdh</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package ecdh implements Elliptic Curve Diffie-Hellman over NIST curves and Curve25519.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package ecdh implements Elliptic Curve Diffie-Hellman over NIST curves and Curve25519.</td></tr><tr data-id="crypto-ecdsa" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/crypto/ecdsa@go1.20.3">ecdsa</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package ecdsa implements the Elliptic Curve Digital Signature Algorithm, as defined in FIPS 186-4 and SEC 1, Version 2.0.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package ecdsa implements the Elliptic Curve Digital Signature Algorithm, as defined in FIPS 186-4 and SEC 1, Version 2.0.</td></tr><tr data-id="crypto-ed25519" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/crypto/ed25519@go1.20.3">ed25519</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package ed25519 implements the Ed25519 signature algorithm.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package ed25519 implements the Ed25519 signature algorithm.</td></tr><tr data-id="crypto-elliptic" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/crypto/elliptic@go1.20.3">elliptic</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package elliptic implements the standard NIST P-224, P-256, P-384, and P-521 elliptic curves over prime fields.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package elliptic implements the standard NIST P-224, P-256, P-384, and P-521 elliptic curves over prime fields.</td></tr><tr data-id="crypto-hmac" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/crypto/hmac@go1.20.3">hmac</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package hmac implements the Keyed-Hash Message Authentication Code (HMAC) as defined in U.S. Federal Information Processing Standards Publication 198.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package hmac implements the Keyed-Hash Message Authentication Code (HMAC) as defined in U.S. Federal Information Processing Standards Publication 198.</td></tr><tr data-id="crypto-internal/alias" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/crypto/internal/alias@go1.20.3">internal/alias</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package alias implements memory alaising tests.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package alias implements memory alaising tests.</td></tr><tr data-id="crypto-internal/bigmod" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/crypto/internal/bigmod@go1.20.3">internal/bigmod</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="crypto-internal/boring" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/crypto/internal/boring@go1.20.3">internal/boring</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package boring provides access to BoringCrypto implementation functions.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package boring provides access to BoringCrypto implementation functions.</td></tr><tr data-id="crypto-internal/boring/bbig" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/crypto/internal/boring/bbig@go1.20.3">internal/boring/bbig</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="crypto-internal/boring/bcache" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/crypto/internal/boring/bcache@go1.20.3">internal/boring/bcache</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package bcache implements a GC-friendly cache (see [Cache]) for BoringCrypto.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package bcache implements a GC-friendly cache (see [Cache]) for BoringCrypto.</td></tr><tr data-id="crypto-internal/boring/sig" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/crypto/internal/boring/sig@go1.20.3">internal/boring/sig</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package sig holds “code signatures” that can be called and will result in certain code sequences being linked into the final binary.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package sig holds “code signatures” that can be called and will result in certain code sequences being linked into the final binary.</td></tr><tr data-id="crypto-internal/edwards25519" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/crypto/internal/edwards25519@go1.20.3">internal/edwards25519</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package edwards25519 implements group logic for the twisted Edwards curve</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package edwards25519 implements group logic for the twisted Edwards curve</td></tr><tr data-id="crypto-internal/edwards25519/field" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/crypto/internal/edwards25519/field@go1.20.3">internal/edwards25519/field</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package field implements fast arithmetic modulo 2^255-19.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package field implements fast arithmetic modulo 2^255-19.</td></tr><tr data-id="crypto-internal/nistec" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/crypto/internal/nistec@go1.20.3">internal/nistec</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package nistec implements the NIST P elliptic curves from FIPS 186-4.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package nistec implements the NIST P elliptic curves from FIPS 186-4.</td></tr><tr data-id="crypto-internal/nistec/fiat" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/crypto/internal/nistec/fiat@go1.20.3">internal/nistec/fiat</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="crypto-internal/randutil" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/crypto/internal/randutil@go1.20.3">internal/randutil</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package randutil contains internal randomness utilities for various crypto packages.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package randutil contains internal randomness utilities for various crypto packages.</td></tr><tr data-id="crypto-md5" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/crypto/md5@go1.20.3">md5</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package md5 implements the MD5 hash algorithm as defined in RFC 1321.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package md5 implements the MD5 hash algorithm as defined in RFC 1321.</td></tr><tr data-id="crypto-rand" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/crypto/rand@go1.20.3">rand</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package rand implements a cryptographically secure random number generator.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package rand implements a cryptographically secure random number generator.</td></tr><tr data-id="crypto-rc4" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/crypto/rc4@go1.20.3">rc4</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package rc4 implements RC4 encryption, as defined in Bruce Schneier&#39;s Applied Cryptography.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package rc4 implements RC4 encryption, as defined in Bruce Schneier&#39;s Applied Cryptography.</td></tr><tr data-id="crypto-rsa" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/crypto/rsa@go1.20.3">rsa</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package rsa implements RSA encryption as specified in PKCS #1 and RFC 8017.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package rsa implements RSA encryption as specified in PKCS #1 and RFC 8017.</td></tr><tr data-id="crypto-sha1" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/crypto/sha1@go1.20.3">sha1</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package sha1 implements the SHA-1 hash algorithm as defined in RFC 3174.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package sha1 implements the SHA-1 hash algorithm as defined in RFC 3174.</td></tr><tr data-id="crypto-sha256" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/crypto/sha256@go1.20.3">sha256</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package sha256 implements the SHA224 and SHA256 hash algorithms as defined in FIPS 180-4.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package sha256 implements the SHA224 and SHA256 hash algorithms as defined in FIPS 180-4.</td></tr><tr data-id="crypto-sha512" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/crypto/sha512@go1.20.3">sha512</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package sha512 implements the SHA-384, SHA-512, SHA-512/224, and SHA-512/256 hash algorithms as defined in FIPS 180-4.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package sha512 implements the SHA-384, SHA-512, SHA-512/224, and SHA-512/256 hash algorithms as defined in FIPS 180-4.</td></tr><tr data-id="crypto-subtle" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/crypto/subtle@go1.20.3">subtle</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package subtle implements functions that are often useful in cryptographic code but require careful thought to use correctly.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package subtle implements functions that are often useful in cryptographic code but require careful thought to use correctly.</td></tr><tr data-id="crypto-tls" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/crypto/tls@go1.20.3">tls</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package tls partially implements TLS 1.2, as specified in RFC 5246, and TLS 1.3, as specified in RFC 8446.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package tls partially implements TLS 1.2, as specified in RFC 5246, and TLS 1.3, as specified in RFC 8446.</td></tr><tr data-id="crypto-x509" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/crypto/x509@go1.20.3">x509</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package x509 implements a subset of the X.509 standard.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package x509 implements a subset of the X.509 standard.</td></tr><tr data-id="crypto-x509/internal/macos" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/crypto/x509/internal/macos@go1.20.3">x509/internal/macos</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package macOS provides cgo-less wrappers for Core Foundation and Security.framework, similarly to how package syscall provides access to libSystem.dylib.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package macOS provides cgo-less wrappers for Core Foundation and Security.framework, similarly to how package syscall provides access to libSystem.dylib.</td></tr><tr data-id="crypto-x509/pkix" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/crypto/x509/pkix@go1.20.3">x509/pkix</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package pkix contains shared, low level structures used for ASN.1 parsing and serialization of X.509 certificates, CRL and OCSP.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package pkix contains shared, low level structures used for ASN.1 parsing and serialization of X.509 certificates, CRL and OCSP.</td></tr>
+
+      
+          
+  
+  <tr data-aria-controls="database-sql database-sql/driver " class="">
+    <td data-id="database" data-aria-owns="database-sql database-sql/driver ">
+      <div class="UnitDirectories-pathCell">
+        <div><button type="button" class="go-Button go-Button--inline UnitDirectories-toggleButton" aria-expanded="false" aria-label="2 more from" data-aria-controls="database-sql database-sql/driver " data-aria-labelledby="database-button database" data-id="database-button">
+              <img class="go-Icon" height="24" width="24" src="/static/shared/icon/arrow_right_gm_grey_24dp.svg" alt=""/>
+            </button><span>database</span>
+      </div></div></td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="database-sql" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/database/sql@go1.20.3">sql</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package sql provides a generic interface around SQL (or SQL-like) databases.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package sql provides a generic interface around SQL (or SQL-like) databases.</td></tr><tr data-id="database-sql/driver" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/database/sql/driver@go1.20.3">sql/driver</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package driver defines interfaces to be implemented by database drivers as used by package sql.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package driver defines interfaces to be implemented by database drivers as used by package sql.</td></tr>
+
+      
+          
+  
+  <tr data-aria-controls="debug-buildinfo debug-dwarf debug-elf debug-gosym debug-macho debug-pe debug-plan9obj " class="">
+    <td data-id="debug" data-aria-owns="debug-buildinfo debug-dwarf debug-elf debug-gosym debug-macho debug-pe debug-plan9obj ">
+      <div class="UnitDirectories-pathCell">
+        <div><button type="button" class="go-Button go-Button--inline UnitDirectories-toggleButton" aria-expanded="false" aria-label="7 more from" data-aria-controls="debug-buildinfo debug-dwarf debug-elf debug-gosym debug-macho debug-pe debug-plan9obj " data-aria-labelledby="debug-button debug" data-id="debug-button">
+              <img class="go-Icon" height="24" width="24" src="/static/shared/icon/arrow_right_gm_grey_24dp.svg" alt=""/>
+            </button><span>debug</span>
+      </div></div></td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="debug-buildinfo" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/debug/buildinfo@go1.20.3">buildinfo</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package buildinfo provides access to information embedded in a Go binary about how it was built.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package buildinfo provides access to information embedded in a Go binary about how it was built.</td></tr><tr data-id="debug-dwarf" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/debug/dwarf@go1.20.3">dwarf</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package dwarf provides access to DWARF debugging information loaded from executable files, as defined in the DWARF 2.0 Standard at http://dwarfstd.org/doc/dwarf-2.0.0.pdf.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package dwarf provides access to DWARF debugging information loaded from executable files, as defined in the DWARF 2.0 Standard at http://dwarfstd.org/doc/dwarf-2.0.0.pdf.</td></tr><tr data-id="debug-elf" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/debug/elf@go1.20.3">elf</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package elf implements access to ELF object files.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package elf implements access to ELF object files.</td></tr><tr data-id="debug-gosym" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/debug/gosym@go1.20.3">gosym</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package gosym implements access to the Go symbol and line number tables embedded in Go binaries generated by the gc compilers.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package gosym implements access to the Go symbol and line number tables embedded in Go binaries generated by the gc compilers.</td></tr><tr data-id="debug-macho" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/debug/macho@go1.20.3">macho</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package macho implements access to Mach-O object files.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package macho implements access to Mach-O object files.</td></tr><tr data-id="debug-pe" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/debug/pe@go1.20.3">pe</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package pe implements access to PE (Microsoft Windows Portable Executable) files.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package pe implements access to PE (Microsoft Windows Portable Executable) files.</td></tr><tr data-id="debug-plan9obj" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/debug/plan9obj@go1.20.3">plan9obj</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package plan9obj implements access to Plan 9 a.out object files.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package plan9obj implements access to Plan 9 a.out object files.</td></tr>
+
+      
+          
+  
+  <tr class="">
+    <td data-id="embed" data-aria-owns="">
+      <div class="UnitDirectories-pathCell">
+        <div><a href="/embed@go1.20.3">embed</a>
+            
+          </div>
+          <div class="UnitDirectories-mobileSynopsis">Package embed provides access to files embedded in the running Go program.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package embed provides access to files embedded in the running Go program.</td></tr>
+
+      
+          
+  
+  <tr data-aria-controls="encoding-ascii85 encoding-asn1 encoding-base32 encoding-base64 encoding-binary encoding-csv encoding-gob encoding-hex encoding-json encoding-pem encoding-xml " class="">
+    <td data-id="encoding" data-aria-owns="encoding-ascii85 encoding-asn1 encoding-base32 encoding-base64 encoding-binary encoding-csv encoding-gob encoding-hex encoding-json encoding-pem encoding-xml ">
+      <div class="UnitDirectories-pathCell">
+        <div><button type="button" class="go-Button go-Button--inline UnitDirectories-toggleButton" aria-expanded="false" aria-label="11 more from" data-aria-controls="encoding-ascii85 encoding-asn1 encoding-base32 encoding-base64 encoding-binary encoding-csv encoding-gob encoding-hex encoding-json encoding-pem encoding-xml " data-aria-labelledby="encoding-button encoding" data-id="encoding-button">
+              <img class="go-Icon" height="24" width="24" src="/static/shared/icon/arrow_right_gm_grey_24dp.svg" alt=""/>
+            </button><a href="/encoding@go1.20.3">encoding</a>
+            
+          </div>
+          <div class="UnitDirectories-mobileSynopsis">Package encoding defines interfaces shared by other packages that convert data to and from byte-level and textual representations.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package encoding defines interfaces shared by other packages that convert data to and from byte-level and textual representations.</td></tr><tr data-id="encoding-ascii85" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/encoding/ascii85@go1.20.3">ascii85</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package ascii85 implements the ascii85 data encoding as used in the btoa tool and Adobe&#39;s PostScript and PDF document formats.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package ascii85 implements the ascii85 data encoding as used in the btoa tool and Adobe&#39;s PostScript and PDF document formats.</td></tr><tr data-id="encoding-asn1" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/encoding/asn1@go1.20.3">asn1</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package asn1 implements parsing of DER-encoded ASN.1 data structures, as defined in ITU-T Rec X.690.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package asn1 implements parsing of DER-encoded ASN.1 data structures, as defined in ITU-T Rec X.690.</td></tr><tr data-id="encoding-base32" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/encoding/base32@go1.20.3">base32</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package base32 implements base32 encoding as specified by RFC 4648.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package base32 implements base32 encoding as specified by RFC 4648.</td></tr><tr data-id="encoding-base64" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/encoding/base64@go1.20.3">base64</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package base64 implements base64 encoding as specified by RFC 4648.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package base64 implements base64 encoding as specified by RFC 4648.</td></tr><tr data-id="encoding-binary" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/encoding/binary@go1.20.3">binary</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package binary implements simple translation between numbers and byte sequences and encoding and decoding of varints.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package binary implements simple translation between numbers and byte sequences and encoding and decoding of varints.</td></tr><tr data-id="encoding-csv" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/encoding/csv@go1.20.3">csv</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package csv reads and writes comma-separated values (CSV) files.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package csv reads and writes comma-separated values (CSV) files.</td></tr><tr data-id="encoding-gob" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/encoding/gob@go1.20.3">gob</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package gob manages streams of gobs - binary values exchanged between an Encoder (transmitter) and a Decoder (receiver).</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package gob manages streams of gobs - binary values exchanged between an Encoder (transmitter) and a Decoder (receiver).</td></tr><tr data-id="encoding-hex" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/encoding/hex@go1.20.3">hex</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package hex implements hexadecimal encoding and decoding.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package hex implements hexadecimal encoding and decoding.</td></tr><tr data-id="encoding-json" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/encoding/json@go1.20.3">json</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package json implements encoding and decoding of JSON as defined in RFC 7159.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package json implements encoding and decoding of JSON as defined in RFC 7159.</td></tr><tr data-id="encoding-pem" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/encoding/pem@go1.20.3">pem</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package pem implements the PEM data encoding, which originated in Privacy Enhanced Mail.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package pem implements the PEM data encoding, which originated in Privacy Enhanced Mail.</td></tr><tr data-id="encoding-xml" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/encoding/xml@go1.20.3">xml</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package xml implements a simple XML 1.0 parser that understands XML name spaces.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package xml implements a simple XML 1.0 parser that understands XML name spaces.</td></tr>
+
+      
+          
+  
+  <tr class="">
+    <td data-id="errors" data-aria-owns="">
+      <div class="UnitDirectories-pathCell">
+        <div><a href="/errors@go1.20.3">errors</a>
+            
+          </div>
+          <div class="UnitDirectories-mobileSynopsis">Package errors implements functions to manipulate errors.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package errors implements functions to manipulate errors.</td></tr>
+
+      
+          
+  
+  <tr class="">
+    <td data-id="expvar" data-aria-owns="">
+      <div class="UnitDirectories-pathCell">
+        <div><a href="/expvar@go1.20.3">expvar</a>
+            
+          </div>
+          <div class="UnitDirectories-mobileSynopsis">Package expvar provides a standardized interface to public variables, such as operation counters in servers.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package expvar provides a standardized interface to public variables, such as operation counters in servers.</td></tr>
+
+      
+          
+  
+  <tr class="">
+    <td data-id="flag" data-aria-owns="">
+      <div class="UnitDirectories-pathCell">
+        <div><a href="/flag@go1.20.3">flag</a>
+            
+          </div>
+          <div class="UnitDirectories-mobileSynopsis">Package flag implements command-line flag parsing.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package flag implements command-line flag parsing.</td></tr>
+
+      
+          
+  
+  <tr class="">
+    <td data-id="fmt" data-aria-owns="">
+      <div class="UnitDirectories-pathCell">
+        <div><a href="/fmt@go1.20.3">fmt</a>
+            
+          </div>
+          <div class="UnitDirectories-mobileSynopsis">Package fmt implements formatted I/O with functions analogous to C&#39;s printf and scanf.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package fmt implements formatted I/O with functions analogous to C&#39;s printf and scanf.</td></tr>
+
+      
+          
+  
+  <tr data-aria-controls="go-ast go-build go-build/constraint go-constant go-doc go-doc/comment go-format go-importer go-internal/gccgoimporter go-internal/gcimporter go-internal/srcimporter go-internal/typeparams go-parser go-printer go-scanner go-token go-types " class="">
+    <td data-id="go" data-aria-owns="go-ast go-build go-build/constraint go-constant go-doc go-doc/comment go-format go-importer go-internal/gccgoimporter go-internal/gcimporter go-internal/srcimporter go-internal/typeparams go-parser go-printer go-scanner go-token go-types ">
+      <div class="UnitDirectories-pathCell">
+        <div><button type="button" class="go-Button go-Button--inline UnitDirectories-toggleButton" aria-expanded="false" aria-label="17 more from" data-aria-controls="go-ast go-build go-build/constraint go-constant go-doc go-doc/comment go-format go-importer go-internal/gccgoimporter go-internal/gcimporter go-internal/srcimporter go-internal/typeparams go-parser go-printer go-scanner go-token go-types " data-aria-labelledby="go-button go" data-id="go-button">
+              <img class="go-Icon" height="24" width="24" src="/static/shared/icon/arrow_right_gm_grey_24dp.svg" alt=""/>
+            </button><span>go</span>
+      </div></div></td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="go-ast" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/go/ast@go1.20.3">ast</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package ast declares the types used to represent syntax trees for Go packages.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package ast declares the types used to represent syntax trees for Go packages.</td></tr><tr data-id="go-build" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/go/build@go1.20.3">build</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package build gathers information about Go packages.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package build gathers information about Go packages.</td></tr><tr data-id="go-build/constraint" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/go/build/constraint@go1.20.3">build/constraint</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package constraint implements parsing and evaluation of build constraint lines.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package constraint implements parsing and evaluation of build constraint lines.</td></tr><tr data-id="go-constant" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/go/constant@go1.20.3">constant</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package constant implements Values representing untyped Go constants and their corresponding operations.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package constant implements Values representing untyped Go constants and their corresponding operations.</td></tr><tr data-id="go-doc" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/go/doc@go1.20.3">doc</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package doc extracts source code documentation from a Go AST.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package doc extracts source code documentation from a Go AST.</td></tr><tr data-id="go-doc/comment" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/go/doc/comment@go1.20.3">doc/comment</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package comment implements parsing and reformatting of Go doc comments, (documentation comments), which are comments that immediately precede a top-level declaration of a package, const, func, type, or var.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package comment implements parsing and reformatting of Go doc comments, (documentation comments), which are comments that immediately precede a top-level declaration of a package, const, func, type, or var.</td></tr><tr data-id="go-format" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/go/format@go1.20.3">format</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package format implements standard formatting of Go source.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package format implements standard formatting of Go source.</td></tr><tr data-id="go-importer" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/go/importer@go1.20.3">importer</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package importer provides access to export data importers.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package importer provides access to export data importers.</td></tr><tr data-id="go-internal/gccgoimporter" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/go/internal/gccgoimporter@go1.20.3">internal/gccgoimporter</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package gccgoimporter implements Import for gccgo-generated object files.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package gccgoimporter implements Import for gccgo-generated object files.</td></tr><tr data-id="go-internal/gcimporter" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/go/internal/gcimporter@go1.20.3">internal/gcimporter</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package gcimporter implements Import for gc-generated object files.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package gcimporter implements Import for gc-generated object files.</td></tr><tr data-id="go-internal/srcimporter" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/go/internal/srcimporter@go1.20.3">internal/srcimporter</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package srcimporter implements importing directly from source files rather than installed packages.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package srcimporter implements importing directly from source files rather than installed packages.</td></tr><tr data-id="go-internal/typeparams" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/go/internal/typeparams@go1.20.3">internal/typeparams</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="go-parser" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/go/parser@go1.20.3">parser</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package parser implements a parser for Go source files.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package parser implements a parser for Go source files.</td></tr><tr data-id="go-printer" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/go/printer@go1.20.3">printer</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package printer implements printing of AST nodes.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package printer implements printing of AST nodes.</td></tr><tr data-id="go-scanner" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/go/scanner@go1.20.3">scanner</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package scanner implements a scanner for Go source text.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package scanner implements a scanner for Go source text.</td></tr><tr data-id="go-token" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/go/token@go1.20.3">token</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package token defines constants representing the lexical tokens of the Go programming language and basic operations on tokens (printing, predicates).</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package token defines constants representing the lexical tokens of the Go programming language and basic operations on tokens (printing, predicates).</td></tr><tr data-id="go-types" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/go/types@go1.20.3">types</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package types declares the data types and implements the algorithms for type-checking of Go packages.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package types declares the data types and implements the algorithms for type-checking of Go packages.</td></tr>
+
+      
+          
+  
+  <tr data-aria-controls="hash-adler32 hash-crc32 hash-crc64 hash-fnv hash-maphash " class="">
+    <td data-id="hash" data-aria-owns="hash-adler32 hash-crc32 hash-crc64 hash-fnv hash-maphash ">
+      <div class="UnitDirectories-pathCell">
+        <div><button type="button" class="go-Button go-Button--inline UnitDirectories-toggleButton" aria-expanded="false" aria-label="5 more from" data-aria-controls="hash-adler32 hash-crc32 hash-crc64 hash-fnv hash-maphash " data-aria-labelledby="hash-button hash" data-id="hash-button">
+              <img class="go-Icon" height="24" width="24" src="/static/shared/icon/arrow_right_gm_grey_24dp.svg" alt=""/>
+            </button><a href="/hash@go1.20.3">hash</a>
+            
+          </div>
+          <div class="UnitDirectories-mobileSynopsis">Package hash provides interfaces for hash functions.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package hash provides interfaces for hash functions.</td></tr><tr data-id="hash-adler32" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/hash/adler32@go1.20.3">adler32</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package adler32 implements the Adler-32 checksum.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package adler32 implements the Adler-32 checksum.</td></tr><tr data-id="hash-crc32" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/hash/crc32@go1.20.3">crc32</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package crc32 implements the 32-bit cyclic redundancy check, or CRC-32, checksum.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package crc32 implements the 32-bit cyclic redundancy check, or CRC-32, checksum.</td></tr><tr data-id="hash-crc64" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/hash/crc64@go1.20.3">crc64</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package crc64 implements the 64-bit cyclic redundancy check, or CRC-64, checksum.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package crc64 implements the 64-bit cyclic redundancy check, or CRC-64, checksum.</td></tr><tr data-id="hash-fnv" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/hash/fnv@go1.20.3">fnv</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package fnv implements FNV-1 and FNV-1a, non-cryptographic hash functions created by Glenn Fowler, Landon Curt Noll, and Phong Vo.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package fnv implements FNV-1 and FNV-1a, non-cryptographic hash functions created by Glenn Fowler, Landon Curt Noll, and Phong Vo.</td></tr><tr data-id="hash-maphash" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/hash/maphash@go1.20.3">maphash</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package maphash provides hash functions on byte sequences.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package maphash provides hash functions on byte sequences.</td></tr>
+
+      
+          
+  
+  <tr data-aria-controls="html-template " class="">
+    <td data-id="html" data-aria-owns="html-template ">
+      <div class="UnitDirectories-pathCell">
+        <div><button type="button" class="go-Button go-Button--inline UnitDirectories-toggleButton" aria-expanded="false" aria-label="1 more from" data-aria-controls="html-template " data-aria-labelledby="html-button html" data-id="html-button">
+              <img class="go-Icon" height="24" width="24" src="/static/shared/icon/arrow_right_gm_grey_24dp.svg" alt=""/>
+            </button><a href="/html@go1.20.3">html</a>
+            
+          </div>
+          <div class="UnitDirectories-mobileSynopsis">Package html provides functions for escaping and unescaping HTML text.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package html provides functions for escaping and unescaping HTML text.</td></tr><tr data-id="html-template" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/html/template@go1.20.3">template</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package template (html/template) implements data-driven templates for generating HTML output safe against code injection.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package template (html/template) implements data-driven templates for generating HTML output safe against code injection.</td></tr>
+
+      
+          
+  
+  <tr data-aria-controls="image-color image-color/palette image-draw image-gif image-internal/imageutil image-jpeg image-png " class="">
+    <td data-id="image" data-aria-owns="image-color image-color/palette image-draw image-gif image-internal/imageutil image-jpeg image-png ">
+      <div class="UnitDirectories-pathCell">
+        <div><button type="button" class="go-Button go-Button--inline UnitDirectories-toggleButton" aria-expanded="false" aria-label="7 more from" data-aria-controls="image-color image-color/palette image-draw image-gif image-internal/imageutil image-jpeg image-png " data-aria-labelledby="image-button image" data-id="image-button">
+              <img class="go-Icon" height="24" width="24" src="/static/shared/icon/arrow_right_gm_grey_24dp.svg" alt=""/>
+            </button><a href="/image@go1.20.3">image</a>
+            
+          </div>
+          <div class="UnitDirectories-mobileSynopsis">Package image implements a basic 2-D image library.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package image implements a basic 2-D image library.</td></tr><tr data-id="image-color" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/image/color@go1.20.3">color</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package color implements a basic color library.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package color implements a basic color library.</td></tr><tr data-id="image-color/palette" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/image/color/palette@go1.20.3">color/palette</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package palette provides standard color palettes.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package palette provides standard color palettes.</td></tr><tr data-id="image-draw" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/image/draw@go1.20.3">draw</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package draw provides image composition functions.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package draw provides image composition functions.</td></tr><tr data-id="image-gif" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/image/gif@go1.20.3">gif</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package gif implements a GIF image decoder and encoder.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package gif implements a GIF image decoder and encoder.</td></tr><tr data-id="image-internal/imageutil" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/image/internal/imageutil@go1.20.3">internal/imageutil</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package imageutil contains code shared by image-related packages.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package imageutil contains code shared by image-related packages.</td></tr><tr data-id="image-jpeg" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/image/jpeg@go1.20.3">jpeg</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package jpeg implements a JPEG image decoder and encoder.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package jpeg implements a JPEG image decoder and encoder.</td></tr><tr data-id="image-png" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/image/png@go1.20.3">png</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package png implements a PNG image decoder and encoder.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package png implements a PNG image decoder and encoder.</td></tr>
+
+      
+          
+  
+  <tr data-aria-controls="index-suffixarray " class="">
+    <td data-id="index" data-aria-owns="index-suffixarray ">
+      <div class="UnitDirectories-pathCell">
+        <div><button type="button" class="go-Button go-Button--inline UnitDirectories-toggleButton" aria-expanded="false" aria-label="1 more from" data-aria-controls="index-suffixarray " data-aria-labelledby="index-button index" data-id="index-button">
+              <img class="go-Icon" height="24" width="24" src="/static/shared/icon/arrow_right_gm_grey_24dp.svg" alt=""/>
+            </button><span>index</span>
+      </div></div></td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="index-suffixarray" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/index/suffixarray@go1.20.3">suffixarray</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package suffixarray implements substring search in logarithmic time using an in-memory suffix array.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package suffixarray implements substring search in logarithmic time using an in-memory suffix array.</td></tr>
+
+      
+          
+  
+  <tr data-aria-controls="internal-abi internal-buildcfg internal-bytealg internal-cfg internal-coverage internal-coverage/calloc internal-coverage/cformat internal-coverage/cmerge internal-coverage/decodecounter internal-coverage/decodemeta internal-coverage/encodecounter internal-coverage/encodemeta internal-coverage/pods internal-coverage/rtcov internal-coverage/slicereader internal-coverage/slicewriter internal-coverage/stringtab internal-coverage/uleb128 internal-cpu internal-dag internal-diff internal-fmtsort internal-fuzz internal-goarch internal-godebug internal-goexperiment internal-goos internal-goroot internal-goversion internal-intern internal-itoa internal-lazyregexp internal-lazytemplate internal-nettrace internal-obscuretestdata internal-oserror internal-pkgbits internal-platform internal-poll internal-profile internal-race internal-reflectlite internal-safefilepath internal-saferio internal-singleflight internal-syscall/execenv internal-syscall/unix internal-syscall/windows internal-syscall/windows/registry internal-syscall/windows/sysdll internal-sysinfo internal-testenv internal-testlog internal-testpty internal-trace internal-txtar internal-types/errors internal-unsafeheader internal-xcoff " class="UnitDirectories-internal">
+    <td data-id="internal" data-aria-owns="internal-abi internal-buildcfg internal-bytealg internal-cfg internal-coverage internal-coverage/calloc internal-coverage/cformat internal-coverage/cmerge internal-coverage/decodecounter internal-coverage/decodemeta internal-coverage/encodecounter internal-coverage/encodemeta internal-coverage/pods internal-coverage/rtcov internal-coverage/slicereader internal-coverage/slicewriter internal-coverage/stringtab internal-coverage/uleb128 internal-cpu internal-dag internal-diff internal-fmtsort internal-fuzz internal-goarch internal-godebug internal-goexperiment internal-goos internal-goroot internal-goversion internal-intern internal-itoa internal-lazyregexp internal-lazytemplate internal-nettrace internal-obscuretestdata internal-oserror internal-pkgbits internal-platform internal-poll internal-profile internal-race internal-reflectlite internal-safefilepath internal-saferio internal-singleflight internal-syscall/execenv internal-syscall/unix internal-syscall/windows internal-syscall/windows/registry internal-syscall/windows/sysdll internal-sysinfo internal-testenv internal-testlog internal-testpty internal-trace internal-txtar internal-types/errors internal-unsafeheader internal-xcoff ">
+      <div class="UnitDirectories-pathCell">
+        <div><button type="button" class="go-Button go-Button--inline UnitDirectories-toggleButton" aria-expanded="false" aria-label="59 more from" data-aria-controls="internal-abi internal-buildcfg internal-bytealg internal-cfg internal-coverage internal-coverage/calloc internal-coverage/cformat internal-coverage/cmerge internal-coverage/decodecounter internal-coverage/decodemeta internal-coverage/encodecounter internal-coverage/encodemeta internal-coverage/pods internal-coverage/rtcov internal-coverage/slicereader internal-coverage/slicewriter internal-coverage/stringtab internal-coverage/uleb128 internal-cpu internal-dag internal-diff internal-fmtsort internal-fuzz internal-goarch internal-godebug internal-goexperiment internal-goos internal-goroot internal-goversion internal-intern internal-itoa internal-lazyregexp internal-lazytemplate internal-nettrace internal-obscuretestdata internal-oserror internal-pkgbits internal-platform internal-poll internal-profile internal-race internal-reflectlite internal-safefilepath internal-saferio internal-singleflight internal-syscall/execenv internal-syscall/unix internal-syscall/windows internal-syscall/windows/registry internal-syscall/windows/sysdll internal-sysinfo internal-testenv internal-testlog internal-testpty internal-trace internal-txtar internal-types/errors internal-unsafeheader internal-xcoff " data-aria-labelledby="internal-button internal" data-id="internal-button">
+              <img class="go-Icon" height="24" width="24" src="/static/shared/icon/arrow_right_gm_grey_24dp.svg" alt=""/>
+            </button><span>internal</span>
+      </div></div></td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="internal-abi" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/abi@go1.20.3">abi</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="internal-buildcfg" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/buildcfg@go1.20.3">buildcfg</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package buildcfg provides access to the build configuration described by the current environment.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package buildcfg provides access to the build configuration described by the current environment.</td></tr><tr data-id="internal-bytealg" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/bytealg@go1.20.3">bytealg</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="internal-cfg" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/cfg@go1.20.3">cfg</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package cfg holds configuration shared by the Go command and internal/testenv.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package cfg holds configuration shared by the Go command and internal/testenv.</td></tr><tr data-id="internal-coverage" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/coverage@go1.20.3">coverage</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="internal-coverage/calloc" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/coverage/calloc@go1.20.3">coverage/calloc</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="internal-coverage/cformat" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/coverage/cformat@go1.20.3">coverage/cformat</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="internal-coverage/cmerge" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/coverage/cmerge@go1.20.3">coverage/cmerge</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="internal-coverage/decodecounter" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/coverage/decodecounter@go1.20.3">coverage/decodecounter</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="internal-coverage/decodemeta" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/coverage/decodemeta@go1.20.3">coverage/decodemeta</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="internal-coverage/encodecounter" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/coverage/encodecounter@go1.20.3">coverage/encodecounter</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="internal-coverage/encodemeta" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/coverage/encodemeta@go1.20.3">coverage/encodemeta</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="internal-coverage/pods" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/coverage/pods@go1.20.3">coverage/pods</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="internal-coverage/rtcov" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/coverage/rtcov@go1.20.3">coverage/rtcov</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="internal-coverage/slicereader" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/coverage/slicereader@go1.20.3">coverage/slicereader</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="internal-coverage/slicewriter" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/coverage/slicewriter@go1.20.3">coverage/slicewriter</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="internal-coverage/stringtab" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/coverage/stringtab@go1.20.3">coverage/stringtab</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="internal-coverage/uleb128" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/coverage/uleb128@go1.20.3">coverage/uleb128</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="internal-cpu" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/cpu@go1.20.3">cpu</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package cpu implements processor feature detection used by the Go standard library.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package cpu implements processor feature detection used by the Go standard library.</td></tr><tr data-id="internal-dag" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/dag@go1.20.3">dag</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package dag implements a language for expressing directed acyclic graphs.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package dag implements a language for expressing directed acyclic graphs.</td></tr><tr data-id="internal-diff" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/diff@go1.20.3">diff</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="internal-fmtsort" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/fmtsort@go1.20.3">fmtsort</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package fmtsort provides a general stable ordering mechanism for maps, on behalf of the fmt and text/template packages.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package fmtsort provides a general stable ordering mechanism for maps, on behalf of the fmt and text/template packages.</td></tr><tr data-id="internal-fuzz" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/fuzz@go1.20.3">fuzz</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package fuzz provides common fuzzing functionality for tests built with &#34;go test&#34; and for programs that use fuzzing functionality in the testing package.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package fuzz provides common fuzzing functionality for tests built with &#34;go test&#34; and for programs that use fuzzing functionality in the testing package.</td></tr><tr data-id="internal-goarch" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/goarch@go1.20.3">goarch</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">package goarch contains GOARCH-specific constants.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">package goarch contains GOARCH-specific constants.</td></tr><tr data-id="internal-godebug" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/godebug@go1.20.3">godebug</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package godebug makes the settings in the $GODEBUG environment variable available to other packages.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package godebug makes the settings in the $GODEBUG environment variable available to other packages.</td></tr><tr data-id="internal-goexperiment" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/goexperiment@go1.20.3">goexperiment</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package goexperiment implements support for toolchain experiments.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package goexperiment implements support for toolchain experiments.</td></tr><tr data-id="internal-goos" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/goos@go1.20.3">goos</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">package goos contains GOOS-specific constants.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">package goos contains GOOS-specific constants.</td></tr><tr data-id="internal-goroot" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/goroot@go1.20.3">goroot</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="internal-goversion" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/goversion@go1.20.3">goversion</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="internal-intern" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/intern@go1.20.3">intern</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package intern lets you make smaller comparable values by boxing a larger comparable value (such as a 16 byte string header) down into a globally unique 8 byte pointer.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package intern lets you make smaller comparable values by boxing a larger comparable value (such as a 16 byte string header) down into a globally unique 8 byte pointer.</td></tr><tr data-id="internal-itoa" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/itoa@go1.20.3">itoa</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="internal-lazyregexp" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/lazyregexp@go1.20.3">lazyregexp</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package lazyregexp is a thin wrapper over regexp, allowing the use of global regexp variables without forcing them to be compiled at init.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package lazyregexp is a thin wrapper over regexp, allowing the use of global regexp variables without forcing them to be compiled at init.</td></tr><tr data-id="internal-lazytemplate" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/lazytemplate@go1.20.3">lazytemplate</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package lazytemplate is a thin wrapper over text/template, allowing the use of global template variables without forcing them to be parsed at init.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package lazytemplate is a thin wrapper over text/template, allowing the use of global template variables without forcing them to be parsed at init.</td></tr><tr data-id="internal-nettrace" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/nettrace@go1.20.3">nettrace</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package nettrace contains internal hooks for tracing activity in the net package.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package nettrace contains internal hooks for tracing activity in the net package.</td></tr><tr data-id="internal-obscuretestdata" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/obscuretestdata@go1.20.3">obscuretestdata</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package obscuretestdata contains functionality used by tests to more easily work with testdata that must be obscured primarily due to golang.org/issue/34986.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package obscuretestdata contains functionality used by tests to more easily work with testdata that must be obscured primarily due to golang.org/issue/34986.</td></tr><tr data-id="internal-oserror" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/oserror@go1.20.3">oserror</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package oserror defines errors values used in the os package.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package oserror defines errors values used in the os package.</td></tr><tr data-id="internal-pkgbits" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/pkgbits@go1.20.3">pkgbits</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package pkgbits implements low-level coding abstractions for Unified IR&#39;s export data format.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package pkgbits implements low-level coding abstractions for Unified IR&#39;s export data format.</td></tr><tr data-id="internal-platform" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/platform@go1.20.3">platform</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="internal-poll" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/poll@go1.20.3">poll</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package poll supports non-blocking I/O on file descriptors with polling.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package poll supports non-blocking I/O on file descriptors with polling.</td></tr><tr data-id="internal-profile" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/profile@go1.20.3">profile</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package profile provides a representation of github.com/google/pprof/proto/profile.proto and methods to encode/decode/merge profiles in this format.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package profile provides a representation of github.com/google/pprof/proto/profile.proto and methods to encode/decode/merge profiles in this format.</td></tr><tr data-id="internal-race" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/race@go1.20.3">race</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package race contains helper functions for manually instrumenting code for the race detector.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package race contains helper functions for manually instrumenting code for the race detector.</td></tr><tr data-id="internal-reflectlite" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/reflectlite@go1.20.3">reflectlite</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package reflectlite implements lightweight version of reflect, not using any package except for &#34;runtime&#34; and &#34;unsafe&#34;.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package reflectlite implements lightweight version of reflect, not using any package except for &#34;runtime&#34; and &#34;unsafe&#34;.</td></tr><tr data-id="internal-safefilepath" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/safefilepath@go1.20.3">safefilepath</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package safefilepath manipulates operating-system file paths.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package safefilepath manipulates operating-system file paths.</td></tr><tr data-id="internal-saferio" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/saferio@go1.20.3">saferio</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package saferio provides I/O functions that avoid allocating large amounts of memory unnecessarily.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package saferio provides I/O functions that avoid allocating large amounts of memory unnecessarily.</td></tr><tr data-id="internal-singleflight" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/singleflight@go1.20.3">singleflight</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package singleflight provides a duplicate function call suppression mechanism.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package singleflight provides a duplicate function call suppression mechanism.</td></tr><tr data-id="internal-syscall/execenv" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/syscall/execenv@go1.20.3">syscall/execenv</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="internal-syscall/unix" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/syscall/unix@go1.20.3">syscall/unix</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="internal-syscall/windows" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/syscall/windows@go1.20.3">syscall/windows</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="internal-syscall/windows/registry" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/syscall/windows/registry@go1.20.3">syscall/windows/registry</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package registry provides access to the Windows registry.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package registry provides access to the Windows registry.</td></tr><tr data-id="internal-syscall/windows/sysdll" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/syscall/windows/sysdll@go1.20.3">syscall/windows/sysdll</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package sysdll is an internal leaf package that records and reports which Windows DLL names are used by Go itself.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package sysdll is an internal leaf package that records and reports which Windows DLL names are used by Go itself.</td></tr><tr data-id="internal-sysinfo" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/sysinfo@go1.20.3">sysinfo</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package sysinfo implements high level hardware information gathering that can be used for debugging or information purposes.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package sysinfo implements high level hardware information gathering that can be used for debugging or information purposes.</td></tr><tr data-id="internal-testenv" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/testenv@go1.20.3">testenv</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package testenv provides information about what functionality is available in different testing environments run by the Go team.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package testenv provides information about what functionality is available in different testing environments run by the Go team.</td></tr><tr data-id="internal-testlog" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/testlog@go1.20.3">testlog</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package testlog provides a back-channel communication path between tests and package os, so that cmd/go can see which environment variables and files a test consults.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package testlog provides a back-channel communication path between tests and package os, so that cmd/go can see which environment variables and files a test consults.</td></tr><tr data-id="internal-testpty" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/testpty@go1.20.3">testpty</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package testpty is a simple pseudo-terminal package for Unix systems, implemented by calling C functions via cgo.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package testpty is a simple pseudo-terminal package for Unix systems, implemented by calling C functions via cgo.</td></tr><tr data-id="internal-trace" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/trace@go1.20.3">trace</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="internal-txtar" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/txtar@go1.20.3">txtar</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package txtar implements a trivial text-based file archive format.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package txtar implements a trivial text-based file archive format.</td></tr><tr data-id="internal-types/errors" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/types/errors@go1.20.3">types/errors</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="internal-unsafeheader" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/unsafeheader@go1.20.3">unsafeheader</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package unsafeheader contains header declarations for the Go runtime&#39;s slice and string implementations.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package unsafeheader contains header declarations for the Go runtime&#39;s slice and string implementations.</td></tr><tr data-id="internal-xcoff" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/internal/xcoff@go1.20.3">xcoff</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package xcoff implements access to XCOFF (Extended Common Object File Format) files.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package xcoff implements access to XCOFF (Extended Common Object File Format) files.</td></tr>
+
+      
+          
+  
+  <tr data-aria-controls="io-fs io-ioutil " class="">
+    <td data-id="io" data-aria-owns="io-fs io-ioutil ">
+      <div class="UnitDirectories-pathCell">
+        <div><button type="button" class="go-Button go-Button--inline UnitDirectories-toggleButton" aria-expanded="false" aria-label="2 more from" data-aria-controls="io-fs io-ioutil " data-aria-labelledby="io-button io" data-id="io-button">
+              <img class="go-Icon" height="24" width="24" src="/static/shared/icon/arrow_right_gm_grey_24dp.svg" alt=""/>
+            </button><a href="/io@go1.20.3">io</a>
+            
+          </div>
+          <div class="UnitDirectories-mobileSynopsis">Package io provides basic interfaces to I/O primitives.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package io provides basic interfaces to I/O primitives.</td></tr><tr data-id="io-fs" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/io/fs@go1.20.3">fs</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package fs defines basic interfaces to a file system.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package fs defines basic interfaces to a file system.</td></tr><tr data-id="io-ioutil" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/io/ioutil@go1.20.3">ioutil</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package ioutil implements some I/O utility functions.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package ioutil implements some I/O utility functions.</td></tr>
+
+      
+          
+  
+  <tr data-aria-controls="log-syslog " class="">
+    <td data-id="log" data-aria-owns="log-syslog ">
+      <div class="UnitDirectories-pathCell">
+        <div><button type="button" class="go-Button go-Button--inline UnitDirectories-toggleButton" aria-expanded="false" aria-label="1 more from" data-aria-controls="log-syslog " data-aria-labelledby="log-button log" data-id="log-button">
+              <img class="go-Icon" height="24" width="24" src="/static/shared/icon/arrow_right_gm_grey_24dp.svg" alt=""/>
+            </button><a href="/log@go1.20.3">log</a>
+            
+          </div>
+          <div class="UnitDirectories-mobileSynopsis">Package log implements a simple logging package.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package log implements a simple logging package.</td></tr><tr data-id="log-syslog" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/log/syslog@go1.20.3">syslog</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package syslog provides a simple interface to the system log service.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package syslog provides a simple interface to the system log service.</td></tr>
+
+      
+          
+  
+  <tr data-aria-controls="math-big math-bits math-cmplx math-rand " class="">
+    <td data-id="math" data-aria-owns="math-big math-bits math-cmplx math-rand ">
+      <div class="UnitDirectories-pathCell">
+        <div><button type="button" class="go-Button go-Button--inline UnitDirectories-toggleButton" aria-expanded="false" aria-label="4 more from" data-aria-controls="math-big math-bits math-cmplx math-rand " data-aria-labelledby="math-button math" data-id="math-button">
+              <img class="go-Icon" height="24" width="24" src="/static/shared/icon/arrow_right_gm_grey_24dp.svg" alt=""/>
+            </button><a href="/math@go1.20.3">math</a>
+            
+          </div>
+          <div class="UnitDirectories-mobileSynopsis">Package math provides basic constants and mathematical functions.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package math provides basic constants and mathematical functions.</td></tr><tr data-id="math-big" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/math/big@go1.20.3">big</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package big implements arbitrary-precision arithmetic (big numbers).</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package big implements arbitrary-precision arithmetic (big numbers).</td></tr><tr data-id="math-bits" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/math/bits@go1.20.3">bits</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package bits implements bit counting and manipulation functions for the predeclared unsigned integer types.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package bits implements bit counting and manipulation functions for the predeclared unsigned integer types.</td></tr><tr data-id="math-cmplx" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/math/cmplx@go1.20.3">cmplx</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package cmplx provides basic constants and mathematical functions for complex numbers.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package cmplx provides basic constants and mathematical functions for complex numbers.</td></tr><tr data-id="math-rand" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/math/rand@go1.20.3">rand</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package rand implements pseudo-random number generators unsuitable for security-sensitive work.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package rand implements pseudo-random number generators unsuitable for security-sensitive work.</td></tr>
+
+      
+          
+  
+  <tr data-aria-controls="mime-multipart mime-quotedprintable " class="">
+    <td data-id="mime" data-aria-owns="mime-multipart mime-quotedprintable ">
+      <div class="UnitDirectories-pathCell">
+        <div><button type="button" class="go-Button go-Button--inline UnitDirectories-toggleButton" aria-expanded="false" aria-label="2 more from" data-aria-controls="mime-multipart mime-quotedprintable " data-aria-labelledby="mime-button mime" data-id="mime-button">
+              <img class="go-Icon" height="24" width="24" src="/static/shared/icon/arrow_right_gm_grey_24dp.svg" alt=""/>
+            </button><a href="/mime@go1.20.3">mime</a>
+            
+          </div>
+          <div class="UnitDirectories-mobileSynopsis">Package mime implements parts of the MIME spec.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package mime implements parts of the MIME spec.</td></tr><tr data-id="mime-multipart" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/mime/multipart@go1.20.3">multipart</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package multipart implements MIME multipart parsing, as defined in RFC 2046.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package multipart implements MIME multipart parsing, as defined in RFC 2046.</td></tr><tr data-id="mime-quotedprintable" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/mime/quotedprintable@go1.20.3">quotedprintable</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package quotedprintable implements quoted-printable encoding as specified by RFC 2045.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package quotedprintable implements quoted-printable encoding as specified by RFC 2045.</td></tr>
+
+      
+          
+  
+  <tr data-aria-controls="net-http net-http/cgi net-http/cookiejar net-http/fcgi net-http/httptest net-http/httptrace net-http/httputil net-http/internal net-http/internal/ascii net-http/internal/testcert net-http/pprof net-internal/socktest net-mail net-netip net-rpc net-rpc/jsonrpc net-smtp net-textproto net-url " class="">
+    <td data-id="net" data-aria-owns="net-http net-http/cgi net-http/cookiejar net-http/fcgi net-http/httptest net-http/httptrace net-http/httputil net-http/internal net-http/internal/ascii net-http/internal/testcert net-http/pprof net-internal/socktest net-mail net-netip net-rpc net-rpc/jsonrpc net-smtp net-textproto net-url ">
+      <div class="UnitDirectories-pathCell">
+        <div><button type="button" class="go-Button go-Button--inline UnitDirectories-toggleButton" aria-expanded="false" aria-label="19 more from" data-aria-controls="net-http net-http/cgi net-http/cookiejar net-http/fcgi net-http/httptest net-http/httptrace net-http/httputil net-http/internal net-http/internal/ascii net-http/internal/testcert net-http/pprof net-internal/socktest net-mail net-netip net-rpc net-rpc/jsonrpc net-smtp net-textproto net-url " data-aria-labelledby="net-button net" data-id="net-button">
+              <img class="go-Icon" height="24" width="24" src="/static/shared/icon/arrow_right_gm_grey_24dp.svg" alt=""/>
+            </button><a href="/net@go1.20.3">net</a>
+            
+          </div>
+          <div class="UnitDirectories-mobileSynopsis">Package net provides a portable interface for network I/O, including TCP/IP, UDP, domain name resolution, and Unix domain sockets.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package net provides a portable interface for network I/O, including TCP/IP, UDP, domain name resolution, and Unix domain sockets.</td></tr><tr data-id="net-http" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/net/http@go1.20.3">http</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package http provides HTTP client and server implementations.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package http provides HTTP client and server implementations.</td></tr><tr data-id="net-http/cgi" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/net/http/cgi@go1.20.3">http/cgi</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package cgi implements CGI (Common Gateway Interface) as specified in RFC 3875.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package cgi implements CGI (Common Gateway Interface) as specified in RFC 3875.</td></tr><tr data-id="net-http/cookiejar" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/net/http/cookiejar@go1.20.3">http/cookiejar</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package cookiejar implements an in-memory RFC 6265-compliant http.CookieJar.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package cookiejar implements an in-memory RFC 6265-compliant http.CookieJar.</td></tr><tr data-id="net-http/fcgi" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/net/http/fcgi@go1.20.3">http/fcgi</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package fcgi implements the FastCGI protocol.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package fcgi implements the FastCGI protocol.</td></tr><tr data-id="net-http/httptest" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/net/http/httptest@go1.20.3">http/httptest</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package httptest provides utilities for HTTP testing.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package httptest provides utilities for HTTP testing.</td></tr><tr data-id="net-http/httptrace" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/net/http/httptrace@go1.20.3">http/httptrace</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package httptrace provides mechanisms to trace the events within HTTP client requests.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package httptrace provides mechanisms to trace the events within HTTP client requests.</td></tr><tr data-id="net-http/httputil" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/net/http/httputil@go1.20.3">http/httputil</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package httputil provides HTTP utility functions, complementing the more common ones in the net/http package.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package httputil provides HTTP utility functions, complementing the more common ones in the net/http package.</td></tr><tr data-id="net-http/internal" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/net/http/internal@go1.20.3">http/internal</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package internal contains HTTP internals shared by net/http and net/http/httputil.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package internal contains HTTP internals shared by net/http and net/http/httputil.</td></tr><tr data-id="net-http/internal/ascii" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/net/http/internal/ascii@go1.20.3">http/internal/ascii</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="net-http/internal/testcert" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/net/http/internal/testcert@go1.20.3">http/internal/testcert</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package testcert contains a test-only localhost certificate.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package testcert contains a test-only localhost certificate.</td></tr><tr data-id="net-http/pprof" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/net/http/pprof@go1.20.3">http/pprof</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package pprof serves via its HTTP server runtime profiling data in the format expected by the pprof visualization tool.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package pprof serves via its HTTP server runtime profiling data in the format expected by the pprof visualization tool.</td></tr><tr data-id="net-internal/socktest" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/net/internal/socktest@go1.20.3">internal/socktest</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package socktest provides utilities for socket testing.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package socktest provides utilities for socket testing.</td></tr><tr data-id="net-mail" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/net/mail@go1.20.3">mail</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package mail implements parsing of mail messages.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package mail implements parsing of mail messages.</td></tr><tr data-id="net-netip" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/net/netip@go1.20.3">netip</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package netip defines an IP address type that&#39;s a small value type.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package netip defines an IP address type that&#39;s a small value type.</td></tr><tr data-id="net-rpc" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/net/rpc@go1.20.3">rpc</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package rpc provides access to the exported methods of an object across a network or other I/O connection.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package rpc provides access to the exported methods of an object across a network or other I/O connection.</td></tr><tr data-id="net-rpc/jsonrpc" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/net/rpc/jsonrpc@go1.20.3">rpc/jsonrpc</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package jsonrpc implements a JSON-RPC 1.0 ClientCodec and ServerCodec for the rpc package.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package jsonrpc implements a JSON-RPC 1.0 ClientCodec and ServerCodec for the rpc package.</td></tr><tr data-id="net-smtp" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/net/smtp@go1.20.3">smtp</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package smtp implements the Simple Mail Transfer Protocol as defined in RFC 5321.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package smtp implements the Simple Mail Transfer Protocol as defined in RFC 5321.</td></tr><tr data-id="net-textproto" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/net/textproto@go1.20.3">textproto</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package textproto implements generic support for text-based request/response protocols in the style of HTTP, NNTP, and SMTP.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package textproto implements generic support for text-based request/response protocols in the style of HTTP, NNTP, and SMTP.</td></tr><tr data-id="net-url" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/net/url@go1.20.3">url</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package url parses URLs and implements query escaping.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package url parses URLs and implements query escaping.</td></tr>
+
+      
+          
+  
+  <tr data-aria-controls="os-exec os-exec/internal/fdtest os-signal os-user " class="">
+    <td data-id="os" data-aria-owns="os-exec os-exec/internal/fdtest os-signal os-user ">
+      <div class="UnitDirectories-pathCell">
+        <div><button type="button" class="go-Button go-Button--inline UnitDirectories-toggleButton" aria-expanded="false" aria-label="4 more from" data-aria-controls="os-exec os-exec/internal/fdtest os-signal os-user " data-aria-labelledby="os-button os" data-id="os-button">
+              <img class="go-Icon" height="24" width="24" src="/static/shared/icon/arrow_right_gm_grey_24dp.svg" alt=""/>
+            </button><a href="/os@go1.20.3">os</a>
+            
+          </div>
+          <div class="UnitDirectories-mobileSynopsis">Package os provides a platform-independent interface to operating system functionality.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package os provides a platform-independent interface to operating system functionality.</td></tr><tr data-id="os-exec" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/os/exec@go1.20.3">exec</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package exec runs external commands.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package exec runs external commands.</td></tr><tr data-id="os-exec/internal/fdtest" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/os/exec/internal/fdtest@go1.20.3">exec/internal/fdtest</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package fdtest provides test helpers for working with file descriptors across exec.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package fdtest provides test helpers for working with file descriptors across exec.</td></tr><tr data-id="os-signal" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/os/signal@go1.20.3">signal</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package signal implements access to incoming signals.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package signal implements access to incoming signals.</td></tr><tr data-id="os-user" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/os/user@go1.20.3">user</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package user allows user account lookups by name or id.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package user allows user account lookups by name or id.</td></tr>
+
+      
+          
+  
+  <tr data-aria-controls="path-filepath " class="">
+    <td data-id="path" data-aria-owns="path-filepath ">
+      <div class="UnitDirectories-pathCell">
+        <div><button type="button" class="go-Button go-Button--inline UnitDirectories-toggleButton" aria-expanded="false" aria-label="1 more from" data-aria-controls="path-filepath " data-aria-labelledby="path-button path" data-id="path-button">
+              <img class="go-Icon" height="24" width="24" src="/static/shared/icon/arrow_right_gm_grey_24dp.svg" alt=""/>
+            </button><a href="/path@go1.20.3">path</a>
+            
+          </div>
+          <div class="UnitDirectories-mobileSynopsis">Package path implements utility routines for manipulating slash-separated paths.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package path implements utility routines for manipulating slash-separated paths.</td></tr><tr data-id="path-filepath" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/path/filepath@go1.20.3">filepath</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package filepath implements utility routines for manipulating filename paths in a way compatible with the target operating system-defined file paths.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package filepath implements utility routines for manipulating filename paths in a way compatible with the target operating system-defined file paths.</td></tr>
+
+      
+          
+  
+  <tr class="">
+    <td data-id="plugin" data-aria-owns="">
+      <div class="UnitDirectories-pathCell">
+        <div><a href="/plugin@go1.20.3">plugin</a>
+            
+          </div>
+          <div class="UnitDirectories-mobileSynopsis">Package plugin implements loading and symbol resolution of Go plugins.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package plugin implements loading and symbol resolution of Go plugins.</td></tr>
+
+      
+          
+  
+  <tr data-aria-controls="reflect-internal/example1 reflect-internal/example2 " class="">
+    <td data-id="reflect" data-aria-owns="reflect-internal/example1 reflect-internal/example2 ">
+      <div class="UnitDirectories-pathCell">
+        <div><button type="button" class="go-Button go-Button--inline UnitDirectories-toggleButton" aria-expanded="false" aria-label="2 more from" data-aria-controls="reflect-internal/example1 reflect-internal/example2 " data-aria-labelledby="reflect-button reflect" data-id="reflect-button">
+              <img class="go-Icon" height="24" width="24" src="/static/shared/icon/arrow_right_gm_grey_24dp.svg" alt=""/>
+            </button><a href="/reflect@go1.20.3">reflect</a>
+            
+          </div>
+          <div class="UnitDirectories-mobileSynopsis">Package reflect implements run-time reflection, allowing a program to manipulate objects with arbitrary types.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package reflect implements run-time reflection, allowing a program to manipulate objects with arbitrary types.</td></tr><tr data-id="reflect-internal/example1" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/reflect/internal/example1@go1.20.3">internal/example1</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="reflect-internal/example2" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/reflect/internal/example2@go1.20.3">internal/example2</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr>
+
+      
+          
+  
+  <tr data-aria-controls="regexp-syntax " class="">
+    <td data-id="regexp" data-aria-owns="regexp-syntax ">
+      <div class="UnitDirectories-pathCell">
+        <div><button type="button" class="go-Button go-Button--inline UnitDirectories-toggleButton" aria-expanded="false" aria-label="1 more from" data-aria-controls="regexp-syntax " data-aria-labelledby="regexp-button regexp" data-id="regexp-button">
+              <img class="go-Icon" height="24" width="24" src="/static/shared/icon/arrow_right_gm_grey_24dp.svg" alt=""/>
+            </button><a href="/regexp@go1.20.3">regexp</a>
+            
+          </div>
+          <div class="UnitDirectories-mobileSynopsis">Package regexp implements regular expression search.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package regexp implements regular expression search.</td></tr><tr data-id="regexp-syntax" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/regexp/syntax@go1.20.3">syntax</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package syntax parses regular expressions into parse trees and compiles parse trees into programs.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package syntax parses regular expressions into parse trees and compiles parse trees into programs.</td></tr>
+
+      
+          
+  
+  <tr data-aria-controls="runtime-cgo runtime-coverage runtime-debug runtime-internal/atomic runtime-internal/math runtime-internal/startlinetest runtime-internal/sys runtime-internal/syscall runtime-metrics runtime-pprof runtime-race runtime-race/internal/amd64v1 runtime-trace " class="">
+    <td data-id="runtime" data-aria-owns="runtime-cgo runtime-coverage runtime-debug runtime-internal/atomic runtime-internal/math runtime-internal/startlinetest runtime-internal/sys runtime-internal/syscall runtime-metrics runtime-pprof runtime-race runtime-race/internal/amd64v1 runtime-trace ">
+      <div class="UnitDirectories-pathCell">
+        <div><button type="button" class="go-Button go-Button--inline UnitDirectories-toggleButton" aria-expanded="false" aria-label="13 more from" data-aria-controls="runtime-cgo runtime-coverage runtime-debug runtime-internal/atomic runtime-internal/math runtime-internal/startlinetest runtime-internal/sys runtime-internal/syscall runtime-metrics runtime-pprof runtime-race runtime-race/internal/amd64v1 runtime-trace " data-aria-labelledby="runtime-button runtime" data-id="runtime-button">
+              <img class="go-Icon" height="24" width="24" src="/static/shared/icon/arrow_right_gm_grey_24dp.svg" alt=""/>
+            </button><a href="/runtime@go1.20.3">runtime</a>
+            
+          </div>
+          <div class="UnitDirectories-mobileSynopsis">Package runtime contains operations that interact with Go&#39;s runtime system, such as functions to control goroutines.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package runtime contains operations that interact with Go&#39;s runtime system, such as functions to control goroutines.</td></tr><tr data-id="runtime-cgo" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/runtime/cgo@go1.20.3">cgo</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package cgo contains runtime support for code generated by the cgo tool.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package cgo contains runtime support for code generated by the cgo tool.</td></tr><tr data-id="runtime-coverage" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/runtime/coverage@go1.20.3">coverage</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="runtime-debug" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/runtime/debug@go1.20.3">debug</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package debug contains facilities for programs to debug themselves while they are running.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package debug contains facilities for programs to debug themselves while they are running.</td></tr><tr data-id="runtime-internal/atomic" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/runtime/internal/atomic@go1.20.3">internal/atomic</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package atomic provides atomic operations, independent of sync/atomic, to the runtime.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package atomic provides atomic operations, independent of sync/atomic, to the runtime.</td></tr><tr data-id="runtime-internal/math" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/runtime/internal/math@go1.20.3">internal/math</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="runtime-internal/startlinetest" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/runtime/internal/startlinetest@go1.20.3">internal/startlinetest</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package startlinetest contains helpers for runtime_test.TestStartLineAsm.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package startlinetest contains helpers for runtime_test.TestStartLineAsm.</td></tr><tr data-id="runtime-internal/sys" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/runtime/internal/sys@go1.20.3">internal/sys</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">package sys contains system- and configuration- and architecture-specific constants used by the runtime.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">package sys contains system- and configuration- and architecture-specific constants used by the runtime.</td></tr><tr data-id="runtime-internal/syscall" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/runtime/internal/syscall@go1.20.3">internal/syscall</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package syscall provides the syscall primitives required for the runtime.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package syscall provides the syscall primitives required for the runtime.</td></tr><tr data-id="runtime-metrics" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/runtime/metrics@go1.20.3">metrics</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package metrics provides a stable interface to access implementation-defined metrics exported by the Go runtime.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package metrics provides a stable interface to access implementation-defined metrics exported by the Go runtime.</td></tr><tr data-id="runtime-pprof" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/runtime/pprof@go1.20.3">pprof</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package pprof writes runtime profiling data in the format expected by the pprof visualization tool.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package pprof writes runtime profiling data in the format expected by the pprof visualization tool.</td></tr><tr data-id="runtime-race" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/runtime/race@go1.20.3">race</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package race implements data race detection logic.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package race implements data race detection logic.</td></tr><tr data-id="runtime-race/internal/amd64v1" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/runtime/race/internal/amd64v1@go1.20.3">race/internal/amd64v1</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis"></div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="runtime-trace" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/runtime/trace@go1.20.3">trace</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package trace contains facilities for programs to generate traces for the Go execution tracer.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package trace contains facilities for programs to generate traces for the Go execution tracer.</td></tr>
+
+      
+          
+  
+  <tr class="">
+    <td data-id="sort" data-aria-owns="">
+      <div class="UnitDirectories-pathCell">
+        <div><a href="/sort@go1.20.3">sort</a>
+            
+          </div>
+          <div class="UnitDirectories-mobileSynopsis">Package sort provides primitives for sorting slices and user-defined collections.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package sort provides primitives for sorting slices and user-defined collections.</td></tr>
+
+      
+          
+  
+  <tr class="">
+    <td data-id="strconv" data-aria-owns="">
+      <div class="UnitDirectories-pathCell">
+        <div><a href="/strconv@go1.20.3">strconv</a>
+            
+          </div>
+          <div class="UnitDirectories-mobileSynopsis">Package strconv implements conversions to and from string representations of basic data types.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package strconv implements conversions to and from string representations of basic data types.</td></tr>
+
+      
+          
+  
+  <tr class="">
+    <td data-id="strings" data-aria-owns="">
+      <div class="UnitDirectories-pathCell">
+        <div><a href="/strings@go1.20.3">strings</a>
+            
+          </div>
+          <div class="UnitDirectories-mobileSynopsis">Package strings implements simple functions to manipulate UTF-8 encoded strings.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package strings implements simple functions to manipulate UTF-8 encoded strings.</td></tr>
+
+      
+          
+  
+  <tr data-aria-controls="sync-atomic " class="">
+    <td data-id="sync" data-aria-owns="sync-atomic ">
+      <div class="UnitDirectories-pathCell">
+        <div><button type="button" class="go-Button go-Button--inline UnitDirectories-toggleButton" aria-expanded="false" aria-label="1 more from" data-aria-controls="sync-atomic " data-aria-labelledby="sync-button sync" data-id="sync-button">
+              <img class="go-Icon" height="24" width="24" src="/static/shared/icon/arrow_right_gm_grey_24dp.svg" alt=""/>
+            </button><a href="/sync@go1.20.3">sync</a>
+            
+          </div>
+          <div class="UnitDirectories-mobileSynopsis">Package sync provides basic synchronization primitives such as mutual exclusion locks.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package sync provides basic synchronization primitives such as mutual exclusion locks.</td></tr><tr data-id="sync-atomic" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/sync/atomic@go1.20.3">atomic</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package atomic provides low-level atomic memory primitives useful for implementing synchronization algorithms.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package atomic provides low-level atomic memory primitives useful for implementing synchronization algorithms.</td></tr>
+
+      
+          
+  
+  <tr data-aria-controls="syscall-js " class="">
+    <td data-id="syscall" data-aria-owns="syscall-js ">
+      <div class="UnitDirectories-pathCell">
+        <div><button type="button" class="go-Button go-Button--inline UnitDirectories-toggleButton" aria-expanded="false" aria-label="1 more from" data-aria-controls="syscall-js " data-aria-labelledby="syscall-button syscall" data-id="syscall-button">
+              <img class="go-Icon" height="24" width="24" src="/static/shared/icon/arrow_right_gm_grey_24dp.svg" alt=""/>
+            </button><a href="/syscall@go1.20.3">syscall</a>
+            
+          </div>
+          <div class="UnitDirectories-mobileSynopsis">Package syscall contains an interface to the low-level operating system primitives.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package syscall contains an interface to the low-level operating system primitives.</td></tr><tr data-id="syscall-js" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/syscall/js@go1.20.3">js</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package js gives access to the WebAssembly host environment when using the js/wasm architecture.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package js gives access to the WebAssembly host environment when using the js/wasm architecture.</td></tr>
+
+      
+          
+  
+  <tr data-aria-controls="testing-fstest testing-internal/testdeps testing-iotest testing-quick " class="">
+    <td data-id="testing" data-aria-owns="testing-fstest testing-internal/testdeps testing-iotest testing-quick ">
+      <div class="UnitDirectories-pathCell">
+        <div><button type="button" class="go-Button go-Button--inline UnitDirectories-toggleButton" aria-expanded="false" aria-label="4 more from" data-aria-controls="testing-fstest testing-internal/testdeps testing-iotest testing-quick " data-aria-labelledby="testing-button testing" data-id="testing-button">
+              <img class="go-Icon" height="24" width="24" src="/static/shared/icon/arrow_right_gm_grey_24dp.svg" alt=""/>
+            </button><a href="/testing@go1.20.3">testing</a>
+            
+          </div>
+          <div class="UnitDirectories-mobileSynopsis">Package testing provides support for automated testing of Go packages.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package testing provides support for automated testing of Go packages.</td></tr><tr data-id="testing-fstest" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/testing/fstest@go1.20.3">fstest</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package fstest implements support for testing implementations and users of file systems.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package fstest implements support for testing implementations and users of file systems.</td></tr><tr data-id="testing-internal/testdeps" class="UnitDirectories-internal">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/testing/internal/testdeps@go1.20.3">internal/testdeps</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package testdeps provides access to dependencies needed by test execution.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package testdeps provides access to dependencies needed by test execution.</td></tr><tr data-id="testing-iotest" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/testing/iotest@go1.20.3">iotest</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package iotest implements Readers and Writers useful mainly for testing.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package iotest implements Readers and Writers useful mainly for testing.</td></tr><tr data-id="testing-quick" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/testing/quick@go1.20.3">quick</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package quick implements utility functions to help with black box testing.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package quick implements utility functions to help with black box testing.</td></tr>
+
+      
+          
+  
+  <tr data-aria-controls="text-scanner text-tabwriter text-template text-template/parse " class="">
+    <td data-id="text" data-aria-owns="text-scanner text-tabwriter text-template text-template/parse ">
+      <div class="UnitDirectories-pathCell">
+        <div><button type="button" class="go-Button go-Button--inline UnitDirectories-toggleButton" aria-expanded="false" aria-label="4 more from" data-aria-controls="text-scanner text-tabwriter text-template text-template/parse " data-aria-labelledby="text-button text" data-id="text-button">
+              <img class="go-Icon" height="24" width="24" src="/static/shared/icon/arrow_right_gm_grey_24dp.svg" alt=""/>
+            </button><span>text</span>
+      </div></div></td>
+      <td class="UnitDirectories-desktopSynopsis"></td></tr><tr data-id="text-scanner" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/text/scanner@go1.20.3">scanner</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package scanner provides a scanner and tokenizer for UTF-8-encoded text.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package scanner provides a scanner and tokenizer for UTF-8-encoded text.</td></tr><tr data-id="text-tabwriter" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/text/tabwriter@go1.20.3">tabwriter</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package tabwriter implements a write filter (tabwriter.Writer) that translates tabbed columns in input into properly aligned text.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package tabwriter implements a write filter (tabwriter.Writer) that translates tabbed columns in input into properly aligned text.</td></tr><tr data-id="text-template" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/text/template@go1.20.3">template</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package template implements data-driven templates for generating textual output.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package template implements data-driven templates for generating textual output.</td></tr><tr data-id="text-template/parse" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/text/template/parse@go1.20.3">template/parse</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package parse builds parse trees for templates as defined by text/template and html/template.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package parse builds parse trees for templates as defined by text/template and html/template.</td></tr>
+
+      
+          
+  
+  <tr data-aria-controls="time-tzdata " class="">
+    <td data-id="time" data-aria-owns="time-tzdata ">
+      <div class="UnitDirectories-pathCell">
+        <div><button type="button" class="go-Button go-Button--inline UnitDirectories-toggleButton" aria-expanded="false" aria-label="1 more from" data-aria-controls="time-tzdata " data-aria-labelledby="time-button time" data-id="time-button">
+              <img class="go-Icon" height="24" width="24" src="/static/shared/icon/arrow_right_gm_grey_24dp.svg" alt=""/>
+            </button><a href="/time@go1.20.3">time</a>
+            
+          </div>
+          <div class="UnitDirectories-mobileSynopsis">Package time provides functionality for measuring and displaying time.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package time provides functionality for measuring and displaying time.</td></tr><tr data-id="time-tzdata" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/time/tzdata@go1.20.3">tzdata</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package tzdata provides an embedded copy of the timezone database.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package tzdata provides an embedded copy of the timezone database.</td></tr>
+
+      
+          
+  
+  <tr data-aria-controls="unicode-utf16 unicode-utf8 " class="">
+    <td data-id="unicode" data-aria-owns="unicode-utf16 unicode-utf8 ">
+      <div class="UnitDirectories-pathCell">
+        <div><button type="button" class="go-Button go-Button--inline UnitDirectories-toggleButton" aria-expanded="false" aria-label="2 more from" data-aria-controls="unicode-utf16 unicode-utf8 " data-aria-labelledby="unicode-button unicode" data-id="unicode-button">
+              <img class="go-Icon" height="24" width="24" src="/static/shared/icon/arrow_right_gm_grey_24dp.svg" alt=""/>
+            </button><a href="/unicode@go1.20.3">unicode</a>
+            
+          </div>
+          <div class="UnitDirectories-mobileSynopsis">Package unicode provides data and functions to test some properties of Unicode code points.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package unicode provides data and functions to test some properties of Unicode code points.</td></tr><tr data-id="unicode-utf16" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/unicode/utf16@go1.20.3">utf16</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package utf16 implements encoding and decoding of UTF-16 sequences.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package utf16 implements encoding and decoding of UTF-16 sequences.</td></tr><tr data-id="unicode-utf8" class="">
+      <td>
+        <div class="UnitDirectories-subdirectory">
+          <span>
+            <a href="/unicode/utf8@go1.20.3">utf8</a>
+            
+          </span>
+          <div class="UnitDirectories-mobileSynopsis">Package utf8 implements functions and constants to support text encoded in UTF-8.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package utf8 implements functions and constants to support text encoded in UTF-8.</td></tr>
+
+      
+          
+  
+  <tr class="">
+    <td data-id="unsafe" data-aria-owns="">
+      <div class="UnitDirectories-pathCell">
+        <div><a href="/unsafe@go1.20.3">unsafe</a>
+            
+          </div>
+          <div class="UnitDirectories-mobileSynopsis">Package unsafe contains operations that step around the type safety of Go programs.</div>
+        </div>
+      </td>
+      <td class="UnitDirectories-desktopSynopsis">Package unsafe contains operations that step around the type safety of Go programs.</td></tr>
+
+      
+    </tbody></table>
+  </div>
+
+      
+    </div>
+  </div>
+</article>
+    <footer class="go-Main-footer"></footer>
+  </main>
+
+    
+  <footer class="go-Footer">
+    
+    <div class="go-Footer-links">
+      <div class="go-Footer-linkColumn">
+        <a href="https://go.dev/solutions" class="go-Footer-link go-Footer-link--primary" data-gtmc="footer link">
+          Why Go
+        </a>
+        <a href="https://go.dev/solutions#use-cases" class="go-Footer-link" data-gtmc="footer link">
+          Use Cases
+        </a>
+        <a href="https://go.dev/solutions#case-studies" class="go-Footer-link" data-gtmc="footer link">
+          Case Studies
+        </a>
+      </div>
+      <div class="go-Footer-linkColumn">
+        <a href="https://learn.go.dev/" class="go-Footer-link go-Footer-link--primary" data-gtmc="footer link">
+          Get Started
+        </a>
+        <a href="https://play.golang.org" class="go-Footer-link" data-gtmc="footer link">
+          Playground
+        </a>
+        <a href="https://tour.golang.org" class="go-Footer-link" data-gtmc="footer link">
+          Tour
+        </a>
+        <a href="https://stackoverflow.com/questions/tagged/go?tab=Newest" class="go-Footer-link" data-gtmc="footer link">
+          Stack Overflow
+        </a>
+        <a href="https://go.dev/help" class="go-Footer-link" data-gtmc="footer link">
+          Help
+        </a>
+      </div>
+      <div class="go-Footer-linkColumn">
+        <a href="https://pkg.go.dev" class="go-Footer-link go-Footer-link--primary" data-gtmc="footer link">
+          Packages
+        </a>
+        <a href="/std" class="go-Footer-link" data-gtmc="footer link">
+          Standard Library
+        </a>
+        <a href="/golang.org/x" class="go-Footer-link" data-gtmc="footer link">
+          Sub-repositories
+        </a>
+        <a href="https://pkg.go.dev/about" class="go-Footer-link" data-gtmc="footer link">
+          About Go Packages
+        </a>
+      </div>
+      <div class="go-Footer-linkColumn">
+        <a href="https://go.dev/project" class="go-Footer-link go-Footer-link--primary" data-gtmc="footer link">
+          About
+        </a>
+        <a href="https://go.dev/dl/" class="go-Footer-link" data-gtmc="footer link">Download</a>
+        <a href="https://go.dev/blog" class="go-Footer-link" data-gtmc="footer link">Blog</a>
+        <a href="https://github.com/golang/go/issues" class="go-Footer-link" data-gtmc="footer link">
+          Issue Tracker
+        </a>
+        <a href="https://go.dev/doc/devel/release.html" class="go-Footer-link" data-gtmc="footer link">
+          Release Notes
+        </a>
+        <a href="https://blog.golang.org/go-brand" class="go-Footer-link" data-gtmc="footer link">
+          Brand Guidelines
+        </a>
+        <a href="https://go.dev/conduct" class="go-Footer-link" data-gtmc="footer link">
+          Code of Conduct
+        </a>
+      </div>
+      <div class="go-Footer-linkColumn">
+        <a href="https://www.twitter.com/golang" class="go-Footer-link go-Footer-link--primary" data-gtmc="footer link">
+          Connect
+        </a>
+        <a href="https://www.twitter.com/golang" class="go-Footer-link" data-gtmc="footer link">
+          Twitter
+        </a>
+        <a href="https://github.com/golang" class="go-Footer-link" data-gtmc="footer link">GitHub</a>
+        <a href="https://invite.slack.golangbridge.org/" class="go-Footer-link" data-gtmc="footer link">
+          Slack
+        </a>
+        <a href="https://reddit.com/r/golang" class="go-Footer-link" data-gtmc="footer link">
+          r/golang
+        </a>
+        <a href="https://www.meetup.com/pro/go" class="go-Footer-link" data-gtmc="footer link">
+          Meetup
+        </a>
+        <a href="https://golangweekly.com/" class="go-Footer-link" data-gtmc="footer link">
+          Golang Weekly
+        </a>
+      </div>
+    </div>
+    <div class="go-Footer-bottom">
+      <img class="go-Footer-gopher" width="1431" height="901" src="/static/shared/gopher/pilot-bust-1431x901.svg" alt="Gopher in flight goggles"/>
+      <ul class="go-Footer-listRow">
+        <li class="go-Footer-listItem">
+          <a href="https://go.dev/copyright" data-gtmc="footer link">Copyright</a>
+        </li>
+        <li class="go-Footer-listItem">
+          <a href="https://go.dev/tos" data-gtmc="footer link">Terms of Service</a>
+        </li>
+        <li class="go-Footer-listItem">
+          <a href="http://www.google.com/intl/en/policies/privacy/" data-gtmc="footer link" target="_blank" rel="noopener">
+            Privacy Policy
+          </a>
+        </li>
+        <li class="go-Footer-listItem">
+          <a href="https://go.dev/s/pkgsite-feedback" target="_blank" rel="noopener" data-gtmc="footer link">
+            Report an Issue
+          </a>
+        </li>
+        <li class="go-Footer-listItem">
+          <button class="go-Button go-Button--text go-Footer-toggleTheme js-toggleTheme" aria-label="Toggle theme">
+            <img data-value="auto" class="go-Icon go-Icon--inverted" height="24" width="24" src="/static/shared/icon/brightness_6_gm_grey_24dp.svg" alt="System theme"/>
+            <img data-value="dark" class="go-Icon go-Icon--inverted" height="24" width="24" src="/static/shared/icon/brightness_2_gm_grey_24dp.svg" alt="Dark theme"/>
+            <img data-value="light" class="go-Icon go-Icon--inverted" height="24" width="24" src="/static/shared/icon/light_mode_gm_grey_24dp.svg" alt="Light theme"/>
+          </button>
+          <button class="go-Button go-Button--text go-Footer-keyboard js-openShortcuts" aria-label="Open shorcuts modal">
+            <img class="go-Icon go-Icon--inverted" height="24" width="24" src="/static/shared/icon/keyboard_grey_24dp.svg" alt=""/>
+          </button>
+        </li>
+      </ul>
+      <a class="go-Footer-googleLogo" href="https://google.com" target="_blank" rel="noopener" data-gtmc="footer link">
+        <img class="go-Footer-googleLogoImg" height="24" width="72" src="/static/shared/logo/google-white.svg" alt="Google logo"/>
+      </a>
+    </div>
+  </footer>
+
+    
+  <dialog id="jump-to-modal" class="JumpDialog go-Modal go-Modal--md js-modal">
+    <form method="dialog" data-gmtc="jump to form" aria-label="Jump to Identifier">
+      <div class="Dialog-title go-Modal-header">
+        <h2>Jump to</h2>
+        <button class="go-Button go-Button--inline" type="button" data-modal-close="" data-gtmc="modal button" aria-label="Close">
+          <img class="go-Icon" height="24" width="24" src="/static/shared/icon/close_gm_grey_24dp.svg" alt=""/>
+        </button>
+      </div>
+      <div class="JumpDialog-filter">
+        <input class="JumpDialog-input go-Input" autocomplete="off" type="text"/>
+      </div>
+      <div class="JumpDialog-body go-Modal-body">
+        <div class="JumpDialog-list"></div>
+      </div>
+      <div class="go-Modal-actions">
+        <button class="go-Button" data-test-id="close-dialog">Close</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="ShortcutsDialog go-Modal go-Modal--sm js-modal">
+    <form method="dialog">
+      <div class="go-Modal-header">
+        <h2>Keyboard shortcuts</h2>
+        <button class="go-Button go-Button--inline" type="button" data-modal-close="" data-gtmc="modal button" aria-label="Close">
+          <img class="go-Icon" height="24" width="24" src="/static/shared/icon/close_gm_grey_24dp.svg" alt=""/>
+        </button>
+      </div>
+      <div class="go-Modal-body">
+        <table>
+          <tbody>
+            <tr><td class="ShortcutsDialog-key">
+              <strong>?</strong></td><td> : This menu</td>
+            </tr>
+            <tr><td class="ShortcutsDialog-key">
+              <strong>/</strong></td><td> : Search site</td>
+            </tr>
+            <tr><td class="ShortcutsDialog-key">
+              <strong>f</strong> or <strong>F</strong></td><td> : Jump to</td>
+            </tr>
+            <tr>
+              <td class="ShortcutsDialog-key"><strong>y</strong> or <strong>Y</strong></td>
+              <td> : Canonical URL</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="go-Modal-actions">
+        <button class="go-Button" data-test-id="close-dialog">Close</button>
+      </div>
+    </form>
+  </dialog>
+
+    
+      <script>
+        // this will throw if the querySelector can’t find the element
+        const gtmId = document.querySelector('.js-gtmID').dataset.gtmid;
+        if (!gtmId) {
+          throw new Error('Google Tag Manager ID not found');
+        }
+        loadScript(`https://www.googletagmanager.com/gtm.js?id=${gtmId}`);
+      </script>
+      <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W8MVQXG"
+                height="0" width="0" style="display:none;visibility:hidden">
+        </iframe>
+      </noscript>
+    
+    
+  
+  <div class="js-canonicalURLPath" data-canonical-url-path="/std@go1.20.3" hidden=""></div>
+  <div class="js-playgroundVars" data-modulepath="std" data-version="v1.20.3" hidden=""></div>
+  <script>
+    loadScript('/static/frontend/unit/main/main.js')
+  </script>
+
+  <script>
+    loadScript('/static/frontend/unit/unit.js')
+  </script>
+
+  
+
+</body></html>

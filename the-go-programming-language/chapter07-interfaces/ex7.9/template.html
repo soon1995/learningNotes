@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/style.css" rel="stylesheet">
+  <style>
+    table,
+    th,
+    td {
+      border: 1px solid;
+      border-collapse: collapse;
+      padding: 2px 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <table>
+    <thead>
+      <th>Title <a href="?sort=title">sort</a></th>
+      <th>Artist <a href="?sort=artist">sort</a></th>
+      <th>Album <a href="?sort=album">sort</a></th>
+      <th>Year</th>
+      <th>Length</th>
+    </thead>
+    {{ range . }}
+    <tr>
+      <td>{{ .Title }}</td>
+      <td>{{ .Artist }}</td>
+      <td>{{ .Album }}</td>
+      <td>{{ .Year }}</td>
+      <td>{{ .Length }}</td>
+    </tr>
+    {{ end }}
+  </table>
+</body>
+
+</html>
