@@ -1,6 +1,13 @@
+# Docker
 **/sourcecodeExample/
 *.tar
 node_modules/
+
+# headFirstDesignPatterns
+headFirstDesignPatterns/**/src/
+headFirstDesignPatterns/**/*.class
+headFirstDesignPatterns/**/*.wav
+headFirstDesignPatterns/**/*.Identifier
 
 package-lock.json
 package.json
