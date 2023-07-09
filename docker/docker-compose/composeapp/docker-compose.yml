@@ -1,0 +1,15 @@
+web:
+  image: jamtur01/composeapp
+  command: python app.py
+  ports:
+    - "5000:5000"
+  volumes:
+    - .:/composeapp
+  links:
+    - redis
+redis:
+    image: redis
+
+# It is same with:
+# docker run -d -p 5000:5000 -v .:/composeapp --link redis:redis \
+# --name jamtur01/composeapp python app.py
