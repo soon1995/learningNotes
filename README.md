@@ -32,6 +32,8 @@ The knowledge was gained from different resources, not limited to:
 
 - Head First Design Patterns by Eric Freeman, Elisabeth Robson, Bert Bates, Kathy Sierra 
 
+- HTTP What Every Web Developer Should Know About HTTP by K. Scott Allen
+
 - Kubernetes in Action by Marko Lukša 
 
     - coming soon...
