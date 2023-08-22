@@ -31,8 +31,6 @@ The knowledge was gained from different resources, not limited to:
 - The Docker Books by James Turnbull
 
 - Head First Design Patterns by Eric Freeman, Elisabeth Robson, Bert Bates, Kathy Sierra 
-    
-    - coming soon...
 
 - Kubernetes in Action by Marko Lukša 
 
