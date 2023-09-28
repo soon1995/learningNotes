@@ -31,6 +31,70 @@ data manipulation is possible and manageable.
 use a name as a primary key to identify a supplier, you would
 have to change the primary key when the supplier merges and changes its name.
 
+> Index
+
+- [Command](#command)
+
+- [Term](#term)
+
+- [Select](#select)
+
+- [Wildcard Filtering](#wildcard-filtering)
+
+- [Regular Expressions](#regular-expressions)
+
+- [Creating Calculated Fields](#creating-calculated-fields)
+
+- [Data Manipulation Functions](#data-manipulation-functions)
+
+- [Grouping Data](#grouping-data)
+
+- [Working with Subqueries](#working-with-subqueries)
+
+- [Joining Tables](#joining-tables)
+
+- [Combining Queries - UNION](#combining-queries)
+
+- [Full-Text Searching](#full-text-searching)
+
+- [Insert Data](#insert-data)
+
+- [Update and Delete](#update-and-delete)
+
+- [Creating and Manipulating Tables](#creating-and-manipulating-tables)
+
+- [Constraint](#constraint)
+
+- [Engine Types](#engine-types)
+
+- [ALTER TABLE](#alter-table)
+
+- [Views](#views)
+
+- [Stored Procedures](#stored-procedures)
+
+- [Cursor](#cursor)
+
+- [Triggers](#triggers)
+
+- [Transactions](#transaction)
+
+- [Globalization and Localization](#globalization-and-localization)
+
+- [Managing Security](#managing-security)
+
+- [Database Maintenance](#database-maintenance)
+
+- [Improving Performance](#improving-performance)
+
+- [Syntax](#syntax)
+
+- [MySQL Datatypes](#mysql-datatypes)
+
+- [Other](#other)
+
+<a name="command"></a>
+
 ## Command
 
 You can specify a port number for connections to a local server,
@@ -41,6 +105,7 @@ TCP/IP connection as previously described, any option that specifies a port numb
 For this command, the program uses a socket file on Unix and the --port option is ignored:
 
 ```bash
+sudo apt-get install mysql-client
 mysql --port=13306 --host=localhost
 ```
 
@@ -84,6 +149,8 @@ mysql> USE databaseabc;
 
 ```
 
+<a name="term"></a>
+
 ## Term
 
 ### Schema
@@ -94,11 +161,6 @@ Table layout and properties.
 
 SQL Statements are made up of clauses, some required and some optional.
 A clause usually consists of a keyword and supplied data.
-
-`FROM` Clause
-`WHERE` Clause
-`GROUP BY` Clause
-`ORDER BY`Clause
 
 ### Foreign Key
 
@@ -127,6 +189,8 @@ well-designed database or application is said to *scale well*.
 The result returned by a table relationship without a join condition.
 
 The join that return a Cartesian Product is called **cross join**.
+
+<a name="select"></a>
 
 ## SELECT
 
@@ -208,6 +272,8 @@ Application Filtering is strongly discouraged.
 2. The server has to send unneeded data across network connections, resulting in a
 waste of network bandwidth resources.
 
+<a name="wildcard-filtering"></a>
+
 ## Wildcard Filtering
 
 ```sql
@@ -239,6 +305,8 @@ Unless absolutely necessary.
 
 It is because search patterns that begin with wildcards are the slowest
 to process.
+
+<a name="regular-expressions"></a>
 
 ## Regular Expressions
 
@@ -303,11 +371,13 @@ using database tables. `REGEXP` checks always return 0 or 1
 
 `SELECT 'hello' REGEXP '[0-9]'`
 
-### \ OR \\?
+### \ OR \\\\?
 
 Most regexp implementation use a single backslash to escape special
 characters. However, MySQL requires two backslashes (MySQL itself interprets
 one, and the regular expression library interprets the other).
+
+<a name="creating-calculated-fields"></a>
 
 ## Creating Calculated Fields
 
@@ -347,6 +417,8 @@ Use `SELECT`.
 `SELECT RTrim('abc')`
 
 `SELECT NOW()`
+
+<a name="data-manipulation-functions"></a>
 
 ## Data Manipulation Functions
 
@@ -501,6 +573,8 @@ SELECT COUNT(*) AS num_items,
 FROM products
 ```
 
+<a name="grouping-data"></a>
+
 ## Grouping Data
 
 ### Rules
@@ -525,18 +599,22 @@ Using `ROLLUP` To obtain values at each group and at a summary level
 
 Example Result:
 
+```bash
 my:root@localhost=> SELECT user_id, count(*) FROM accounts GROUP BY user_id WITH ROLLUP;
  user_id | count(*)
 ---------+----------
        1 |        2
        2 |        2
          |        4
+```
 
 ### Difference between `HAVING` and `WHERE`
 
 `WHERE` before data is grouped.
 
 `HAVING` after data is grouped.
+
+<a name="working-with-subqueries"></a>
 
 ## Working with Subqueries
 
@@ -586,6 +664,8 @@ The subquery is executed n times as same of rows returned.
 **Tip**: Build Queries with Subqueries incrementally, build and test
 the innermost query first. Testing and debugging queries with subqueries
 can be tricky.
+
+<a name="joining-tables"></a>
 
 ## Joining Tables
 
@@ -647,6 +727,8 @@ FROM customers INNER JOIN orders ON customers.cust_id = orders.cust_id
 GROUP BY customers.cust_id;
 ```
 
+<a name="combining-queries"></a>
+
 ## Combining Queries
 
 `UNION`, `UNION_ALL`
@@ -692,7 +774,9 @@ SELECT .. FROM products WHERE vender_id IN (1001,1002)
 order, it will compare based on column **instead of column name**.
 
 Result:
-my:root@localhost=> SELECT number, user_id FROM accounts WHERE user_id = 2 UNION select user_id, number FROM accounts WHERE balance = 0;
+
+```bash
+my:root@localhost=> SELECT number, user_id FROM accounts WHERE user_id = 2 UNION select user_id, number FROM accountsWHERE balance = 0;
  number | user_id
 --------+---------
  4123   | 2
@@ -700,6 +784,7 @@ my:root@localhost=> SELECT number, user_id FROM accounts WHERE user_id = 2 UNION
  1      | ABC123
  2      | 4123
  2      | 5123
+```
 
 3. Column datatypes must be compatible: They need not be the exact same type, but they
 must be of a type that MySQL can implicitly convert
@@ -715,6 +800,8 @@ Using `UNION ALL`, MySQL does not eliminate duplicates
 Only one `ORDER BY` Clause may be used, and it must occur
 after the final `SELECT` statement. **Multiple `ORDER BY` clauses
 are not allowed**.
+
+<a name="full-text-searching"></a>
 
 ## Full-Text Searching
 
@@ -933,6 +1020,8 @@ Against ('+rabbit +(<carrot)' IN BOOLEAN MODE);
 # Match both `rabbit` and `commbination`, decreasing the rank of the latter
 ```
 
+<a name="insert-data"></a>
+
 ## Insert Data
 
 `INSERT` statements usually generate no output.
@@ -985,6 +1074,8 @@ FROM custnew;
 in the `SELECT` (regardless of its name) will be used to populate
 the first specified table column, and so on.**
 
+<a name="update-and-delete"></a>
+
 ## Update and Delete
 
 **Tip**: To continue processing updates, even if an error
@@ -999,6 +1090,8 @@ a `SELECT` to make sure it is filtering the right records
 
 **Tip**: Use database enforced referential integrity, so MySQL will not
 allow the deletion of rows that have data in other tables related to them.
+
+<a name="creating-and-manipulating-tables"></a>
 
 ## Creating and Manipulating Tables
 
@@ -1018,6 +1111,8 @@ for easier reading and editing.
 **Tip**: Creating an exist table name is not allowed.
 
 **Tip**: `CREATE TABLE IF NOT EXISTS table_name` does not check if the table exist.
+
+<a name="constraint"></a>
 
 ## Constraint
 
@@ -1047,6 +1142,8 @@ will start using
 **Tip**: Use `DEFAULT` instead of `NULL` Values, especially in columns that will be
 used in calculations or data groupings.
 
+<a name="engine-types"></a>
+
 ## Engine Types
 
 Engine is used internally to process your request. For the most part,
@@ -1066,6 +1163,8 @@ it is extremely fast (and ideally suited for temporary table). It does not suppo
 support transactional processing.
 
 **Caution**: Foreign Keys Can't Span Engines.
+
+<a name="alter-table"></a>
 
 ## ALTER TABLE
 
@@ -1104,6 +1203,8 @@ RENAME TABLE backup_customers TO customers,
              backup_vendors TO vendors,
              backup_products TO products;
 ```
+
+<a name="views"></a>
 
 ## Views
 
@@ -1218,6 +1319,8 @@ Whether the view cannot be updated if following are used:
 - `DISTINCT`
 
 - Derived (calculated) columns
+
+<a name="stored-procedures"></a>
 
 ## Stored Procedures
 
@@ -1420,6 +1523,8 @@ Use `SHOW PROCEDURE STATUS LIKE 'ordertotal'` to limit the results.
 
 `SHOW CREATE PROCEDURE ordertotal;`
 
+<a name="cursor"></a>
+
 ## Cursors
 
 > Cursor is the result set retrieved by the statement. Once
@@ -1605,6 +1710,8 @@ END //
 DELIMITER ;
 ```
 
+<a name="triggers"></a>
+
 ## Triggers
 
 Example usage:
@@ -1642,7 +1749,7 @@ FOR EACH ROW SELECT 'Product added';
 ```sql
 DELIMITER //
 CREATE TRIGGER neworderitem AFTER INSERT ON orderitems
-FOR EACH ROW 
+FOR EACH ROW
 BEGIN
   INSERT INTO orders values (null,5);
 END //
@@ -1740,6 +1847,836 @@ the `DELETE` itself will be aborted. Although the `DELETE` itself will be rollba
 
 - **One interesting use for triggers is in creating an audit trail**
 
+<a name="transaction"></a>
+
+## Transaction
+
+**Not all engines support transactions**, `INNODB` does but `MyISAM`, `MEMORY` does not.
+
+`Transaction` - A block of SQL statements
+
+`Rollback` - The process of undoing specified SQL statements
+
+`Commit` - Writing unsaved SQL statements to the database tables
+
+`Savepoint` - A temporary place holder in the transaction set to which
+you can issue a rollback (as opposed to rolling back an entire transaction)
+
+**Tip**: only `INSERT`, `UPDATE`, `DELETE` can be rollback. Not `CREATE` or `DROP`
+
+**Note**: After `COMMIT` or `ROLLBACK` statement has been executed, the transaction
+is automatically closed implicitly
+
+```sql
+START TRANSACTION;
+...
+COMMIT;
+```
+
+### Using Savepoints
+
+```sql
+SAVEPOINT name;
+ROLLBACK to name;
+```
+
+**Note**: Savepoints are automatically released after a transaction completes (
+a `ROLLBACK` or `COMMIT` is issued). Or explicitly released using `RELEASED SAVEPOINT name`
+
+### Commit behavior
+
+The default MySQL behaviour is to automatically commit any and all changes.
+To instruct MySQL to not automatically commit changes:
+
+`SET autocommit=0;`
+
+**Tip** This `autocommit` flag is per connection, **not server-wide**
+
+<a name="globalization-and-localization"></a>
+
+## Globalization and Localization
+
+`Character sets` are collections of letters and symbols.
+
+`Encodings` are the internal representations of the members of a character
+set
+
+`Collations` are the instructions that dictate how characters are to be compared.
+
+In practice, different tables, and even different columns, may required
+different character sets, and so both may be specified when a table is created.
+
+### Character Set
+
+`SHOW CHARACTER SET`
+
+To determine the character sets and collations in use:
+
+`SHOW VARIABLES LIKE 'character%';`
+`SHOW VARIABLES LIKE 'collation%';`
+
+```bash
+my:root@localhost=> SHOW VARIABLES LIKE 'character%';
+      Variable_name       |             Value
+--------------------------+--------------------------------
+ character_set_client     | utf8mb4
+ character_set_connection | utf8mb4
+ character_set_database   | utf8mb4
+ character_set_filesystem | binary
+ character_set_results    | utf8mb4
+ character_set_server     | utf8mb4
+ character_set_system     | utf8mb3
+ character_sets_dir       | /usr/share/mysql-8.1/charsets/
+
+my:root@localhost=> SHOW VARIABLES LIKE 'collation%';
+    Variable_name     |       Value
+----------------------+--------------------
+ collation_connection | utf8mb4_general_ci
+ collation_database   | utf8mb4_0900_ai_ci
+ collation_server     | utf8mb4_0900_ai_ci
+```
+
+### Collation
+
+`SHOW COLLATION`
+
+`_cs` is case sensitive
+
+`_ci` is case insensitive
+
+**Note**
+
+**Why collations are Important**: Sorting text in English is easy, right?
+Well, maybe not. It depend on whetheer you wanted a case-sensitive or not
+case-sensitive sorting (consider APE, apex, and APPLE). And this affects
+more than just sorting (`ORDER BY`), it also affects searchers (wheter
+`apple` finds `APPLE`). It gets more complex when non-Latin-based
+character sets are used.
+
+### Create table
+
+- [Table wide](#tablewide-char-set)
+
+- [Column wide](#columnwide-char-set)
+
+<a name="tablewide-char-set"></a>
+
+> **Table wide**
+
+```sql
+CREATE TABLE mytable
+(
+  column1 INT,
+  column2 VARCHAR(10)
+) DEFAULT CHARACTER SET hebrew
+  COLLATE hebrew_general_ci;
+```
+
+- If both `CHARACTER SET` and `COLLATE` are specified, those values are used.
+
+- If only `CHARACTER SET` is specified, the default `COLLATE` was used
+
+- If neither `CHARACTER SET` nor `COLLATE` are specified, the database default is used
+
+**Tip**: if collation not found in specified character set, the table
+could not be created
+
+<a name="columnwide-char-set"></a>
+
+> **Column wide**
+
+```sql
+CREATE TABLE mytable
+(
+  column1 INT,
+  column2 VARCHAR(10),
+  column3 VARCHAR(10) CHARACTER SET latin1 COLLATE latin1_general_ci
+) DEFAULT CHARACTER SET hebrew
+  COLLATE hebrew_general_ci;
+```
+
+You may sort specific `SELECT` using a collation sequence other than
+the one used at table creation time.
+
+```sql
+SELECT * FROM customers
+ORDER BY lastname, firstname COLLATE latin1_general_cs;
+```
+
+`COLLATE` can be used with `GROUP BY`, `HAVING`, aggregate functions,
+aliases and more
+
+**Note*
+
+Strings may be converted between character sets if absolutely needed.
+To do this, use the `Cast()` or `Convert()` functions.
+
+<a name="managing-security"></a>
+
+## Managing Security
+
+> Access control and user management
+
+User should have appropriate access to the data they need, no more
+and no less.
+
+- most users need to read and write data from tables, but few
+users will ever need to be able to create and drop tables
+
+- some users might need to read tables but might not need to update
+
+...
+
+In real world, you'd never use `root` on a day-to-day basis. You'd create
+a series of accounts, some for administration, some for users, some for
+developers, and so on.
+
+### Show users
+
+```sql
+USE mysql;
+SELECT user FROM user;
+```
+
+- `user` column contains the user login name
+
+#### Manage User
+
+##### Creating user
+
+- by `CREATE USER`
+
+- by `GRANT`
+
+- by INSERT INTO user -- **DO NOT DO THIS**
+
+```sql
+CREATE USER ben IDENTIFIED BY 'p@$$w0rd';
+```
+
+**Tip** The password specified by `IDENTIFIED BY` is
+plain text that **MySQL will encrypt before saving it**
+
+To specify the password as a hashed value, use
+`IDENTIFIED BY PASSWORD` instead.
+
+##### Rename user
+
+```sql
+RENAME USER ben TO bforta; -- no need quote also can
+```
+
+To rename a user in earlier versions of MySQL5, use `UPDATE` to update the `user` table directly.
+
+##### Delete user
+
+```sql
+DROP USER bforta;
+```
+
+Prior to MySQL5, `DROP USER` could only be used to drop user accounts with no associated account rights
+and privileges. As such, you will need to first remove associated account rights and privileges using `REVOKE`
+before dropping user
+
+##### Changing Password
+
+```sql
+-- Automatically Encrypted
+SET PASSWORD FOR bforta = 'n3w p@ssw0rd';
+```
+
+### Access Rights
+
+```sql
+SHOW GRANTS FOR ben;
+```
+
+`USAGE ON *.*` means no rights at all. No rights to anything on any database and any table.
+
+**Note** MySQL privileges are defined using a combination of username and host name. If no host name
+is specified, a default hostname of % is used (effectively granting access to the user regardless of the hostname)
+
+#### Set Rights
+
+At a minimum, `GRANT` requires that you specify
+
+- The privilege being granted
+
+- The database or table being granted access to
+
+- The user name
+
+```sql
+GRANT SELECT ON mysqlcrashcourse.* TO bforta;
+
+GRANT SELECT, INSERT ON crashcourse.* TO bforta;
+```
+
+#### Revoke Rights
+
+```sql
+REVOKE SELECT ON mysqlcrashcourse.* FROM bforta;
+```
+
+The access being revoked must exist or an error will be thrown
+
+#### Other
+
+`GRANT` and `REVOKE` can be used to control access at several levels:
+
+- Entire server, using `GRANT ALL` and `REVOKE ALL`
+
+- Entire database, using `ON database.*`
+
+- Specific tables, using `ON database.table`
+
+- Specific columns
+
+- Specific stored procedures
+
+Rights and privileges that may be granted or revoked
+
+| Privilege | Description |
+| --- | --- |
+| ALL | All privileges except `GRANT OPTION` |
+| ALTER | `ALTER TABLE` |
+| ALTER ROUTINE | `ALTER PROCEDURE` and `DROP PROCEDURE` |
+| CREATE | `CREATE TABLE` |
+| CREATE ROUTINE | `CREATE PROCEDURE` |
+| CREATE TEMPORARY TABLES | `CREATE TEMPORARY TABLE` |
+| CREATE USER | `CREATE USER`, `DROP USER`, `RENAME USER`, and `REVOKE ALL PRIVILEGES` |
+| CREATE VIEW | `CREATE VIEW` |
+| DELETE | `DELETE` |
+| DROP | `DROP TABLE` |
+| EXECUTE | `CALL` and stored procedures |
+| FILE | `SELECT INTO OUTFILE` and `LOAD DATA INFILE` |
+| GRANT OPTION | `GRANT` and `REVOKE` |
+| INDEX | `CREATE INDEX` and `DROP INDEX` |
+| INSERT | `INSERT` |
+| LOCK TABLES | `LOCK TABLES` |
+| PROCESS | `SHOW FULL PROCESSLIST` |
+| RELOAD | `FLUSH` |
+| REPLICATION CLIENT | Access to location of servers |
+| REPLICATION SLAVE | Used by replication slaves |
+| SELECT | `SELECT` |
+| SHOW DATABASES | `SHOW DATABASES` |
+| SHOW VIEW | `SHOW VIEWS` |
+| SHUTDOWN | `mysqladmin shutdown` |
+| SUPER | `CHANGE MASTER`, `KILL`, `LOGS`, `PURGE MASTER`, `SET GLOBAL`, also allows `mysqladmin debug` login |
+| UPDATE | `UPDATE` |
+| USAGE | No access |
+
+**Tip**: When using `GRANT` and `REVOKE`, the user account
+must exist, but the objects being referred to need not (database and tables).
+
+This allows administrators to design and implement security
+before databases and tables are even created. (No access right will be deleted if the database or table is removed)
+
+<a name="database-maintenance"></a>
+
+## Database Maintenance
+
+### Backing Up data
+
+MySQL must be backed up regularly. As MySQL databases
+are disk-based files, normal backup systems and routines
+can back up MySQL data. However, as those files are
+always open and in use, normal file copy backup may not always work.
+
+Solutions:
+
+- Use the command line `mysqldump` utility to dump all database
+contents to an external file. This utility should ideally be run
+before regular backups occur so the dumped file will be
+backed up properly.
+
+  - `mysqldump -u root -p database [tables]`
+
+- Use the command line `mysqlhotcopy` utility to copy all data from
+a database (this one is not supported by all database engines)
+
+  - deprecated and removed in release 5.7
+
+- Use MySQL `BACKUP TABLE` or `SELECT INTO OUTFILE`. Both statements
+take the name of a system file to be created, and that file must
+not already exist or an error will be generated. Data can be restored
+using `RESTORE TABLE`
+
+  - `BACKUP TABLE` is deprecated and removed
+
+  - `SELECT ... INTO OUTFILE 'myfilename'`
+
+**Tip** To ensure that all data is written to disk (including any
+index data) you might need to use a `FLUSH TABLES` statement before
+performing your backup.
+
+### Performing Database Maintenance
+
+Some statements that can (and should) be used to ensure that
+databases are correct and functioning properly.
+
+> To check the table keys are correct
+
+```sql
+mysql> ANALYZE TABLE user;
++------------+---------+----------+----------+
+| Table      | Op      | Msg_type | Msg_text |
++------------+---------+----------+----------+
+| mysql.user | analyze | status   | OK       |
++------------+---------+----------+----------+
+```
+
+> To check tables for a variety of problems. Indexes are also checked on `MyISAM` table.
+`CHECK TABLE` supports a series of modes for use with `MyISAM` table
+
+```sql
+mysql> CHECK TABLE productnotes;
++-------------------------------+-------+----------+----------------------------------------------------------+
+| Table                         | Op    | Msg_type | Msg_text                                                 |
++-------------------------------+-------+----------+----------------------------------------------------------+
+| mysqlcrashcourse.productnotes | check | warning  | 3 clients are using or haven't closed the table properly |
+| mysqlcrashcourse.productnotes | check | status   | OK                                                       |
++-------------------------------+-------+----------+----------------------------------------------------------+
+```
+
+- Modes:
+
+  - `CHANGED` - checks tables that have changed since the last check
+
+  - `EXTENDER` - performs the most thorough check
+
+  - `FAST` - only checks tables that were not closed properly
+
+  - `MEDIUM` - checks all deleted links and performs key verification
+
+  - `QUICK` - performs a quick scan only.
+
+> To repair table (e.g MyISAM table access produces incorrect and inconsistent result). There is likely a far bigger
+problem that needs addressing if repair need to be done regularly.
+
+```sql
+mysql> REPAIR TABLE productnotes;
++-------------------------------+--------+----------+----------+
+| Table                         | Op     | Msg_type | Msg_text |
++-------------------------------+--------+----------+----------+
+| mysqlcrashcourse.productnotes | repair | status   | OK       |
++-------------------------------+--------+----------+----------+
+```
+
+> `OPTIMIZE TABLE` used to reclaim previously used space after deleted large amounts of data, thus optimizing the performance of the table
+
+```sql
+mysql> OPTIMIZE TABLE productnotes;
++-------------------------------+----------+----------+----------+
+| Table                         | Op       | Msg_type | Msg_text |
++-------------------------------+----------+----------+----------+
+| mysqlcrashcourse.productnotes | optimize | status   | OK       |
++-------------------------------+----------+----------+----------+
+```
+
+### Diagnosing Startup Problems
+
+When troubleshooting system startup problems, try to manually start the server first.
+The MySQL server itself is started by executing `mysqld` on the command line.
+
+Options:
+
+- `--help` display helps
+
+- `--safe-mode` loads the server minus some optimizations
+
+- `--verbose` display full text message (use in conjunction with --help for more detailed help messages)
+
+- `--version` displays version information and then quits
+
+### Review Log Files
+
+`FLUSH LOGS` can be used to flush and restart all log files
+
+- Error Log -- contains details about startup and shutdown
+problems and critical errors.
+
+  - This name can be changed using the `--log-error` command-line option.
+
+  - or config
+
+        ```
+        [mysqld]
+        log-error=/path/to/file
+        ```
+
+- Query Log -- all MySQL activity and can be very useful in diagnosing problems.
+This log file can get very large very quickly, so it should not be used
+for extended periods of time.
+
+  - enable using the --general-log command-line option.
+
+  - config to enable
+
+        ```
+        [mysqld]
+        general-log=1
+        ```
+
+  - or `SET GLOBAL GENERAL_LOG = 1` in session
+
+- Bin Log -- logs all statement that updated (or could have updated) data
+
+  - enable using the --log-bin command-line option
+
+- Slow query log -- logs any queries that execute slowly. This log can be useful
+in determining where database optimizations are needed.
+
+  - enable using --slow-query-log
+
+<a name="improving-performance"></a>
+
+## Improving Performance
+
+- MySQL (like all DBMSs) has specific hardware recommendations. Production servers should adhere
+to all recommendations.
+
+- As a rule, critical production DBMSs should run on their own dedicated servers.
+
+- You might need to tweak memory allocation, buffer size, and more (To see the current settings use
+`SHOW VARIABLES` and `SHOW STATUS`)
+
+- If you are experiencing unusually poor performance, use `SHOW PROCESSLIST` to display all
+active processes (along with their thread IDs and execution time). You can also use the
+`KILL` command to terminate a specific process e.g. `KILL 11`
+
+- There is almost always more than one way to write a `SELECT` statement. Experiment
+with joins, unions, subqueries, and more to find what is optimum for you and your data.
+
+- Use the `EXPLAIN` statement to have MySQL explain how it will execute a `SELECT` statement;
+
+- As a general rule, stored procedures execute quicker than individual MySQL statements
+
+- Use the right data types, always.
+
+- Never retrieve more data than you need. In other words, no `SELECT *` unless you truly
+do need each and every column
+
+- Some operations (including `INSERT`) support an optional `DELAYED` keyword, if used,
+returns control to the calling application immediately and actually performs the operation
+as soon as possible.
+
+- When importing data, turn off autocommit, drop indexes and recreate them after import has completed.
+
+- To determine what to index, analyzing used `SELECT` statements to find
+recurring `WHERE` and `ORDER BY` clause.
+
+- Indexes improve the performance of data retrieval, but hurt the performance of data
+insertion, deletion, and updating.
+
+- Have a series of complex `OR` conditions? You might see a significant performance
+improvement by using multiple `SELECT` statements and `UNION` statement to connect them.
+
+- `LIKE` is slow. You are better off using `FULLTEXT` rather than `LIKE`
+
+**Tip**: The MySQL documentation is full of tips and tricks (and even user-provided
+comments and feedback). Be sure to check out this invaluable resource.
+
+<a name="syntax"></a>
+
+## Syntax
+
+> How to read
+
+- `|` to indicate one of several options
+
+- `[like this]` are optional
+
+> Index
+
+- [Alter Table](#alter-table-syntax)
+
+- [Create Index](#create-index-syntax)
+
+- [Create Procedure](#create-procedure-syntax)
+
+- [Create Table](#create-table-syntax)
+
+- [Create User](#create-user-syntax)
+
+- [Create View](#create-view-syntax)
+
+- [Delete](#delete-syntax)
+
+- [Drop](#drop-syntax)
+
+- [Insert](#insert-syntax)
+
+- [Insert Select](#insert-select-syntax)
+
+- [Rollback](#rollback-syntax)
+
+- [Savepoint](#savepoint-syntax)
+
+- [Select](#select-syntax)
+
+- [Start Transaction](#start-transaction-syntax)
+
+- [Update](#update-syntax)
+
+<a name="alter-table-syntax"></a>
+
+> Alter Table
+
+```sql
+ALTER TABLE tablename
+(
+  ADD       column          datatype    [NULL|NOTNULL] [CONSTRAINTS]
+  CHANGE    column columes  datatype    [NULL|NOTNULL] [CONSTRAINTS]
+  DROP      column,
+  ...
+)
+```
+
+<a name="create-index-syntax"></a>
+
+> Create Index
+
+```sql
+CREATE INDEX indexname
+ON tablename (column [ASC|DESC], ...);
+```
+
+<a name="create-procedure-syntax"></a>
+
+> Create Procedure
+
+```sql
+CREATE PROCEDURE procedurename( [parameters] )
+BEGIN
+...
+END;
+```
+
+<a name="create-table-syntax"></a>
+
+> Create Table
+
+```sql
+CREATE TABLE tablename
+(
+    column          datatype    [NULL|NOTNULL] [CONSTRAINTS],
+    column          datatype    [NULL|NOTNULL] [CONSTRAINTS],
+    ...
+)
+```
+
+<a name="create-user-syntax"></a>
+
+> Create User
+
+```sql
+CREATE USER username[@hostname]
+[IDENTIFIED BY [PASSWORD] 'password'];
+```
+
+<a name="create-view-syntax"></a>
+
+> Create View
+
+```sql
+CREATE [OR REPLACE] VIEW viewname
+AS
+SELECT ...;
+```
+
+<a name="delete-syntax"></a>
+
+> Delete
+
+```sql
+DELETE FROM tablename [WHERE ...];
+```
+
+<a name="drop-syntax"></a>
+
+> Drop
+
+```sql
+DROP DATABASE|INDEX|PROCEDURE|TABLE|TRIGGER|USER|VIEW
+itemname;
+```
+
+<a name="insert-syntax"></a>
+
+> Insert
+
+```sql
+INSERT INTO tablename [(columns,...)]
+VALUES (values,...);
+```
+
+<a name="insert-select-syntax"></a>
+
+> Insert Select
+
+```sql
+INSERT INTO tablename [(columns,...)]
+SELECT columns, ... FROM tablename, ...
+[WHERE ...];
+```
+
+<a name="rollback-syntax"></a>
+
+> Rollback
+
+```sql
+ROLLBACK [ TO savepointname ];
+```
+
+<a name="savepoint-syntax"></a>
+
+> Savepoint
+
+```sql
+SAVEPOINT spl;
+```
+
+<a name="select-syntax"></a>
+
+> Select
+
+```sql
+SELECT columnname, ...
+FROM tablename, ...
+[WHERE ...]
+[UNION ...]
+[GROUP BY ...]
+[HAVING ...]
+[ORDER BY ...]
+```
+
+<a name="start-transaction-syntax"></a>
+
+> Start Transaction
+
+```sql
+START TRANSACTION;
+```
+
+<a name="update-syntax"></a>
+
+> Update
+
+```sql
+UPDATE tablename
+SET columnname = value, ...
+[WHERE ...];
+```
+
+<a name="mysql-datatypes"></a>
+
+## MySQL Datatypes
+
+Datatypes are used for several reasons:
+
+- Enable you to restrict the type of data that can be stored in a column
+
+- Allow for more efficient storage, numbers and datetime values
+can be stored in a more condensed format than text strings
+
+- Datatypes allow for alternate sorting orders. If everything is treated
+as strings, `1` comes before `10` (in dictionary sequence). As numeric datatypes,
+the numbers would be sorted correctly.
+
+**Using the wrong datatype can seriously impact your application. Changing the
+datatypes of existing populated columns is not a trivial task. (In addition,
+doing so can result in data loss)
+
+Below are major MySQL datatype types
+
+### String Datatypes
+
+There are basically two types of string datatype -- fixed-length and variable-length strings
+
+| Datatype | Descrtiption |
+| --- | --- |
+| `CHAR` | Fixed-length, from 1 - 255 chars, default `CHAR(1)` |
+| `SET` | Accepts zero or more of a predefined set of up to 64 strings |
+| `ENUM` | Accepts one of a predefined set of up to 64K strings |
+| `TINYTEXT` | Same as `TEXT`, maximum 255 bytes |
+| `MEDIUMTEXT` | Same as `TEXT`, max 16K |
+| `TEXT` | Variable-length, max 64K |
+| `LONGTEXT` | Same as `TEXT`, max 4GB |
+| `VARCHAR` | Same as `CHAR`, but stores just the text. The size is a maximum, not a minimum |
+
+`Fixed-length` - defined to accept fixed number of character. It do not allow
+more than the specified number of characters. They also allocate storage space for
+as many specified number of characters. So, if the string `Ben` is stored
+in a 30-character firstname field, a full 30 bytes are store.
+
+`Variable-length` - more flexible. However, MySQL can sort and manipulate
+fixed-length columns far more quickly than it can sort variable-length columns.
+
+**Tip** Single quotes are often preferred compared to double quote
+for surround string values. Oracle does not accept double quote surrounded string value.
+
+**Caution** Some numeric values are not numeric values, such as ZIP Codes. Follow this: **If the number is a number used in
+calculation (sum, average, and so on), it belongs to a numeric datatype
+column. Else it belongs in a string datatype column.
+
+### Numeric Datatypes
+
+The larger the supported range, the more storage space needed.
+
+| Datatype | Description |
+| --- | --- |
+| `BOOLEAN` (or `BOOL`) | `0` or `1`, (it stores `-128` to `127`)|
+| `BIT` | From `1` to `64` bit wide |
+| `TINYINT` | From `-128` to `127` (or `0` to `255` if `UNSIGNED`, 8 bits, 1 byte) |
+| `SMALLINT` | From `-32768` to `32767` (or `0` to `65535` if `UNSIGNED`, 16 bits, 2 byte) |
+| `MEDIUMINT` | From `-8388608` to `8388607` (or `0` to `16777215` if `UNSIGNED`, 24 bits, 3 bytes)
+| `INT` (or `INTEGER`) | From `-2147483648` to `2147483647` (or `0` to `4294967295` if `UNSIGNED`, 32 bits, 4 bytes) |
+| `BIGINT` | From `-9223372036854775808` to `9223372036854775807` (or `0` to `18446744073709551615` if `UNSIGNED`), 64 bits / 8 bytes |
+| `DECIMAL` (or `DEC`) | Floating point values with varying levels of precision. (Example: DECIMAL(8,2) max 999999.99, min -999999.99)|
+| `FLOAT` | Single-precision floating point values |
+| `DOUBLE` | Double-precision floating point values |
+| `REAL` | 4-byte floating point values |
+
+**Note**
+
+Signed is default, if you know that you'll need not to store
+negative values, you can use the `UNSIGNED` keyword, doing so
+will allow you to store values twice as large.
+
+**Note**
+
+If inserted value is out of range, there will no be any error. Instead,
+it the min or the max value picked.
+
+**Note**
+
+***Use `DECIMAL(8,2)` for currency values***
+
+### Date and Time Datatypes
+
+| Datatype | Description |
+| --- | --- |
+| `DATE` | `YYYY-MM-DD`, from `1000-01-01` to `9999-12-31` |
+| `DATETIME` | A combination of `DATE` and `TIME` |
+| `TIMESTAMP` | Functionally equivalent to `DATETIME` (but with a smaller range, `1971` to `2038` as per date 2023 sept 28) |
+| `TIME` | `HH:MM:SS` |
+| `YEAR` | A 2 or 4 digit year, 2 digit years support a range or `70` (1970) to `69` (2069). 4 digit years support a range of `1901` to `2155` |
+
+### Binary Datatypes
+
+To store all sorts of data (even binary information), such as
+graphic images, multimedia, and word processor documents.
+
+| Datatype | Description |
+| --- | --- |
+| `TINYBLOB` | Blob with a maximum length of 255 bytes |
+| `BLOB` | Blob with a maximum length of 64K |
+| `MEDIUMBLOB` | Blob with a maximum length of 16MB |
+| `LONGBLOB` | Blob with a maximum length of 4GB |
+
+<a name="other"></a>
+
 ## Other
 
 ### Difference between `NULL` and false value
@@ -1750,18 +2687,11 @@ the `DELETE` itself will be aborted. Although the `DELETE` itself will be rollba
 
 3. When WHERE a <> 'b', null value will not return
 
-## To explore
+### Multiple MySQL Server
 
-- Experimenting Selfjoins vs subqueries
+Multiple copies of MySQL server may be installed on a single machine,
+as long as each uses a different port.
 
-- Appendix B to learn more INSERT
+### Keywords and Reserved Words
 
-- default engine
-
-```bash
- docker run -it --rm \
-    imega/mysql-client \
-    mysql --host=localhost --port=3306 --user=root --password=qwer
-```
-
-`sudo apt-get install mysql-client`
+[here](https://dev.mysql.com/doc/refman/8.0/en/keywords.html)
