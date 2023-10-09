@@ -67,7 +67,17 @@ Environment: git version 2.35.1.windows.2
 
    ![image-20220625002351072](images/image-20220625002351072.png)
 
+> **Semantic Versioning 2.0.0**
 
+Refer [Semantic Versioning 2.0.0](https://semver.org/)
+
+Given a version number MAJOR.MINOR.PATCH, increment the:
+
+- MAJOR version when you make incompatible API changes
+- MINOR version when you add functionality in a backward compatible manner
+- PATCH version when you make backward compatible bug fixes
+
+Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format.
 
 ## Start Git
 
