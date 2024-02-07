@@ -11,10 +11,9 @@ The knowledge was gained from different resources, not limited to:
 
 - Articles
 
-***I look forward to hearing from  any recommendations that I can learn and record here!***
+**_I look forward to hearing from any recommendations that I can learn and record here!_**
 
 ## Log:
-
 
 ### 2023
 
@@ -24,20 +23,26 @@ The knowledge was gained from different resources, not limited to:
 
 > Books
 
-- The Linux Command Line by William Shotts (Not in this repo, I put it in excel)
+- The Linux Command Line by William Shotts
 
 - The Go Programming Language by Alan A. A. Donovan, Brian W. Kernighan
 
 - The Docker Books by James Turnbull
 
-- Head First Design Patterns by Eric Freeman, Elisabeth Robson, Bert Bates, Kathy Sierra 
+- Head First Design Patterns by Eric Freeman, Elisabeth Robson, Bert Bates, Kathy Sierra
 
 - HTTP What Every Web Developer Should Know About HTTP by K. Scott Allen
 
-- Kubernetes in Action by Marko Lukša 
+### 2024
 
-    - coming soon...
+- The Linux Command Line by William Shotts -- Reread
+
+### Watch Lists
+
+- Designing Data-Intensitive Applications by Martin Kleppmann
+
+- Unit Testing: Principles, Practices, and Patterns by Vladimir Khorikov
+
+- Kubernetes in Action by Marko Lukša
 
 - Refactoring: Improving the Design of Existing Code by Martin Fowler,
-
-    - coming soon...

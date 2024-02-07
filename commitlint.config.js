@@ -28,6 +28,7 @@ module.exports = {
         'project',
         'openapi',
         'practice',
+        'other',
       ],
     ],
   },
