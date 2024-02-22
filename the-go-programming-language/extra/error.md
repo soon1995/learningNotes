@@ -1,6 +1,6 @@
 # Exploring `fmt` package
 
-Q: Which expressions below have the best performance when printing an error?
+Q: Which of the expressions below has the best performance when printing error?
 
 ```go
 fmt.Sprintf("%v", err) // 1
@@ -132,11 +132,19 @@ func (p *pp) handleMethods(verb rune) (handled bool) {
 }
 ```
 
-In conclusion, below listed the expressions from highest to lowest performance:
+In conclusion, the expressions are listed below from highest to lowest performance:
 
 ```go
 fmt.Sprintf("%s", err.Error())
 fmt.Sprintf("%v", err.Error())
 fmt.Sprintf("%s", err)
 fmt.Sprintf("%v", err)
+
+// Benchmark:
+BenchmarkErrorSandErrError-4            10314552               109.7 ns/op
+BenchmarkErrorVandErrError-4            10737393               108.7 ns/op
+BenchmarkErrorSandErr-4                 10947403               108.3 ns/op
+BenchmarkErrorVandErr-4                 11015456               107.5 ns/op
 ```
+
+However, based on the benchmark, there is only a tiny difference between them.
