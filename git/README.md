@@ -1,4 +1,5 @@
 # Git
+
 This is a learning notes.
 
 learned from [狂神说](https://www.bilibili.com/video/BV1FE411P7B3?p=1&vd_source=a788bdd4d7cdd9dfe02852346d523cb9)
@@ -13,7 +14,7 @@ Total video length : 8h 11m 41s
 
 Environment: git version 2.35.1.windows.2
 
------------------------
+---
 
 > **version control system**
 >
@@ -29,7 +30,7 @@ Environment: git version 2.35.1.windows.2
 
 **Major version control system **
 
-- **Git** (***)
+- **Git** (\*\*\*)
 - SVN (Subversion)
 - CNS (Concurrent Versions System)
 - VSS (Microsoft Visual SourceSafe)
@@ -37,28 +38,27 @@ Environment: git version 2.35.1.windows.2
 - Visual Studio Online
 - ...
 
-
-
 ## Version Control
 
 1. **Local Version Control System**
-   - Records every update, snapshot every different version 
+   - Records every update, snapshot every different version
    - suitable for single developer
 
 ![image-20220625001518015](images/image-20220625001518015.png)
 
 2. **Centralized Version Control System**
+
    - save in the server, developers update and upload his version.
    - have to connect server to get previous version. User have only his new version
    - conflict? decide a final internally.
    - risk if using one server, shall arrange auto backup
    - **SVN**, CVS, VSS
 
-		![image-20220625001815909](images/image-20220625001815909.png)
+     ![image-20220625001815909](images/image-20220625001815909.png)
 
 3. **Distributed Version Control System**
 
-   - all versions synchronize to every single user computer. 
+   - all versions synchronize to every single user computer.
    - risk if some user take the data without permission
    - able to commit local, and push to server or others' computer once connect successfully.
    - old version is able to be recovered from others' computer if one's computer is dead.
@@ -83,11 +83,11 @@ Additional labels for pre-release and build metadata are available as extensions
 
 1. **Installation**
 
->  https://git-scm.com/downloads
+> https://git-scm.com/downloads
 
 ![image-20220625003832527](images/image-20220625003832527.png)
 
-_tips: noticed GitBash when right clickon desktop._ 
+_tips: noticed GitBash when right clickon desktop._
 
 2. **Set username and email (refer command section)**
 
@@ -111,15 +111,15 @@ _tips: noticed GitBash when right clickon desktop._
 
    i) right click in your file (eg. \[C]:\Users\yourUser\\) -> bash
 
-   ii) `ssh-keygen -t rsa -C [email]`  
+   ii) `ssh-keygen -t rsa -C [email]`
 
-   iii) noticed 2 files : 
+   iii) noticed 2 files :
 
    ![image-20220625101650467](images/image-20220625101650467.png)
 
    iv) open -d_rsa.pub and copy detail
 
-   v)  in github ssh setting: click new SSH key and paste.
+   v) in github ssh setting: click new SSH key and paste.
 
    ![image-20220625102145590](images/image-20220625102145590.png)
 
@@ -129,11 +129,9 @@ _tips: noticed GitBash when right clickon desktop._
 >
 > \[C]:\Users\yourUser\\.gitconfig ==> global config
 
-
-
 ### Config and Initialization
 
-`git config` 
+`git config`
 
 ```shell
 -l 							#list
@@ -146,8 +144,6 @@ _tips: noticed GitBash when right clickon desktop._
 ```
 
 `git init`
-
-
 
 ### Command
 
@@ -176,7 +172,6 @@ _tips: noticed GitBash when right clickon desktop._
 `git log BranchA..BranchB` show the commits on BranchA that are not in BranchB
 
 `git reflog` //look back the previous command (incase you want to look back commit id)
-
 
 ```shell
 user@DESKTOP MINGW64 ~/Desktop/testGit/testGit25062022 (master)
@@ -210,21 +205,19 @@ $ git log --pretty=oneline
 
 ```
 
-
-
 ### Works with Working Sections
 
 `git add [file(s) / .]` //when update and add file
 
 `git rm <file>` //when deleted file
 
-`git commit  -m "x commit"`  - // message to bring 
+`git commit  -m "x commit"` - // message to bring
 
-`git commit  -a -m "x commit"`  - // message to bring , -a is stash ALL changes and commit them
+`git commit  -a -m "x commit"` - // message to bring , -a is stash ALL changes and commit them
 
-`git commit  --amend`  // change last commit message 
+`git commit  --amend` // change last commit message
 
-`git restore <file>` //undo an yet added file. older version : git checkout **--** <file> ** must use -- as this command overload with other function.
+`git restore <file>` //undo an yet added file. older version : git checkout **--** <file> \*\* must use -- as this command overload with other function.
 
 `git restore --staged <file>` //undo an added file. older version: git reset HEAD <file>
 
@@ -232,13 +225,14 @@ $ git log --pretty=oneline
 
 `git reset --soft HEAD~1`
 
-> soft: change HEAD. this file change to state : before "commit" and after "add" 
+> soft: change HEAD. this file change to state : before "commit" and after "add"
 >
 > mixed: change HEAD. this file change to state : back to before "add"
 >
 > hard: change HEAD. this file destroyed
 
 **Tips:** use below reference for your commit message, for faster review in future
+
 ```
 - feat：添加新功能
 - fix：修补缺陷
@@ -277,9 +271,9 @@ eg git commit -m "fix: ..., fix #1, #2"
 
 `git push origin :refs/tags/<tag>` //delete tag from remote
 
-`git pull <remote> <branch>` 
+`git pull <remote> <branch>`
 
-**Tips:** we can use `git push origin` only to push to the origin by default current branch, we may use `git push` if there is only one branch. use `git branch -r` to list remote branch names  
+**Tips:** we can use `git push origin` only to push to the origin by default current branch, we may use `git push` if there is only one branch. use `git branch -r` to list remote branch names
 
 ```shell
 user@DESKTOP MINGW64 ~/Desktop/testGit/testGit25062022 (master)
@@ -294,10 +288,6 @@ $ git push origin :refs/tags/v0.0
 To https://github.com/userl95/testGit25062022.git
  - [deleted]         v0.0
 ```
-
-
-
-
 
 ### Branch
 
@@ -317,49 +307,43 @@ To https://github.com/userl95/testGit25062022.git
 
 `git switch -` //switch to last branch
 
-`git switch -c <branchName>` //create new branch + switch branch 
+`git switch -c <branchName>` //create new branch + switch branch
 
-`git switch -c <branchName> <origin/branch eg. origin/dev>` //create new branch + switch branch 
+`git switch -c <branchName> <origin/branch eg. origin/dev>` //create new branch + switch branch
 
 `git merge <branchName>` //merge <branchName> to current HEAD
 
-`git merge  --no-ff -m "merge with no-ff" <branchName>` //merge without using fast-forward method which ff method leads to some lost information of <branchName> log 
+`git merge  --no-ff -m "merge with no-ff" <branchName>` //merge without using fast-forward method which ff method leads to some lost information of <branchName> log
 
 `git cherry-pick <commit>` //pick the commit to the current branch, so there is no need to redo same commit again in different branch.
-
-
 
 FF
 
 ![git-br-ff-merge](https://www.liaoxuefeng.com/files/attachments/919022412005504/0)
 
--------------------
+---
 
 no-FF
 
 ![git-no-ff-mode](https://www.liaoxuefeng.com/files/attachments/919023225142304/0)
 
-
-
 ### Stash
 
 `git stash list` //to list the stash
 
-`git stash -m <message>`  / `git stash push <message>` // to create a stash
+`git stash -m <message>` / `git stash push <message>` // to create a stash
 
 `git stash pop [index]` //to pop out from stash (default : 0)
 
 `git stash apply [index]` //to get from stash without deleting (default : 0), or git stash apply "stash@{n}"
 
-`git stash drop [index]` //to delete the  (default : 0)
+`git stash drop [index]` //to delete the (default : 0)
 
 `git stash clear` //clear the stashes
 
 `git stash -a` // stash all including gitignore files
 
 `git stash -u` // stash untracked file (files that are not in remote, but local)
-
-
 
 ### Tag
 
@@ -409,8 +393,6 @@ Date:   Sun Jun 26 12:38:36 2022 +0800
 
 ```
 
-
-
 ## Git Theory
 
 3 working section (Local):
@@ -429,19 +411,13 @@ Date:   Sun Jun 26 12:38:36 2022 +0800
 
 - where we save the file
 
-
-
-> Stage/ Index 
+> Stage/ Index
 
 - a file temporarily save the information of the file which to be committed
-
-  
 
 > Repository (.git/HEAD => ref: )
 
 - save your versions
-
-
 
 > Remote Directory
 
@@ -451,15 +427,13 @@ Date:   Sun Jun 26 12:38:36 2022 +0800
 
 ![image-20220625011318496](images/image-20220625011318496.png)
 
-
-
 ## 4 Status
 
 > A very good explanation : https://www.liaoxuefeng.com/wiki/896043488029600/897271968352576 (in chinese)
 
-1. Untracked : untracked and yet put in stage, not involved in version control, use `git add` to become staged 
+1. Untracked : untracked and yet put in stage, not involved in version control, use `git add` to become staged
 
-2. Unmodified : file have been put in stage . ===> no modified (snapshot data same with your file).  Two actions for this state
+2. Unmodified : file have been put in stage . ===> no modified (snapshot data same with your file). Two actions for this state
 
    A) once modified -> became modified
 
@@ -477,65 +451,61 @@ Date:   Sun Jun 26 12:38:36 2022 +0800
    testGit@DESKTOP MINGW64 ~/Desktop/testGit (master)
    $ git status
    On branch master
-   
+
    No commits yet
-   
+
    nothing to commit (create/copy files and use "git add" to track)
-   
+
    testGit@DESKTOP MINGW64 ~/Desktop/testGit (master)
    $ touch hello.txt
-   
+
    testGit@DESKTOP MINGW64 ~/Desktop/testGit (master)
    $ git status
    On branch master
-   
+
    No commits yet
-   
+
    Untracked files:
      (use "git add <file>..." to include in what will be committed)
            hello.txt
-   
+
    nothing added to commit but untracked files present (use "git add" to track)
-   
+
    testGit@DESKTOP MINGW64 ~/Desktop/testGit (master)
    $ git add .
-   
+
    testGit@DESKTOP MINGW64 ~/Desktop/testGit (master)
    $ git status
    On branch master
-   
+
    No commits yet
-   
+
    Changes to be committed:
      (use "git rm --cached <file>..." to unstage)
            new file:   hello.txt
-   
-   
+
+
    testGit@DESKTOP MINGW64 ~/Desktop/testGit (master)
    $ git commit -m "new hello file"
    [master (root-commit) fd592f4] new hello file
     1 file changed, 0 insertions(+), 0 deletions(-)
     create mode 100644 hello.txt
-   
+
    testGit@DESKTOP MINGW64 ~/Desktop/testGit (master)
    $ git status
    On branch master
    nothing to commit, working tree clean
-   
-   
-   ```
 
-   
+
+   ```
 
 ## myExercise
 
-*** in git, there are big number represent commit id generated using SHA1 algorithm eg: below yellow fonts
+\*\*\* in git, there are big number represent commit id generated using SHA1 algorithm eg: below yellow fonts
 
 ![image-20220625225413949](images/image-20220625225413949.png)
 
 ![image-20220625225434240](images/image-20220625225434240.png)
-
-
 
 ### **Basic**
 
@@ -566,7 +536,7 @@ $ git commit -m "wrote a read1 file"
 [master (root-commit) 6971537] wrote a read1 file
  1 file changed, 2 insertions(+)
  create mode 100644 read1.txt
- 
+
 user@DESKTOP MINGW64 ~/Desktop/testGit/testGit25062022 (master)
 $ vim read1.txt
 ```
@@ -585,7 +555,7 @@ index 46d49bf..9247db6 100644
 -Git is a version control system.
 +Git is a distributed version control system.
  Git is free software.
- 
+
 user@DESKTOP MINGW64 ~/Desktop/testGit/testGit25062022 (master)
 $ git commit -m "added distributed"
 [master 129f848] added distributed
@@ -609,9 +579,7 @@ $ git commit -m "append GPL"
 
 ```
 
-
-
-###  Go to history commit
+### Go to history commit
 
 - git reset [commit id(first few digits enough for Git to find) / HEAD^ / HEAD~[num]]
 - git reflog
@@ -646,8 +614,6 @@ $ git reflog #show HEAD movements
 6971537 HEAD@{4}: commit (initial): wrote a read1 file
 
 ```
-
-
 
 ### **Regret**
 
@@ -743,8 +709,6 @@ Git is a distributed version control system.
 Git is free software under the GPL.
 ```
 
-
-
 ### **Remove file**
 
 - git rm <file>
@@ -787,8 +751,6 @@ $ git commit
 
 ```
 
-
-
 ### Remote
 
 - git remote add origin [url] `git remote add origin git@github.com:your_username/your_repo.git`
@@ -830,8 +792,6 @@ user@DESKTOP MINGW64 ~/Desktop/testGit/testGit25062022 (master)
 $ git push
 fatal: No configured push destination.
 ```
-
-
 
 ### Branch
 
@@ -942,27 +902,27 @@ user@DESKTOP MINGW64 ~/Desktop/testGit/testGit25062022 (master|MERGING)
 $ vim read1.txt
 ```
 
->From:
+> From:
 >
->Git is a distributed version control system.
->Git is free software under the GPL.
-><<<<<<< HEAD
+> Git is a distributed version control system.
+> Git is free software under the GPL.
+> <<<<<<< HEAD
 >
->Creating a new branch is quick & simple.
+> Creating a new branch is quick & simple.
 >
->========
+> ========
 >
->Creating a new branch is quick AND simple.
+> Creating a new branch is quick AND simple.
 >
->\>\>\>\>\>\>\>dev
+> \>\>\>\>\>\>\>dev
 >
->To:
+> To:
 >
->Git is a distributed version control system.
+> Git is a distributed version control system.
 >
->Git is free software under the GPL.
+> Git is free software under the GPL.
 >
->Creating a new branch is quick and simple.
+> Creating a new branch is quick and simple.
 
 ```shell
 user@DESKTOP MINGW64 ~/Desktop/testGit/testGit25062022 (master|MERGING)
@@ -1076,7 +1036,7 @@ Updating fe7152a..99121e8
 Fast-forward
  read1.txt | 1 +
  1 file changed, 1 insertion(+)
- 
+
 user@DESKTOP MINGW64 ~/Desktop/testGit/testGit25062022 (master)
 $ git log
 commit 99121e820502a8a9e835afd9c9b1e23f42b3cbee (HEAD -> master, bug-fix)
@@ -1185,8 +1145,6 @@ $ git commit -m "tested stash"
 
 ` git switch -c dev origin/dev`
 
-
-
 ### Remote Conflict -- pull and settle and push
 
 ```shell
@@ -1246,19 +1204,15 @@ To github.com:userl95/testGit25062022.git
 
 ```
 
-
-
-
-
 ## Branch
 
 > Why?
 
-Able to create your branch when you doing halfway  and going to finish it the next day. At the same time, your colleague cannot see it and still continue their work at mainline. Few days later, when your developed was done, merge together.
+Able to create your branch when you doing halfway and going to finish it the next day. At the same time, your colleague cannot see it and still continue their work at mainline. Few days later, when your developed was done, merge together.
 
 > Safe and Isolated
 
-------------------------------
+---
 
 > What is HEAD?
 
@@ -1266,21 +1220,19 @@ It is a pointer default by pointing at master and master point to commit. HEAD m
 
 _Very Good Explanation (in Chinese) : https://www.liaoxuefeng.com/wiki/896043488029600/900003767775424_
 
------------------------
+---
 
 > Branch Management in reality
 
 ![git-br-policy](https://www.liaoxuefeng.com/files/attachments/919023260793600/0)
 
-
-
--------------------------------------
+---
 
 > If I have done bug fix in master, how can I reflect it in dev?
 
-`git cherry-pick <commit>` 
+`git cherry-pick <commit>`
 
------------------------
+---
 
 > When to push to origin?
 
@@ -1288,48 +1240,46 @@ master -- always same pace with remote
 
 dev -- always same pace with remote as team members need to work on it
 
-bug -- only fix bug locally, no need to push unless boss need to see what you have fixed  weekly
+bug -- only fix bug locally, no need to push unless boss need to see what you have fixed weekly
 
 feature -- depends on whether few team member do it or you only.
 
 ## Stash
 
-If you are halfway  on `dev` branch and want to go back to `master` to do some `bug-fix`. `git stash` is a useful command for you to temporary save the working stages and your working directory will be clean.
+If you are halfway on `dev` branch and want to go back to `master` to do some `bug-fix`. `git stash` is a useful command for you to temporary save the working stages and your working directory will be clean.
 
 \* the latest stash has the index [0]
 
 `git stash list` //to list the stash
 
-`git stash -m <message>`  / `git stash push <message>` // to create a stash
+`git stash -m <message>` / `git stash push <message>` // to create a stash
 
 `git stash pop [index]` //to pop out from stash (default : 0)
 
 `git stash apply [index]` //to get from stash without deleting (default : 0)
 
-`git stash drop [index]` //to delete the  (default : 0)
+`git stash drop [index]` //to delete the (default : 0)
 
 `git stash clear` //clear the stashes
-
 
 ## Rebase
 
 `git rebase <branch2> <branch1>` // rebase branch2 on branch1
 
-
 ## .gitIgnore
 
 > to ignore the files to be packaged and send to git. You may refer [here](https://www.toptal.com/developers/gitignore/) for different projects.
 
-> you may do below if you are command-line fan, try `gi laravel`(with gi installed)! 
-> 
+> you may do below if you are command-line fan, try `gi laravel`(with gi installed)!
+>
 > ```
-> 
+>
 > git config --global alias.ignore \
-> 
+>
 > '!gi() { curl -sL
-> 
+>
 > https://www.toptal.com/developers/gitignore/api/$@ ;}; gi'
-> 
+>
 > ```
 
 `#` // comment
@@ -1342,9 +1292,7 @@ If you are halfway  on `dev` branch and want to go back to `master` to do some `
 
 `/temp` //ignore temp file (not directory)
 
-`target/` //everything in target directory 
-
-
+`target/` //everything in target directory
 
 ## Customize Command
 
@@ -1395,13 +1343,12 @@ $ git lg
 * 6971537 - (tag: v0.0) wrote a read1 file (15 hours ago) <Jack>
 ```
 
-
 # SSH
 
 > When push using HTTPS: GitHub username and password required
 >
 > SSH: -
-> 
+>
 > HTTPS vs SSH : replace https:// to git@, and replace '/' after github.com with ':'
 
 1. `ssh-keygen`
@@ -1411,9 +1358,6 @@ $ git lg
 3. `cat ~/.ssh/id_rsa.pub`
 
 4. add this in your GitHub Setting
-
-
-
 
 # Git Signature
 
@@ -1443,8 +1387,8 @@ $ git lg
 
 10. done!
 
-
 # How to write a good README.md file
+
 [Reference: Bobby Iliev](https://devdojo.com/bo-iliev/how-to-write-a-good-readme-file)
 
 1. Quick introduction to what the project is about
