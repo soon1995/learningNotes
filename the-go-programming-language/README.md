@@ -337,7 +337,7 @@ fmt.Println(c.String()) // 100°C
 fmt.Printf("%v\n", c) // 100°C
 fmt.Printf("%s\n", c) // 100°C
 fmt.Println(c) // 100°C
-fmt.Println("%g\n", c) // does not call String : 100
+fmt.Printf("%g\n", c) // does not call String : 100
 fmt.Println(float64(c)) // does not call String : 100
 ```
 
@@ -413,6 +413,12 @@ fmt.Printf("%d %[1]q\n", newline) // "10 '\n'"
 s[0] = 'L' // compile error: cannot assign to s[0]
 ```
 
+```go
+s := "hello, world"
+hello := s[:5]
+world := s[7:]
+```
+
 > **Raw string literal**: no escape sequences are processed. They are a convenient way to write **regular expression** which tend to have lots of backslashes. They are also useful for **HTML templates**, **JSON literals**, **command usage message**, which often extend multiple lines
 
 ```go
@@ -439,7 +445,7 @@ for _, _ = range s {
     n++
 }
 
-OR 
+OR
 
 n := 0
 for range s {
@@ -542,7 +548,7 @@ const (
     TiB **** Exceeds 1 << 32
     PiB
     EiB
-    ZiB **** Exceeds 1 << 
+    ZiB **** Exceeds 1 <<
     YiB
 )
 ```
@@ -563,7 +569,7 @@ const (
 
 > q := [...]int{1,2,3} // fmt.Printf("%T", q) // [3]int
 
-[3]int and [4]int are different types. So, this brings compile error:  q = [4]int{4,5,6}
+[3]int and [4]int are different types. So, this brings compile error: q = [4]int{4,5,6}
 
 > ```go
 > type Currency int
@@ -575,7 +581,7 @@ const (
 > )
 > ```
 >
-> symbol := [...]string{USD: "$", EUR: "9", GBP: "!", RMB: """}  **indices can appear in any order**
+> symbol := [...]string{USD: "$", EUR: "9", GBP: "!", RMB: """} **indices can appear in any order**
 
 fmt.Println(RMB, symbol[RMB])
 
@@ -671,18 +677,18 @@ func equal(x, y []string) bool {
 }
 ```
 
-> The only legal slice comparison is against nil, as in**if  summer == nil {/\*...\*/}**
+> The only legal slice comparison is against nil, as in `if summer == nil {/*...*/}`
 
 ```go
-var s [int] // len(s) == 0, s == nil
+var s []int // len(s) == 0, s == nil
 s = nil // len(s) == 0, s == nil
 s = []int(nil) // len(s) == 0, s == nil
-s = []int{} // len(s) == 0, s == nil
+s = []int{} // len(s) == 0, s != nil
 ```
 
-**Thus,** if you need to test whether a slice is empty, use len(s)  == 0, not s == nil
+**Thus,** if you need to test whether a slice is empty, use len(s) == 0, not s == nil
 
-**Tips:** reverse(nil) is completely save
+**Tips:** reverse(nil) is completely safe
 
 > **append**
 
@@ -751,7 +757,7 @@ stack := stack[:len(stack-1)] // pop
 ```go
 func remove(slice []int, i int) []int {
     copy(slice[i:], slice[i+1:])
-    return slice(:len(slice)-1)
+    return slice[:len(slice)-1]
 }
 ```
 
@@ -759,7 +765,7 @@ func remove(slice []int, i int) []int {
 // if we don't need to preserve order.
 func remove(slice []int, i int) []int {
     slice[i] = slice[len(slice)-1]
-    return slice(:len(slice)-1)
+    return slice[:len(slice)-1]
 }
 ```
 
@@ -770,7 +776,7 @@ func main() {
   fmt.Println(testSlice(nil)) // [sadf]
 }
 
-func testSlice(tests []string) [] string{
+func testSlice(tests []string) []string{
   return append(tests, "sadf")
 }
 ```
@@ -1116,30 +1122,30 @@ func SearchIssues() {
 
 **Tips:** json.Decoder is _streaming decoder_, which allows several JSON entities to be decoded in sequence from the same stream
 
-> **View exercise 4.10, 4.11, 4.12, 4.13**, there is  a lot of knowledge inside them
+> **View exercise 4.10, 4.11, 4.12, 4.13**, there is a lot of knowledge inside them
 
- ```go
- 4.10
- // Modify issues to report the results in age categories, say less than
- // a month old, less than a year old, and more than a year old
- 
- 4.11
- // Build a tool that lets users create, read, update, and delete GitHub issues from
- // the command line, invoking their preferred text editor when substantial text input is
- // required.
- 
- 4.12
- // The popular web comic xkcd has a JSON interface. For example, a request to
- // https://xkcd.com/571/info.0.json produces a detailed description of comic 571, one of
- // many favorites. Download each URL (once!) and build an offline index. Write a tool xkcd
- // that, using this index, prints the URL and transcript of each comic that matches a search term
- // provided on the command line.
- 
- 4.13
- // The JSON-based web service of the Open Movie Database lets you search
- // https:// omdbapi.com/ for a movie by name and download its poster image.
- // Write a tool poster that downloads the poster image for the movie named on the command line.
- ```
+```go
+4.10
+// Modify issues to report the results in age categories, say less than
+// a month old, less than a year old, and more than a year old
+
+4.11
+// Build a tool that lets users create, read, update, and delete GitHub issues from
+// the command line, invoking their preferred text editor when substantial text input is
+// required.
+
+4.12
+// The popular web comic xkcd has a JSON interface. For example, a request to
+// https://xkcd.com/571/info.0.json produces a detailed description of comic 571, one of
+// many favorites. Download each URL (once!) and build an offline index. Write a tool xkcd
+// that, using this index, prints the URL and transcript of each comic that matches a search term
+// provided on the command line.
+
+4.13
+// The JSON-based web service of the Open Movie Database lets you search
+// https:// omdbapi.com/ for a movie by name and download its poster image.
+// Write a tool poster that downloads the poster image for the movie named on the command line.
+```
 
 ## Text and HTML Template
 
@@ -1294,7 +1300,7 @@ These packages are not in the standard library because they're still under devel
         FirstChild, NextSibling *Node
     }
     type NodeType int32
-    
+
     const (
      ErrorNode NodeType = iota
      TextNode
@@ -1309,7 +1315,7 @@ These packages are not in the standard library because they're still under devel
      RawNode
      scopeMarkerNode
     )
-    
+
     const (
         // ErrorToken means that an error occurred during tokenization.
         ErrorToken TokenType = iota
@@ -1326,7 +1332,7 @@ These packages are not in the standard library because they're still under devel
      // A DoctypeToken looks like <!DOCTYPE x>
      DoctypeToken
     )
-    
+
     ```
 
 ```go
@@ -1472,7 +1478,7 @@ if err := WaitForServer(url); err != nil {
 
 **Tips:** `log.SetPrefix("wait: ") log.SetFlags(0)` to suppress the display of the date and time
 
-**Tips:** Alll `log` functions append a newline if one is not already present.
+**Tips:** All `log` functions append a newline if one is not already present.
 
 ```go
 log.Printf("a")
@@ -1758,7 +1764,7 @@ func double(x int) (result int) {
 }
 ```
 
-> Deferred anonymous function can even**change the values of result**
+> Deferred anonymous function can even **change the values of result**
 
 ```go
 func triple(x int) (result int) {
@@ -2010,7 +2016,7 @@ type P *int
 func (P) f() { /* ... */ } // compile error: invalid receiver type
 ```
 
-> The (*Point).ScaleBy can be called by
+> The (\*Point).ScaleBy can be called by
 
 ```go
 // 1
@@ -2043,20 +2049,19 @@ Point{1,2}.ScaleBy(2) // compile error -- no way to obtain address of temporary 
 
   `Point{1, 2}.Distance(p)`
 
-- both have type *T
+- both have type \*T
 
   `pptr.ScaleBy(2)`
 
-- receiver argument is a _variable_ of type T and receiver parameter has type *T. The compiler implicitly takes the address of the variable
+- receiver argument is a _variable_ of type T and receiver parameter has type \*T. The compiler implicitly takes the address of the variable
 
   `p.ScaleBy(2) // implicit (&p)`
 
-- receiver argument has type *T and the receiver parameter has type T
+- receiver argument has type \*T and the receiver parameter has type T
 
   `pptr.Distance(p) // implicit (*pptr)`
 
-> If all the methods of a named type T have a receiver type of T itself (not *T), it is safe to copy instances of that type; calling any of its methods necessarily makes a copy.
->
+> If all the methods of a named type T have a receiver type of T itself (not \*T), it is safe to copy instances of that type; calling any of its methods necessarily makes a copy.
 
 For example,time.Duration values are liberally copied, including as arguments to functions.
 
@@ -2129,7 +2134,7 @@ type ColoredPoint struct {
   Point
   Color color.RGBA
 }
-.. 
+..
 red := color.RGBA{255, 0, 0, 255}
 var p = ColoredPoint{Point{1,1}, red}
 fmt.Println(p.Distance(q.Point))
@@ -2152,7 +2157,7 @@ p.ScaleBy(2)
 fmt.Println(*p.Point, *q.Point)
 ```
 
-> Possible and sometimes useful for ***unnamed types*** to have methods too, thanks to embedding
+> Possible and sometimes useful for **_unnamed types_** to have methods too, thanks to embedding
 
 ```go
 var (
@@ -2287,7 +2292,7 @@ func main() {
 }
 ```
 
-**Tips:** Making String a method of intSet, not *IntSet, might be a good idea, but this is a case-by-case judgement
+**Tips:** Making String a method of intSet, not \*IntSet, might be a good idea, but this is a case-by-case judgement
 
 ```go
 Caution.. IntSet value does not have a String method
@@ -2324,7 +2329,7 @@ When designing a new package, novice Go programmers often start by creating a se
 
 > The F prefix of **Fprintf** stands for _file_ and indicates that the formatted output should be written to the file provided as the first argument.
 
-In the Printf case, the argument, osStdout, is an *os.File.
+In the Printf case, the argument, osStdout, is an \*os.File.
 
 In the Sprintf case, &buf is a pointer to a memory buffer to which bytes can be written.
 
@@ -2455,7 +2460,7 @@ var x interface{} = time.Now()
 > if two interface values are compared and have the same dynamic type, but that type is not comparable, then the **comparison fails with a panic**
 
 ```go
-var interface{} = []int{1,2,3}
+var x interface{} = []int{1,2,3}
 fmt.Println(x == x) // panic
 ```
 
@@ -2815,7 +2820,7 @@ fmt.Println(err) "no such file or directory"
     var w io.Writer
     w = os.Stdout
     rw := w.(io.ReadWriter) // success
-    
+
     w = new(ByteCounter)
     rw = w.(io.ReadWriter) // panic: *ByteCounter has no Read method
     ```
@@ -3013,7 +3018,7 @@ func sqlQuote2(x interface{}) string {
 > - CharData
 > - Comment
 >
-> Each call to (*xml.Decoder).Token ret
+> Each call to (\*xml.Decoder).Token ret
 
 ```go
 package xml
@@ -3041,7 +3046,7 @@ type Comment []byte                 // e.g., <!-- Comment -->
 type Decoder struct { /* ... */
 }
 
-func NewDecoder(io.Reader) *Decoder   
+func NewDecoder(io.Reader) *Decoder
 func (*Decoder) Token() (Token, error) // returns next Token in sequence
 ```
 
@@ -3077,7 +3082,7 @@ func ExtractAndPrintXML() {
 
 # 8 Goroutines and Channels
 
-Go enables two styles of concurrent programming. This chapter represents goroutines and channels, which support ***communicating sequential process or CSP***, a model of concurrency in which **values are passed between independent activities (goroutines)**
+Go enables two styles of concurrent programming. This chapter represents goroutines and channels, which support **_communicating sequential process or CSP_**, a model of concurrency in which **values are passed between independent activities (goroutines)**
 
 Another style is **shared memory multithreading**
 
@@ -3209,9 +3214,9 @@ func Netcat2() {
 
 ch := make(chan int)
 
-ch = make(chan int, 0)  // unbuffered channel
+ch = make(chan int, 0) // unbuffered channel
 
-***Buffered channel***
+**_Buffered channel_**
 
 ch = make(chan int, 3) // buffered channel with capacity 3
 
@@ -3243,7 +3248,7 @@ indicating **no more values will ever be sent on this channel**, subsequent atte
 
 - A send operation: blocks the sending goroutine until another go routine executes a corresponding receive on the same channel.
 - If a receive operation was attempted first, the receiving go routine is blocked until another goroutine performs a send on the same channel
-- cause sending and receiving goroutines to synchronize. Unbuffered channel are sometimes called ***synchronous channels***.
+- cause sending and receiving goroutines to synchronize. Unbuffered channel are sometimes called **_synchronous channels_**.
 
 > **To make the program wait for the background go routine to complete before exiting**
 
@@ -3303,7 +3308,7 @@ func Pipeline1() {
 
 **Tips:** If the sender knows that no further values will ever be sent on a channel, it is useful to communicate this fact to the receiver goroutines so that they can stop waiting. This is accomplished by **closing** the channel. `close(naturals)` (all subsequent receive operations will proceed without blocking but will yield a **zero value**)
 
-> **There is no way to test directly whether a channel has been closed**, **but there is a variant of receive operation that produces two results: the received channel element, plus a boolean value, ok** (true for successful receive, false for a receive on  a **closed and drained** channel)
+> **There is no way to test directly whether a channel has been closed**, **but there is a variant of receive operation that produces two results: the received channel element, plus a boolean value, ok** (true for successful receive, false for a receive on a **closed and drained** channel)
 
 ```go
 // DONOT USE IT, SEE THE EXAMPLE BELOW
@@ -3442,7 +3447,7 @@ func mirroredQuery() string {
 func request(hostname string) (response string) { /*...*/ return "aa" }
 ```
 
- Had we used an unbuffered channel, the two slower goroutines would have gotten stuck trying to send their responses on a channel from which no goroutine will ever receive. **This situation, called a goroutine leak, would be a bug.** Unlike garbage variables, **leaked goroutines are not automatically collected.**
+Had we used an unbuffered channel, the two slower goroutines would have gotten stuck trying to send their responses on a channel from which no goroutine will ever receive. **This situation, called a goroutine leak, would be a bug.** Unlike garbage variables, **leaked goroutines are not automatically collected.**
 
 > **The choice between unbuffered and buffered channels and the choice of a buffered channel's capacity, may both affect the correctness of a program**
 
@@ -3575,7 +3580,7 @@ func makeThumbnails6(filenames <-chan string) int64 {
 
 ![image-20230501015119422](./images/image-20230501015119422.png)
 
-## Example:  Concurrent Web Crawler
+## Example: Concurrent Web Crawler
 
 > **Unbounded parallelism is rarely a good idea since there is always a limit factor in the system, such as the number of CPU cores for compute-bound workloads, the number of spindles and heads for local disk I/O operations, the bandwidth of the network for streaming downloads, or the serving capacity of a web service.**
 
@@ -4178,10 +4183,10 @@ Three ways to avoid data race:
      // provides a concurrency-safe bank with one account.
      var deposits1 = make(chan int) // send amount to deposit
      var balances1 = make(chan int) // receive balance
-     
+
      func Deposit1(amount int) { deposits1 <- amount }
      func Balance1() int       { return <-balances1 }
-     
+
      func teller() {
       var balance int // balance is confined to teller goroutine
       for {
@@ -4192,7 +4197,7 @@ Three ways to avoid data race:
        }
       }
      }
-     
+
      func init() {
          go teller()
      }
@@ -4202,7 +4207,7 @@ Three ways to avoid data race:
 
 > Even when a variable cannot be confined to a single goroutine for its entire lifetime, confinement may still be a solution to the problem of concurrent access.
 
-For example,  it's common to **share a variable between goroutines in a pipeline by passing its address from one stage to the next over a channel**. **If each stage of the pipeline refrains from accessing the variable after sending it to the next stage, then all accesses to the variable are sequential.** So called serial confinement.
+For example, it's common to **share a variable between goroutines in a pipeline by passing its address from one stage to the next over a channel**. **If each stage of the pipeline refrains from accessing the variable after sending it to the next stage, then all accesses to the variable are sequential.** So called serial confinement.
 
 ```go
 type Cake struct{ state string }
@@ -4707,10 +4712,10 @@ Sometimes switching from one approach to the other can make your code simpler.
         go fmt.Print(0)
         fmt.Print(1)
     }
-    
+
     $ GOMAXPROCS=1 go run hacker-cliche.go
     111111111111111100000000000000011111.....
-    
+
     $ GOMAXPROCS=2 go run hacker-cliche.go
     01001010101001010100100100101010100101....
     ```
@@ -4720,7 +4725,7 @@ Sometimes switching from one approach to the other can make your code simpler.
 > **Goroutines have no identity**
 
 - In most os and programming languages that support multithreading, the current thread has a distinct identity. This makes it easy to build an abstraction called **thread-local storage**, which each thread can store and retrieve values independent of other threads
-- Goroutines have no notion of identity, this is by design since thread-local storage tends to e abused.
+- Goroutines have no notion of identity, this is by design since thread-local storage tends to be abused.
   - e.g. in a webserver implemented in a language with thread-local storage. It's common for many functions to find information about the HTTP request on whose behalf they are currently working by looking in that storage. This can lead to an unhealthy "**action at a distance**" in which the behavior of a function is not determined by its arguments alone, but by the identity of the thread in which it runs.
 
 # 10 Packages and the Go Tool
@@ -4746,7 +4751,7 @@ Example: HTML parser maintained by the Go team -- "golang.org/x/net/html"
 **Exception**
 
 - package that defining a command: always have the name main. This is a signal to go build that it must invoke the linker to make an executable file
-- with suffix **_test** on package name in a directory if the file name ends with _test.go.  It is an ***external test package***. This suffix signals to `go test` that it must build both packages (one without_test and one with_test).
+- with suffix **\_test** on package name in a directory if the file name ends with \_test.go. It is an **_external test package_**. This suffix signals to `go test` that it must build both packages (one without_test and one with_test).
   - External test packages are used to avoid cycle in the import graph
 - some tools for dependency management append version name suffixes to package import paths, such as "gopkg.in/yaml.v1". The package name excludes the suffix, so in this case it would be just yaml
 
@@ -4777,7 +4782,7 @@ Use it when
 
   ```go
   package main
-  
+
   import (
    "fmt"
    "image"
@@ -4786,14 +4791,14 @@ Use it when
    "io"
    "os"
   )
-  
+
   func main() {
    if err := toJPEG(os.Stdin, os.Stdout); err != nil {
     fmt.Fprintf(os.Stderr, "jpeg: %v\n", err)
     os.Exit(1)
    }
   }
-  
+
   func toJPEG(in io.Reader, out io.Writer) error {
    img, kind, err := image.Decode(in)
    if err != nil {
@@ -4802,7 +4807,7 @@ Use it when
    fmt.Fprintln(os.Stderr, "input format =", kind)
    return jpeg.Encode(out, img, &jpeg.Options{Quality: 95})
   }
-  
+
   ```
 
   **Tips:** here's how it works. The standard library provides decoders for GIF, PNG, and JPEG, and users may provide others, but to keep the executables small, decoders are not included in an application unless explicitly requested. Below is the image/png init function to add entry to the table.
@@ -4821,9 +4826,9 @@ Use it when
    _ "github.com/go-sql-driver/mysql" // support MySQL
    _ "github.com/lib/pq"              // support Postgres
   )
-  
+
   func main() {
-    // ... 
+    // ...
    db, err = sql.Open("postgres", dbname) // ok
    db, err = sql.Open("mysql", dbname)    // ok
    db, err = sql.Open("sqlite3", dbname)  // returns error: unknown driver "sqlite3"
@@ -4863,7 +4868,7 @@ http.Get
 json.Marshal
 ```
 
-> `New` function to create instances for ***single-type packages***. Which is expose one principal data type plus its methods.
+> `New` function to create instances for **_single-type packages_**. Which is expose one principal data type plus its methods.
 
 ```go
 package rand // "math/rand"
@@ -4933,7 +4938,7 @@ Since each directory contains one package, each executable program, or _command_
 $ cd $GOPATH/src/gopl.io/ch1/helloworld
 $ go build
 
-and 
+and
 
 $ cd anywhere
 $ go build gopl.io/ch/helloworld
@@ -4943,7 +4948,7 @@ and:
 $ cd $GOPATH
 $ go build ./src/gopl.io/ch1/helloworld
 
-but not: 
+but not:
 
 $ cd $GOPATH
 $ go build src/gopl.io/ch1/helloworld
@@ -5086,9 +5091,9 @@ go list -f '{{.ImportPath}} -> {{join .Imports " "}}' compress/...
 
 ## The `go test` Tool
 
-> Files whose names end with _test.go are not part of the package ordinarily built by go build, but are a part of it when built by go test.
+> Files whose names end with \_test.go are not part of the package ordinarily built by go build, but are a part of it when built by go test.
 
-> Within *_test.go files, three kinds of functions are treated specially: tests, benchmarks, and examples.
+> Within \*\_test.go files, three kinds of functions are treated specially: tests, benchmarks, and examples.
 
 - test: functions whose name begins with Test, exercises some program logic for correct behaviour. Result is either PASS or FAIL
 
@@ -5096,7 +5101,7 @@ go list -f '{{.ImportPath}} -> {{join .Imports " "}}' compress/...
 
 - example: functions whose name starts with Example, provides machine-checked documentation
 
-> `go test` tool scans the *_test.go files, generates a temporary main package, builds and runs it, reports the results, and then cleans up.
+> `go test` tool scans the \*\_test.go files, generates a temporary main package, builds and runs it, reports the results, and then cleans up.
 
 ## Test Functions
 
@@ -5271,7 +5276,7 @@ Calling these functions should be regarded as the exclusive right of main. Expec
 For example, a white-box test can check that the invariants of the package's data types are maintained after every operation.
 **Tips:** The name white box is traditional, but _clear box_ would be more accurate
 
-**Note:** For example, TestEcho calls the echo function and updates the global variable *out*, both of which are unexported.
+**Note:** For example, TestEcho calls the echo function and updates the global variable _out_, both of which are unexported.
 
 > It can provide more detailed coverage of the trickier pars of the implementation.
 
@@ -5310,6 +5315,7 @@ func CheckQuota(username string) {
 }
 
 ```
+
 ```go
 // Test file
 
@@ -5355,19 +5361,13 @@ It is usually more robust, needing fewer updates as the software evolves.
 
 **Note:** For example, TestIsPalindrome calls only the exported function IsPalindrome
 
-
-
 > Help the test author empathize with the client of the package and can reveal flaws in the API design.
-
-
 
 ### External Test Packages
 
 > Consider the package one of the test in net/url imports net/http, and net/http imports net/url
 
 Declaring this test function in the net/url package would create a cycle in the package import graph. Go specification forbids import cycles.
-
-
 
 > We resolve the problem by declaring the test function in an `external test package`
 
@@ -5376,23 +5376,18 @@ Declaring this test function in the net/url package would create a cycle in the 
   |-url
     |- example_test.go // this file with package url_test
 ```
-The extra _test in package is a signal to `go test` that it should build an additional package containing **just these files** and run its tests. 
+
+The extra \_test in package is a signal to `go test` that it should build an additional package containing **just these files** and run its tests.
 
 **Tips:** it cannot be imported under this or any other name
-
-
 
 > Because external tests live in a seperate package, they may import helper packages that also depend on the package being tested.
 
 as in-package cannot do this.
 
-
-
 > By avoiding import cycles, external test packages allow tests, especially **integration tests (which test the interaction of several components)**
 
 It can import other packages freely, exactly as an application world.
-
-
 
 > Use `go list` tool to summarize which Go Source files in a package directory are production code, in-package tests, and external tests.
 
@@ -5400,15 +5395,11 @@ It can import other packages freely, exactly as an application world.
 `go list -f={{.TestGoFiles}} fmt`
 `go list -f={{.XTestGoFiles}} fmt`
 
-
-
 > Sometimes an external test package may need privileged access to the internals of the package under test (unexported members), e.g. a white-box test must live in a seperate package to avoid an import cycle.
 
-We use a trick, we add declarations to an in-package _test.go file to expose the necessary internals to the external tsts. It is often called **export_test.go**. 
+We use a trick, we add declarations to an in-package \_test.go file to expose the necessary internals to the external tsts. It is often called **export_test.go**.
 
 **NOTE:** have a look in fmt package: export_test.go
-
-
 
 ### Writing Effective Tests
 
@@ -5416,11 +5407,10 @@ We use a trick, we add declarations to an in-package _test.go file to expose the
 
 The maintainer should not need to read the source code to dicipher a test failure.
 
-
-
 > Example of effective test
 
 Best results are rarely obtained by starting with a library of extract, generic testing functions.
+
 ```go
 // a poor assertion function.
 // suffer from premature abstraction: by treating
@@ -5449,17 +5439,13 @@ func TestSplit1(t *testing.T) {
 }
 ```
 
-
-
 ### Avoiding Brittle Test
 
 > `buggy`: application fails when it encounter new but valid inputs
 >
-> `brittle`: **a test fails when a sound change was made to the program**. It is called *change detector* or *status quo* tests
+> `brittle`: **a test fails when a sound change was made to the program**. It is called _change detector_ or _status quo_ tests
 
 The time spent dealing with brittle test can quickly deplete any beneft they once seemed to provide.
-
-
 
 > To avoid it:
 
@@ -5477,7 +5463,7 @@ Even though that may seem like a lot of up-front effort. it can pay for itself q
 
 `go test -cover`, it show summary
 
-`go test -coverprofile=c.out -covermode=count`  the resulting log of execution counts of each enables quantitative comparisons between "hotter" blocks, which are more frequently executed, and the "colder" ones.
+`go test -coverprofile=c.out -covermode=count` the resulting log of execution counts of each enables quantitative comparisons between "hotter" blocks, which are more frequently executed, and the "colder" ones.
 
 > display the usage message of coverage tool:
 
@@ -5499,7 +5485,7 @@ Just because a statement is executed does not mean it is bug-free; complex expre
 
 > measuring the performance of a program on a fixed workload.
 
-> function with **Benchmark** prefix, and a *testing.B parameter.
+> function with **Benchmark** prefix, and a \*testing.B parameter.
 
 field N specifies the number of times to perform the operation being measured.
 
@@ -5528,7 +5514,7 @@ The "." pattern cause it to match all benchmarks
 
 It has the opportunity to execute any necessary one-time setup code outside the loop without this adding to the measured time of each iteration. If this setup code is still perturbing the results, the **testing.B** parameter provides methods to stop, resume, and reset the timer, but these are rarely needed.
 
-> As the example in `chapter11-word`, the **fastest program is often the one that makes the fewest memory allocations**. 
+> As the example in `chapter11-word`, the **fastest program is often the one that makes the fewest memory allocations**.
 
 The -benchmem comman-line flag will include memory allocation statistics in its report.
 
@@ -5569,17 +5555,16 @@ func Benchmark1000(b *testing.B) { benchmark(b,1000) }
 
 **Tips:** when using more than one flag at a time, the machinery for gathering one kind of profile may skew the results of others.
 
-> Below show how to gather and display a simple CPU profile. 
+> Below show how to gather and display a simple CPU profile.
 
-Although `go test` usually discards the test executable once the test is complete, **when profiling is enabled it saves the executable as name.test.
-
+Although `go test` usually discards the test executable once the test is complete, \*\*when profiling is enabled it saves the executable as name.test.
 
 ```bash
 # we disabled bench marking test cases by using filter -run=NONE
 $ go test -run=NONE -bench=ClientServerParallelTLS64 -cpuprofile=cpu.log net/http
 
 # Once we've gathered a profile, we need to analyze it using the pprof tool. It is a standard part of the Go distribution.
-# The -text flag specifies the output format. In this case, a textual table with one row per function, sorted so the "hottest" functions -- those consumes the most CPU cycles appeared frst. 
+# The -text flag specifies the output format. In this case, a textual table with one row per function, sorted so the "hottest" functions -- those consumes the most CPU cycles appeared frst.
 # The -nodecount=10 flag limits the result to 10 rows.
 $ go tool pprof -text -nodecount=10 ./http.test cpu.log
 
@@ -5595,15 +5580,15 @@ For more subtle problems, you may be better off using one of `pprof`'s graphical
 
 - documentation. It can be a more succinct or intuitive way to convey the behavior of a library function than its prose description. Especially when used as a reminder or quick reference.
 
-    - Example functions are real Go code, which subject to compile-time checking, so they don't become stale as the code evolves.
+  - Example functions are real Go code, which subject to compile-time checking, so they don't become stale as the code evolves.
 
 - Examples are executable tests run by `go test`.
 
-    - If the example function contains a final // Output:, the test driver will execute the function and check that what it printed to its standard output matches the text within the comment
+  - If the example function contains a final // Output:, the test driver will execute the function and check that what it printed to its standard output matches the text within the comment
 
 - Hands-on experimentation. The `godoc` server at golang.org uses the Go Playground to let the user edit and run each example function from within a web browser
 
-    - This is often the fastest way to get a feel for a particular function or language feature.
+  - This is often the fastest way to get a feel for a particular function or language feature.
 
 ```go
 func ExampleIsPalindrome() {
@@ -5615,7 +5600,7 @@ func ExampleIsPalindrome() {
 }
 ```
 
-> `godoc`  associates example functions with the fnction or package they exemplify.
+> `godoc` associates example functions with the fnction or package they exemplify.
 
 ExampleIsPalindrome would be shown with the documentation for the IsPalindrome function
 
@@ -5682,15 +5667,15 @@ fmt.Println(reflect.TypeOf(w)) // "*os.File"
 ```
 
 > **reflect.Type** satisfy fmt.Stringer. fmt.Printf provides a shorthand %T that
-use reflect.TypeOf internally
+> use reflect.TypeOf internally
 
 ```go
 fmt.Printf("%T\n", 3) // "int"
 ```
 
 > **reflect.Value** can hold a value of any type. **reflect.ValueOf function
-accepts any interface{} and returns a reflect.Value containing the interface's
-dynamic value**.
+> accepts any interface{} and returns a reflect.Value containing the interface's
+> dynamic value**.
 
 As with reflect.TypeOf, results of reflect.ValueOf are always concrete, but a
 reflect.Value can hold interface values too.
@@ -5799,7 +5784,7 @@ func Display(name string, x interface{}) {
 ## Example: Display, a Recursive Value Printer
 
 > Prints the complete structure of value, labeling each element with the path by
-which it was found
+> which it was found
 
 ```go
 // gopl.io/ch12/display
@@ -5847,7 +5832,7 @@ func display(path string, v reflect.Value) {
 ![Display](./images/Display.png)
 
 > However, the above function will never terminate if it encounters a cycle in
-the object graph
+> the object graph
 
 ```go
 type Cycle struct{ Value int; Tail *Cycle }
@@ -5860,11 +5845,11 @@ A general solution requires **unsafe** language features.
 ## Example: Encoding S-Expressions
 
 > a package that encodes arbitrary Go objects using an S-expression
-notation that supports the following con structs:
+> notation that supports the following con structs:
 
-42      - integer
+42 - integer
 "hello" - string (with Go-style quotation)
-foo     - symbol (an unquoted name)
+foo - symbol (an unquoted name)
 (1 2 3) - list (zero or more items enclosed in parentheses)
 
 ```go
@@ -5942,7 +5927,7 @@ func Marshal(v interface{}) ([]byte, error) {
 
 ## Setting Variables with reflect.Value
 
-> A variable is an ***addressable*** storage location that contains a value, and its value may be updated through that address
+> A variable is an **_addressable_** storage location that contains a value, and its value may be updated through that address
 
 ```go
 x := 2                      // value       type          variable?
@@ -5955,7 +5940,7 @@ d := c.Elem()               // 2           int            yes (x)
 No reflect.Value returned by reflect.ValueOf(x) is addressable.
 Dereferencing the pointer within it, refers to a variable and is thus addressable.
 
-**Thus, we can use this approach, calling `reflect.ValueOf(&x).Elem()`, to obtain an addressable Value
+\*\*Thus, we can use this approach, calling `reflect.ValueOf(&x).Elem()`, to obtain an addressable Value
 
 > We can ask reflect.Value whether it is addressable through its `CanAddr` method:
 
@@ -6080,15 +6065,15 @@ func main() {
 - reflection-based code can be fragile. A reflection error is reported during execution as a panic.
 
   - The best way to avoid this fragility is to ensure that the use of reflection is fully encapsulated
-  within your package and, if possible, avoid `reflect.Value` in favor of specific types in your package's API
+    within your package and, if possible, avoid `reflect.Value` in favor of specific types in your package's API
 
   - If it is not possible, perform additional dynamic checks before each risky operation
 
   - For example, fmt.Printf does not panic mysteriously but prints an informative error message : fmt.Printf(
-  "%d %s\n", "hello", 42) // "%!d(string=hello) %!s(int=42)"
+    "%d %s\n", "hello", 42) // "%!d(string=hello) %!s(int=42)"
 
 - Since type serve as a form of documentation and operations of reflection cannot be subject to static type checking.
-Heavily reflective code is often hard to understand.
+  Heavily reflective code is often hard to understand.
 
   - Always carefully document the expected types and other invariants of functions that accept an interface{} or a reflect.Value
 
@@ -6112,7 +6097,7 @@ Without careful attention to detail, they may cause the kinds of unpredictable, 
 fmt.Println(unsafe.Sizeof(float(0))) // "8", a uintptr type
 ```
 
-**It reports only the size of the fixed part of each datastructure, like the pointer and length of a string, but not indirect parts like the contents of the string
+\*\*It reports only the size of the fixed part of each datastructure, like the pointer and length of a string, but not indirect parts like the contents of the string
 
 > Computers load and store values from memory efficiently when those values are properly aligned.
 
@@ -6122,18 +6107,18 @@ e.g. the address of a eight-byte value (float64, uint64, 64-bit pointer) should 
 
 For this reason, the size of a value of an aggregate type (a struct or array) is at least the sum of the sizes of its fields or elements but may be greater due to the presence of "holes"
 
-| Type | Size |
-| --- | --- |
-| bool | 1 byte |
-| intN, uintN, floatN, complexN | N / 8 bytes |
-| int, uint, uintptr | 1 word |
-| *T | 1 word |
-| string | 2 words (data, len) |
-| []T | 3 words (data, len, cap) |
-| map | 1 word |
-| func | 1 word |
-| chan | 1 word |
-| interface | 2 word (type, value) |
+| Type                          | Size                     |
+| ----------------------------- | ------------------------ |
+| bool                          | 1 byte                   |
+| intN, uintN, floatN, complexN | N / 8 bytes              |
+| int, uint, uintptr            | 1 word                   |
+| \*T                           | 1 word                   |
+| string                        | 2 words (data, len)      |
+| []T                           | 3 words (data, len, cap) |
+| map                           | 1 word                   |
+| func                          | 1 word                   |
+| chan                          | 1 word                   |
+| interface                     | 2 word (type, value)     |
 
 > If the types of a struct's fields are of different sizes, it may be more space-efficient to declare the fields in an order that packs them as tightly as possible.
 
@@ -6146,10 +6131,11 @@ struct{ bool; int16; float64 }  // 2 words 3 words
 
 It's certainly not worth worrying about every struct, but efficient packing may make frequently allocated datastructures more compact and therefore faster.
 
-> The `unsafe.Alignof` function reports the required alignment of its argument's type. 
+> The `unsafe.Alignof` function reports the required alignment of its argument's type.
 
 Like `Sizeof`, it may be applied to an expression of any type, and it yields a constant.
-> The `unsafe.Offsetof` function, whose operand must be field selector x.f,  computes offset of field f relative to the start of its enclosing struct x.
+
+> The `unsafe.Offsetof` function, whose operand must be field selector x.f, computes offset of field f relative to the start of its enclosing struct x.
 
 ```go
 var x struct {
@@ -6159,14 +6145,14 @@ var x struct {
 }
 ```
 
-***32-bit***
+**_32-bit_**
 
-|   |   |   |   |
-| --- | --- | --- | --- |
-| a | -blank- | b | b |
-| c | c | c | c |
-| c | c | c | c |
-| c | c | c | c |
+|     |         |     |     |
+| --- | ------- | --- | --- |
+| a   | -blank- | b   | b   |
+| c   | c       | c   | c   |
+| c   | c       | c   | c   |
+| c   | c       | c   | c   |
 
 ```go
 Sizeof(x) = 16 Alignof(x) = 4
@@ -6175,14 +6161,14 @@ Sizeof(x.b) = 2 Alignof(x.b) = 2 Offsetof(x.b) = 2
 Sizeof(x.c) = 12 Alignof(x.c) = 4 Offsetof(x.c) = 4
 ```
 
-***64-bit***
+**_64-bit_**
 
-|   |   |   |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| a | -blank- | b | b | -blank- |  |  |  | 
-| c | c | c | c | c | c | c | c |
-| c | c | c | c | c | c | c | c |
-| c | c | c | c | c | c | c | c |
+|     |         |     |     |         |     |     |     |
+| --- | ------- | --- | --- | ------- | --- | --- | --- |
+| a   | -blank- | b   | b   | -blank- |     |     |     |
+| c   | c       | c   | c   | c       | c   | c   | c   |
+| c   | c       | c   | c   | c       | c   | c   | c   |
+| c   | c       | c   | c   | c       | c   | c   | c   |
 
 ```go
 Sizeof(x) = 32 Alignof(x) = 8
@@ -6195,7 +6181,7 @@ Sizeof(x.c) = 24 Alignof(x.c) = 8 Offsetof(x.c) = 8
 
 > it is comparable and may be compared with nil (the zero value of the type)
 
-> An ordinar *T pointer may be converted to an `unsafe.Pointer`, and an unsafe.Pointer may be converted back to an ordinary pointer **not necessarily of the same type *T**.
+> An ordinar *T pointer may be converted to an `unsafe.Pointer`, and an unsafe.Pointer may be converted back to an ordinary pointer \*\*not necessarily of the same type *T\*\*.
 
 ```go
 package math
@@ -6290,21 +6276,18 @@ type comparison struct {
 }
 ```
 
-To ensure that algorithm terminates even for cyclic data structures, it must record which pairs of variables it has 
+To ensure that algorithm terminates even for cyclic data structures, it must record which pairs of variables it has
 already compared and avoid comparing them a second time
 
 We need to record the types, different type can has the same address e.g. y and y[0]
 
 ## Calling C code with cgo
 
-> `cgo`, a tool that creates Go bindings for C functions. Such tools are called *foreign-function interfaces* (FFIs), and cgo is not the only one for Go programs. SWIG is another.
+> `cgo`, a tool that creates Go bindings for C functions. Such tools are called _foreign-function interfaces_ (FFIs), and cgo is not the only one for Go programs. SWIG is another.
 
 > Example: bzip Compressor
 
 - bzip runs slower than gzip but ields significantly better compressions.
-
-
-
 
 `cgo` generates a temporary package that contains Go declarations corresponding to all the
 C functions and types used by the file, such as C.bz_stream
