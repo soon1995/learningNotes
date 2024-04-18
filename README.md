@@ -37,9 +37,11 @@ The knowledge was gained from different resources, not limited to:
 
 - The Linux Command Line by William Shotts -- Reread
 
+- JavaScript: The Definitive Guide by David Flanagan -- Seventh Edition -- The longest book I have ever read so far.
+
 ### Watch Lists
 
-- Designing Data-Intensitive Applications by Martin Kleppmann
+- Designing Data-Intensive Applications by Martin Kleppmann
 
 - Unit Testing: Principles, Practices, and Patterns by Vladimir Khorikov
 
