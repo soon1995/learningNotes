@@ -39,6 +39,10 @@ The knowledge was gained from different resources, not limited to:
 
 - JavaScript: The Definitive Guide by David Flanagan -- Seventh Edition -- The longest book I have ever read so far.
 
+- Nonviolent Communication: A Language of Life -- Marshall B. Rosenberg, Arun Gandhi
+
+- 好好说话：新鲜有趣的话术精进技巧 -- 马东 , 马薇薇 , 黄执中 , 周玄毅 , 邱晨 , 胡渐彪 , 刘京京
+
 ### Watch Lists
 
 - Designing Data-Intensive Applications by Martin Kleppmann
