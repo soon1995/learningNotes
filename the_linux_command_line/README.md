@@ -5094,6 +5094,12 @@ echo "<HTML>
 
 #### Here Documents
 
+```bash
+tee -a HELLO <<EOF
+this is a great day.
+EOF
+```
+
 We've looked at two different methods of outputting our text, both
 using the `echo` command. There is third way called a _here document or here script_.
 
